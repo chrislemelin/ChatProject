@@ -13,7 +13,6 @@ namespace ChatClient
 		private void interpret(String data)
 		{
 			String[] messages = data.Split(Reader.EOM);
-			List<String[]> messageWhole = new List<String[]>();
 			foreach (String s in messages)
 			{
 				interpretHelper(s.Split(Reader.EOD));
@@ -28,6 +27,9 @@ namespace ChatClient
 			switch (type)
 			{
 				case 'a':
+					//init lobby
+					sb.ToString();
+
 					break;
 			   	default:
             		Console.WriteLine("Default case");

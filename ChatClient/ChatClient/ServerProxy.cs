@@ -22,6 +22,7 @@ namespace ChatClient
 
 		public void Start()
 		{
+			Thread.CurrentThread.IsBackground = true;
 			while (true)
 			{
 				Receive(client);
@@ -45,7 +46,6 @@ namespace ChatClient
 					bytesRead = client.Receive(bytes);
 					sb.Append(Encoding.ASCII.GetString(bytes, 0, bytesRead));
 					response = sb.ToString();
-					//Console.WriteLine(Encoding.ASCII.GetString(bytes, 0, bytesRead));
 				}
 				response = sb.ToString();
 				Console.WriteLine("--"+response+ "--");
@@ -96,8 +96,8 @@ namespace ChatClient
 
 				// Send test data to the remote device. 
 
-				Send(client, "This is a test<EOF>");
-				sendDone.WaitOne();
+				//Send(client, "This is a test<EOF>");
+				//sendDone.WaitOne();
 
 				Reader rd = new Reader();
 				rd.client = client;
@@ -122,7 +122,7 @@ namespace ChatClient
 		{
 			try
 			{
-				Send(this.client, "data");
+				Send(this.client, username);
 			}
 			catch (Exception e)
 			{
@@ -159,14 +159,13 @@ namespace ChatClient
 		{
 			// Convert the string data to byte data using ASCII encoding.  
 			byte[] byteData = Encoding.ASCII.GetBytes(data+ Reader.EOM);
-			client.Send(byteData);
-			sendDone.Set();
 
-			/*
+
+
 			// Begin sending the data to the remote device.  
 			client.BeginSend(byteData, 0, byteData.Length, 0,
 				new AsyncCallback(SendCallback), client);
-			*/
+			
 		}
 
 		private void SendCallback(IAsyncResult ar)
