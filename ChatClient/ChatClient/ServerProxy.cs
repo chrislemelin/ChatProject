@@ -5,72 +5,9 @@ using System.Threading;
 using System.Text;
 using System.Collections.Generic;
 
-
-
 namespace ChatClient
 {
-
-	public class Reader
-	{
-		public static readonly char EOM = (char)10;
-		public static readonly char EOD = (char)11;
-
-		public Socket client;
-		private StringBuilder sb = new StringBuilder();
-		private String response = String.Empty;
-		public MessageInterperter interpreter = new MessageInterperter();
-
-
-		public void Start()
-		{
-			Thread.CurrentThread.IsBackground = true;
-			while (SocketConnected(client))
-			{
-				Receive(client);
-			}
-		}
-
-		private void Receive(Socket client)
-		{
-			try
-			{
-				sb.Clear();
-				byte[] bytes = new byte[256];
-
-				int bytesRead = client.Receive(bytes);
-
-				sb.Append(Encoding.ASCII.GetString(bytes, 0, bytesRead));
-				response = sb.ToString();
-
-				while(bytes[bytesRead-1] != (byte)EOM)
-				{
-					// There might be more data, so store the data received so far.  
-					bytesRead = client.Receive(bytes);
-					sb.Append(Encoding.ASCII.GetString(bytes, 0, bytesRead));
-					response = sb.ToString();
-				}
-				response = sb.ToString();
-				Console.WriteLine("--"+response+ "--");
-				//interpreter.interpret(response);
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine(e.Message);
-			}
-		}
-
-		private bool SocketConnected(Socket s)
-		{
-			bool part1 = s.Poll(1000, SelectMode.SelectRead);
-			bool part2 = (s.Available == 0);
-			if (part1 && part2)
-				return false;
-			else
-				return true;
-		}
-	}
-
-	public class ServerProxy
+	public class ServerProxy : ClientListener
 	{
 		// The port number for the remote device.  
 		private const int port = 10000;
@@ -107,9 +44,9 @@ namespace ChatClient
 
 				// Send test data to the remote device. 
 
-				Send(client, "This is a test<EOF>");
+				Send("This is a test<EOF>");
 				sendDone.WaitOne();
-				Send(client, "This is a test2");
+				Send("This is a test2");
 				sendDone.WaitOne();
 
 
@@ -117,30 +54,12 @@ namespace ChatClient
 				rd.client = client;
 				Thread oThread = new Thread(new ThreadStart(rd.Start));
 				oThread.Start();
-
-				// Write the response to the console.  
-
-
-				// Release the socket.  
-				//client.Shutdown(SocketShutdown.Both);
-				//client.Close();
+				 
 
 			}
 			catch (Exception e)
 			{
 				Console.WriteLine(e.ToString());
-			}
-		}
-
-		public void tryLogin(string username)
-		{
-			try
-			{
-				Send(this.client, username);
-			}
-			catch (Exception e)
-			{
-				
 			}
 		}
 
@@ -169,13 +88,10 @@ namespace ChatClient
 
 
 
-		private void Send(Socket client, String data)
+		private void Send(String data)
 		{
 			// Convert the string data to byte data using ASCII encoding.  
-			byte[] byteData = Encoding.ASCII.GetBytes(data+ Reader.EOM);
-			//client.Send(byteData);
-			//sendDone.Set();
-
+			byte[] byteData = Encoding.ASCII.GetBytes(data+ Resources.EOM);
 
 			// Begin sending the data to the remote device.  
 			client.BeginSend(byteData, 0, byteData.Length, 0,
@@ -203,6 +119,24 @@ namespace ChatClient
 			}
 		}
 
+		public void assignUsername(string Username)
+		{
+			Send(Resources.c_login + Username);
+		}
 
+		public void joinLobby(string title)
+		{
+			Send(Resources.c_joinLobby + title);
+		}
+
+		public void sendMessage(string message)
+		{
+			Send(Resources.c_sendMessage +message);
+		}
+
+		public void makeLobby(string title)
+		{
+			Send(Resources.c_makeLobby + title);
+		}
 	}
 }

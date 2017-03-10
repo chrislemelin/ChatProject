@@ -12,10 +12,10 @@ namespace ChatClient
 
 		private void interpret(String data)
 		{
-			String[] messages = data.Split(Reader.EOM);
+			String[] messages = data.Split(Resources.EOM);
 			foreach (String s in messages)
 			{
-				interpretHelper(s.Split(Reader.EOD));
+				interpretHelper(s.Split(Resources.EOD));
 			}
 		}
 

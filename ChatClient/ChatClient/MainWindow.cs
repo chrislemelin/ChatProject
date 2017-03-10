@@ -18,7 +18,7 @@ public partial class MainWindow : Gtk.Window
 
 	protected void Login(object sender, EventArgs e)
 	{
-		proxy.tryLogin(loginInput.Text);
+		proxy.assignUsername(loginInput.Text);
 	}
 
 	protected void KeyPress(object o, KeyPressEventArgs args)

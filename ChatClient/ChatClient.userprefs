@@ -1,7 +1,13 @@
 ﻿<Properties StartupConfiguration="{5F087D2E-B531-4C4A-AEE8-6C97C8476D10}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="ChatClient/ServerProxy.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ChatClient/MessageInterperter.cs">
     <Files>
-      <File FileName="ChatClient/ServerProxy.cs" Line="29" Column="16" />
+      <File FileName="ChatClient/ServerProxy.cs" Line="94" Column="62" />
+      <File FileName="ChatClient/ClientListener.cs" Line="12" Column="32" />
+      <File FileName="ChatClient/MainWindow.cs" Line="1" Column="1" />
+      <File FileName="ChatClient/Reader.cs" Line="68" Column="2" />
+      <File FileName="ChatClient/Resources.cs" Line="13" Column="9" />
+      <File FileName="ChatClient/Program.cs" Line="1" Column="1" />
+      <File FileName="ChatClient/MessageInterperter.cs" Line="18" Column="39" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />

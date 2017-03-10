@@ -6,74 +6,12 @@ using System;
 
 namespace ChatServer
 {
-	public class Reader
-	{
-		public static readonly char EOM = (char)10;
-		public static readonly char EOD = (char)11;
-		public Socket client;
-		private StringBuilder sb = new StringBuilder();
-		private String response = String.Empty;
-
-		public void Start()
-		{
-			Thread.CurrentThread.IsBackground = true;
-			while (SocketConnected(client))
-			{
-				Receive(client);
-			}
-		}
-
-		private void Receive(Socket client)
-		{
-			try
-			{
-				sb.Clear();
-				byte[] bytes = new byte[256];
-
-				int bytesRead = client.Receive(bytes);
-
-				sb.Append(Encoding.ASCII.GetString(bytes, 0, bytesRead));
-				response = sb.ToString();
-
-				while (bytes[bytesRead - 1] != (byte)EOM)
-				{
-					// There might be more data, so store the data received so far.  
-					bytesRead = client.Receive(bytes);
-					sb.Append(Encoding.ASCII.GetString(bytes, 0, bytesRead));
-					response = sb.ToString();
-					//Console.WriteLine(Encoding.ASCII.GetString(bytes, 0, bytesRead));
-				}
-				response = sb.ToString();
-				Console.WriteLine("--" + response + "--");
-				//interpreter.interpret(response);
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine(e.Message);
-			}
-		}
-
-		private bool SocketConnected(Socket s)
-		{
-			bool part1 = s.Poll(1000, SelectMode.SelectRead);
-			bool part2 = (s.Available == 0);
-			if (part1 && part2)
-				return false;
-			else
-				return true;
-		}
-
-	}
-
-
 	public class ConnectionListener
 	{
 		// Thread signal.  
 		public ManualResetEvent allDone = new ManualResetEvent(false);
 		public static readonly char EOM = (char)10;
-
-
-
+		public Model model;
 
 		public ConnectionListener()
 		{
@@ -136,17 +74,19 @@ namespace ChatServer
 			Socket handler = listener.EndAccept(ar);
 
 			// Create the state object.  
-			ClientProxy state = new ClientProxy();
+			State state = new State();
 			state.workSocket = handler;
 
 			Console.WriteLine("making thread");
+
+			ClientProxy proxy = new ClientProxy(state.workSocket);
 			Reader rd = new Reader();
-			rd.client = state.workSocket;
+			rd.model = model;
+			rd.client = proxy;
+			rd.socket = state.workSocket;
 			Thread oThread = new Thread(new ThreadStart(rd.Start));
 			oThread.Start();
 
-			//handler.BeginReceive(state.buffer, 0, ClientProxy.BufferSize, 0,
-			//	new AsyncCallback(ReadCallback), state);
 		}
 
 		public void ReadCallback(IAsyncResult ar)
@@ -155,7 +95,7 @@ namespace ChatServer
 
 			// Retrieve the state object and the handler socket  
 			// from the asynchronous state object.  
-			ClientProxy state = (ClientProxy)ar.AsyncState;
+			State state = (State)ar.AsyncState;
 			Socket handler = state.workSocket;
 
 			// Read data from the client socket.   
@@ -181,7 +121,7 @@ namespace ChatServer
 				}
 				else {
 					// Not all data received. Get more.  
-					handler.BeginReceive(state.buffer, 0, ClientProxy.BufferSize, 0,
+					handler.BeginReceive(state.buffer, 0, State.BufferSize, 0,
 					new AsyncCallback(ReadCallback), state);
 				}
 			}
