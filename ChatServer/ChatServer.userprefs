@@ -6,7 +6,7 @@
       <File FileName="ChatServer/ClientProxy.cs" Line="22" Column="3" />
       <File FileName="ChatServer/IRoom.cs" Line="1" Column="1" />
       <File FileName="ChatServer/ClientModel.cs" Line="7" Column="29" />
-      <File FileName="ChatServer/ConnectionListener.cs" Line="1" Column="1" />
+      <File FileName="ChatServer/ConnectionListener.cs" Line="22" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
