@@ -9,7 +9,7 @@ public partial class MainWindow
 
 	private global::Gtk.Alignment alignment3;
 
-	private global::Gtk.Entry entry3;
+	private global::Gtk.Entry loginInput;
 
 	private global::Gtk.Button button1;
 
@@ -49,12 +49,12 @@ public partial class MainWindow
 		this.alignment3.LeftPadding = ((uint)(50));
 		this.alignment3.RightPadding = ((uint)(50));
 		// Container child alignment3.Gtk.Container+ContainerChild
-		this.entry3 = new global::Gtk.Entry();
-		this.entry3.CanFocus = true;
-		this.entry3.Name = "entry3";
-		this.entry3.IsEditable = true;
-		this.entry3.InvisibleChar = '•';
-		this.alignment3.Add(this.entry3);
+		this.loginInput = new global::Gtk.Entry();
+		this.loginInput.CanFocus = true;
+		this.loginInput.Name = "loginInput";
+		this.loginInput.IsEditable = true;
+		this.loginInput.InvisibleChar = '•';
+		this.alignment3.Add(this.loginInput);
 		this.vbox3.Add(this.alignment3);
 		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.alignment3]));
 		w3.Position = 1;
@@ -82,5 +82,7 @@ public partial class MainWindow
 		}
 		this.Show();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
+		this.loginInput.KeyPressEvent += new global::Gtk.KeyPressEventHandler(this.KeyPress);
+		this.button1.Clicked += new global::System.EventHandler(this.Login);
 	}
 }

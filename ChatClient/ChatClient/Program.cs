@@ -9,8 +9,10 @@ namespace ChatClient
 		{
 			ServerProxy proxy = new ServerProxy();
 			proxy.StartClient();
+
 			Application.Init();
 			MainWindow win = new MainWindow();
+			win.proxy = proxy;
 			win.Show();
 			Application.Run();
 		}

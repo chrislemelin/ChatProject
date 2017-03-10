@@ -14,6 +14,7 @@ namespace ChatClient
 	{
 		public static readonly char EOM = (char)10;
 		public static readonly char EOD = (char)11;
+
 		public Socket client;
 		private StringBuilder sb = new StringBuilder();
 		private String response = String.Empty;
@@ -47,7 +48,6 @@ namespace ChatClient
 					bytesRead = client.Receive(bytes);
 					sb.Append(Encoding.ASCII.GetString(bytes, 0, bytesRead));
 					response = sb.ToString();
-					//Console.WriteLine(Encoding.ASCII.GetString(bytes, 0, bytesRead));
 				}
 				response = sb.ToString();
 				Console.WriteLine("--"+response+ "--");
@@ -112,6 +112,7 @@ namespace ChatClient
 				Send(client, "This is a test2");
 				sendDone.WaitOne();
 
+
 				Reader rd = new Reader();
 				rd.client = client;
 				Thread oThread = new Thread(new ThreadStart(rd.Start));
@@ -135,7 +136,7 @@ namespace ChatClient
 		{
 			try
 			{
-				Send(this.client, "data");
+				Send(this.client, username);
 			}
 			catch (Exception e)
 			{
