@@ -3,6 +3,7 @@ using System.Net.Sockets;
 using System;
 using System.Text;
 using System.Threading;
+using Google.Protobuf;
 
 namespace ChatServer
 {
@@ -18,6 +19,8 @@ namespace ChatServer
 
 		public void Start()
 		{
+
+
 			Thread.CurrentThread.IsBackground = true;
 			while (SocketConnected(socket))
 			{
@@ -30,25 +33,16 @@ namespace ChatServer
 			try
 			{
 				sb.Clear();
-				byte[] bytes = new byte[256];
+				byte[] length = new byte[4];
+				client.Receive(length);
+				int len = BitConverter.ToInt32(length, 0);
+				byte[] data = new byte[len];
+				client.Receive(data);
 
-				int bytesRead = client.Receive(bytes);
-				sb.Append(Encoding.ASCII.GetString(bytes, 0, bytesRead));
-				response = sb.ToString();
+				CSMessageWrapper message = CSMessageWrapper.Parser.ParseFrom(data);
+				translate(message);
 
-				while (bytes[bytesRead - 1] != (byte)EOM)
-				{
-					// There might be more data, so store the data received so far.  
-					bytesRead = client.Receive(bytes);
-					sb.Append(Encoding.ASCII.GetString(bytes, 0, bytesRead));
-					response = sb.ToString();
-					//Console.WriteLine(Encoding.ASCII.GetString(bytes, 0, bytesRead));
-				}
-				response = sb.ToString();
-				Console.WriteLine("--" + response + "--");
-				translate(response);
-
-				//interpreter.interpret(response);
+	
 			}
 			catch (Exception e)
 			{
@@ -66,15 +60,10 @@ namespace ChatServer
 				return true;
 		}
 
-		private void translate(String message)
+		private void translate(CSMessageWrapper wrapper)
 		{
-			if (message[0] == Resources.c_login)
-			{
-				if (model.addUser(message.Substring(1), client))
-				{
-					client.authenticated();
-				}
-			}
+			Console.WriteLine(wrapper.Login.Name);
+			model.addUser(wrapper.Login.Name, client);
 		}
 	}
 }

@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+message Authenticated{
+
+}
+
+message UpdateLobby{
+  repeated string names = 1;
+}
+
+message UpdateRoom{
+  repeated string names = 1;
+}
+
+message SCMessageWrapper{
+  oneof msg
+  {
+      Authenticated authenticated = 1;
+      UpdateLobby updateLobby = 2;
+      UpdateRoom updateRoom = 3;
+  }
+
+}

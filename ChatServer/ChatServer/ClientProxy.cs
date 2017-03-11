@@ -18,6 +18,9 @@ namespace ChatServer
 
 		public void authenticated()
 		{
+
+
+
 			Send(Resources.s_authenicated + "");
 			Console.WriteLine("authenicated user");
 		}

@@ -3,6 +3,8 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Text;
+using System.IO;
+using Google.Protobuf;
 using System.Collections.Generic;
 
 namespace ChatClient
@@ -41,13 +43,8 @@ namespace ChatClient
 					new AsyncCallback(ConnectCallback), client);
 				connectDone.WaitOne();
 
-
 				// Send test data to the remote device. 
 
-				Send("This is a test<EOF>");
-				sendDone.WaitOne();
-				Send("This is a test2");
-				sendDone.WaitOne();
 
 
 				Reader rd = new Reader();
@@ -88,13 +85,17 @@ namespace ChatClient
 
 
 
-		private void Send(String data)
+		private void Send(CSMessageWrapper wrapper)
 		{
-			// Convert the string data to byte data using ASCII encoding.  
-			byte[] byteData = Encoding.ASCII.GetBytes(data+ Resources.EOM);
+			byte[] data = wrapper.ToByteArray();
+			byte[] length;
+			length = BitConverter.GetBytes(data.Length);
+			Console.WriteLine(data.Length);
 
-			// Begin sending the data to the remote device.  
-			client.BeginSend(byteData, 0, byteData.Length, 0,
+			// Begin sending the data to the remote device. 
+			client.BeginSend(length, 0, 4, 0,
+				new AsyncCallback(SendCallback), client);
+			client.BeginSend(data, 0, data.Length, 0,
 				new AsyncCallback(SendCallback), client);
 			
 		}
@@ -119,24 +120,32 @@ namespace ChatClient
 			}
 		}
 
-		public void assignUsername(string Username)
+		public void assignUsername(string username)
 		{
-			Send(Resources.c_login + Username);
+			CSMessageWrapper wrapper = new CSMessageWrapper();
+			Login login = new Login();
+			login.Name = username;
+			wrapper.Login = login;
+
+			byte[] data;
+			data = wrapper.ToByteArray();
+			Send(wrapper);
+
 		}
 
 		public void joinLobby(string title)
 		{
-			Send(Resources.c_joinLobby + title);
+			//Send(Resources.c_joinLobby + title);
 		}
 
 		public void sendMessage(string message)
 		{
-			Send(Resources.c_sendMessage +message);
+			//Send(Resources.c_sendMessage +message);
 		}
 
 		public void makeLobby(string title)
 		{
-			Send(Resources.c_makeLobby + title);
+			//Send(Resources.c_makeLobby + title);
 		}
 	}
 }

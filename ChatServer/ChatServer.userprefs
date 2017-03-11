@@ -1,15 +1,13 @@
 ﻿<Properties StartupConfiguration="{1D7170E6-4741-4B43-9B93-E1EDDB1E369D}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="ChatServer/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ChatServer/ProtoBuf/ClientToServerMessages.cs">
     <Files>
-      <File FileName="ChatServer/Program.cs" Line="11" Column="20" />
-      <File FileName="ChatServer/ClientModel.cs" Line="4" Column="26" />
-      <File FileName="ChatServer/State.cs" Line="8" Column="15" />
-      <File FileName="ChatServer/ClientProxy.cs" Line="22" Column="43" />
-      <File FileName="ChatServer/ConnectionListener.cs" Line="84" Column="13" />
-      <File FileName="ChatServer/Reader.cs" Line="77" Column="29" />
       <File FileName="ChatServer/ServerListener.cs" Line="10" Column="24" />
       <File FileName="ChatServer/Resources.cs" Line="2" Column="21" />
-      <File FileName="ChatServer/Model.cs" Line="16" Column="57" />
+      <File FileName="ChatServer/Model.cs" Line="30" Column="5" />
+      <File FileName="ChatServer/ConnectionListener.cs" Line="97" Column="44" />
+      <File FileName="ChatServer/ClientProxy.cs" Line="21" Column="1" />
+      <File FileName="ChatServer/Reader.cs" Line="75" Column="46" />
+      <File FileName="ChatServer/ProtoBuf/ClientToServerMessages.cs" Line="7" Column="27" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
@@ -18,4 +16,5 @@
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.ChatServer PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
 </Properties>
