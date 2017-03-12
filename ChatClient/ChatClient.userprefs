@@ -1,19 +1,18 @@
 ﻿<Properties StartupConfiguration="{5F087D2E-B531-4C4A-AEE8-6C97C8476D10}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="ChatClient/Reader.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ChatClient/Program.cs">
     <Files>
-      <File FileName="ChatClient/ServerProxy.cs" Line="139" Column="1" />
+      <File FileName="ChatClient/ServerProxy.cs" Line="52" Column="34" />
       <File FileName="ChatClient/ClientListener.cs" Line="10" Column="36" />
-      <File FileName="ChatClient/MainWindow.cs" Line="1" Column="1" />
-      <File FileName="ChatClient/Reader.cs" Line="68" Column="2" />
-      <File FileName="ChatClient/Program.cs" Line="17" Column="1" />
+      <File FileName="ChatClient/Reader.cs" Line="13" Column="15" />
+      <File FileName="ChatClient/Program.cs" Line="12" Column="4" />
       <File FileName="ChatClient/ProtoBuf/ClientToServerMessages.cs" Line="1" Column="1" />
+      <File FileName="ChatClient/LoginWindow.cs" Line="26" Column="26" />
+      <File FileName="ChatClient/Resources.cs" Line="13" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/chrislemelin/Projects/ChatProject/ChatClient/ChatClient/ServerProxy.cs" relfile="ChatClient/ServerProxy.cs" line="139" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.ChatClient PreferredExecutionTarget="MonoDevelop.Default" />

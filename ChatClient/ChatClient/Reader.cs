@@ -10,6 +10,7 @@ namespace ChatClient
 	public class Reader
 	{
 		public Socket client;
+		public LoginWindow loginWindow;
 		private StringBuilder sb = new StringBuilder();
 		private String response = String.Empty;
 		public MessageInterperter interpreter = new MessageInterperter();
@@ -29,27 +30,31 @@ namespace ChatClient
 			try
 			{
 				sb.Clear();
-				byte[] bytes = new byte[256];
+				byte[] length = new byte[4];
+				client.Receive(length);
+				int len = BitConverter.ToInt32(length, 0);
+				byte[] data = new byte[len];
+				client.Receive(data);
 
-				int bytesRead = client.Receive(bytes);
+				SCMessageWrapper message = SCMessageWrapper.Parser.ParseFrom(data);
+				processMessage(message);
 
-				sb.Append(Encoding.ASCII.GetString(bytes, 0, bytesRead));
-				response = sb.ToString();
 
-				while (bytes[bytesRead - 1] != (byte)Resources.EOM)
-				{
-					// There might be more data, so store the data received so far.  
-					bytesRead = client.Receive(bytes);
-					sb.Append(Encoding.ASCII.GetString(bytes, 0, bytesRead));
-					response = sb.ToString();
-				}
-				response = sb.ToString();
-				Console.WriteLine("--" + response + "--");
-				//interpreter.interpret(response);
 			}
 			catch (Exception e)
 			{
 				Console.WriteLine(e.Message);
+			}
+		}
+
+		private void processMessage(SCMessageWrapper wrapper)
+		{
+			if (wrapper.Authenticated != null)
+			{
+				if (wrapper.Authenticated.Success)
+					loginWindow.DisplayMessage("login was a success");
+				else
+					loginWindow.DisplayMessage("username already taken");
 			}
 		}
 

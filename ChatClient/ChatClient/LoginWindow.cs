@@ -2,10 +2,10 @@
 using Gtk;
 using ChatClient;
 
-public partial class MainWindow : Gtk.Window
+public partial class LoginWindow : Gtk.Window
 {
 	public ServerProxy proxy = new ServerProxy();
-	public MainWindow() : base(Gtk.WindowType.Toplevel)
+	public LoginWindow() : base(Gtk.WindowType.Toplevel)
 	{
 		Build();
 	}
@@ -18,7 +18,12 @@ public partial class MainWindow : Gtk.Window
 
 	protected void Login(object sender, EventArgs e)
 	{
-		proxy.assignUsername(loginInput.Text);
+		proxy.assignUsername(loginIn.Text);
+	}
+
+	public void DisplayMessage(String message)
+	{
+		display.Text = message;
 	}
 
 	protected void KeyPress(object o, KeyPressEventArgs args)

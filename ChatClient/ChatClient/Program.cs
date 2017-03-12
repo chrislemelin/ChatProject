@@ -8,11 +8,13 @@ namespace ChatClient
 		public static void Main(string[] args)
 		{
 			ServerProxy proxy = new ServerProxy();
-			proxy.StartClient();
 
 			Application.Init();
-			MainWindow win = new MainWindow();
+			LoginWindow win = new LoginWindow();
 			win.proxy = proxy;
+			proxy.loginWindow = win;
+
+			proxy.StartClient();
 			win.Show();
 			Application.Run();
 		}

@@ -56,7 +56,6 @@
     <Compile Include="Model.cs" />
     <Compile Include="State.cs" />
     <Compile Include="IRoom.cs" />
-    <Compile Include="ClientModel.cs" />
     <Compile Include="ConnectionListener.cs" />
     <Compile Include="Reader.cs" />
     <Compile Include="ClientProxy.cs" />
@@ -64,12 +63,14 @@
     <Compile Include="Resources.cs" />
     <Compile Include="ProtoBuf\ClientToServerMessages.cs" />
     <Compile Include="ProtoBuf\ServerToClientMessages.cs" />
+    <Compile Include="Models\ClientModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ProtoBuf\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

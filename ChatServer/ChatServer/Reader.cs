@@ -14,6 +14,7 @@ namespace ChatServer
 		public Socket socket;
 		public ClientProxy client;
 		public Model model;
+		public ClientModel clientModel = null;
 		private StringBuilder sb = new StringBuilder();
 		private String response = String.Empty;
 
@@ -40,7 +41,7 @@ namespace ChatServer
 				client.Receive(data);
 
 				CSMessageWrapper message = CSMessageWrapper.Parser.ParseFrom(data);
-				translate(message);
+				processMessage(message);
 
 	
 			}
@@ -60,10 +61,32 @@ namespace ChatServer
 				return true;
 		}
 
-		private void translate(CSMessageWrapper wrapper)
+		private void processMessage(CSMessageWrapper wrapper)
 		{
-			Console.WriteLine(wrapper.Login.Name);
-			model.addUser(wrapper.Login.Name, client);
+			if (wrapper.Login != null)
+			{
+				clientModel = model.addUser(wrapper.Login.Name, client);
+				if (clientModel != null)
+				{
+					client.authenticated(true);
+				}
+				else
+				{
+					client.authenticated(false);
+				}
+			}
+			if (wrapper.MakeRoom != null)
+			{
+				// add make room logic
+			}
+			if (wrapper.JoinLobby != null)
+			{
+				// add joining room logic
+			}
+			if (wrapper.SendMessage != null)
+			{
+				// add posting message logic	
+			}
 		}
 	}
 }

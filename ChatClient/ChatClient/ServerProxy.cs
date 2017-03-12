@@ -22,6 +22,7 @@ namespace ChatClient
 			new ManualResetEvent(false);
 
 		private Socket client;
+		public LoginWindow loginWindow;
   
 
 		public void StartClient()
@@ -48,6 +49,7 @@ namespace ChatClient
 
 
 				Reader rd = new Reader();
+				rd.loginWindow = loginWindow;
 				rd.client = client;
 				Thread oThread = new Thread(new ThreadStart(rd.Start));
 				oThread.Start();
@@ -127,8 +129,6 @@ namespace ChatClient
 			login.Name = username;
 			wrapper.Login = login;
 
-			byte[] data;
-			data = wrapper.ToByteArray();
 			Send(wrapper);
 
 		}

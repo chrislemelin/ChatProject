@@ -7,6 +7,6 @@ namespace ChatServer
 
 		void updateRoom(String update);
 
-		void authenticated();
+		void authenticated(bool success);
 	}
 }

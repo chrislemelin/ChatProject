@@ -20,16 +20,17 @@ public static partial class ServerToClientMessagesReflection {
   static ServerToClientMessagesReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "Ch9zZXJ2ZXJfdG9fY2xpZW50X21lc3NhZ2VzLnByb3RvIg8KDUF1dGhlbnRp",
-          "Y2F0ZWQiHAoLVXBkYXRlTG9iYnkSDQoFbmFtZXMYASADKAkiGwoKVXBkYXRl",
-          "Um9vbRINCgVuYW1lcxgBIAMoCSKKAQoQU0NNZXNzYWdlV3JhcHBlchInCg1h",
-          "dXRoZW50aWNhdGVkGAEgASgLMg4uQXV0aGVudGljYXRlZEgAEiMKC3VwZGF0",
-          "ZUxvYmJ5GAIgASgLMgwuVXBkYXRlTG9iYnlIABIhCgp1cGRhdGVSb29tGAMg",
-          "ASgLMgsuVXBkYXRlUm9vbUgAQgUKA21zZ2IGcHJvdG8z"));
+          "Ch9zZXJ2ZXJfdG9fY2xpZW50X21lc3NhZ2VzLnByb3RvIiAKDUF1dGhlbnRp",
+          "Y2F0ZWQSDwoHc3VjY2VzcxgBIAEoCCIcCgtVcGRhdGVMb2JieRINCgVuYW1l",
+          "cxgBIAMoCSIbCgpVcGRhdGVSb29tEg0KBW5hbWVzGAEgAygJIooBChBTQ01l",
+          "c3NhZ2VXcmFwcGVyEicKDWF1dGhlbnRpY2F0ZWQYASABKAsyDi5BdXRoZW50",
+          "aWNhdGVkSAASIwoLdXBkYXRlTG9iYnkYAiABKAsyDC5VcGRhdGVMb2JieUgA",
+          "EiEKCnVwZGF0ZVJvb20YAyABKAsyCy5VcGRhdGVSb29tSABCBQoDbXNnYgZw",
+          "cm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::Authenticated), global::Authenticated.Parser, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::Authenticated), global::Authenticated.Parser, new[]{ "Success" }, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::UpdateLobby), global::UpdateLobby.Parser, new[]{ "Names" }, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::UpdateRoom), global::UpdateRoom.Parser, new[]{ "Names" }, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SCMessageWrapper), global::SCMessageWrapper.Parser, new[]{ "Authenticated", "UpdateLobby", "UpdateRoom" }, new[]{ "Msg" }, null, null)
@@ -63,11 +64,23 @@ public sealed partial class Authenticated : pb::IMessage<Authenticated> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public Authenticated(Authenticated other) : this() {
+    success_ = other.success_;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public Authenticated Clone() {
     return new Authenticated(this);
+  }
+
+  /// <summary>Field number for the "success" field.</summary>
+  public const int SuccessFieldNumber = 1;
+  private bool success_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Success {
+    get { return success_; }
+    set {
+      success_ = value;
+    }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -83,12 +96,14 @@ public sealed partial class Authenticated : pb::IMessage<Authenticated> {
     if (ReferenceEquals(other, this)) {
       return true;
     }
+    if (Success != other.Success) return false;
     return true;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override int GetHashCode() {
     int hash = 1;
+    if (Success != false) hash ^= Success.GetHashCode();
     return hash;
   }
 
@@ -99,11 +114,18 @@ public sealed partial class Authenticated : pb::IMessage<Authenticated> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void WriteTo(pb::CodedOutputStream output) {
+    if (Success != false) {
+      output.WriteRawTag(8);
+      output.WriteBool(Success);
+    }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public int CalculateSize() {
     int size = 0;
+    if (Success != false) {
+      size += 1 + 1;
+    }
     return size;
   }
 
@@ -111,6 +133,9 @@ public sealed partial class Authenticated : pb::IMessage<Authenticated> {
   public void MergeFrom(Authenticated other) {
     if (other == null) {
       return;
+    }
+    if (other.Success != false) {
+      Success = other.Success;
     }
   }
 
@@ -122,6 +147,10 @@ public sealed partial class Authenticated : pb::IMessage<Authenticated> {
         default:
           input.SkipLastField();
           break;
+        case 8: {
+          Success = input.ReadBool();
+          break;
+        }
       }
     }
   }

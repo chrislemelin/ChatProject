@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 message Authenticated{
+  bool success = 1;
 
 }
 

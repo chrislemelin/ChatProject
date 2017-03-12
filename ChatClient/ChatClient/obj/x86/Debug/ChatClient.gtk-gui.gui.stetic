@@ -7,11 +7,11 @@
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bin/Debug/ChatClient.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="400 400">
+  <widget class="Gtk.Window" id="LoginWindow" design-size="400 400">
     <property name="MemberName" />
     <property name="WidthRequest">150</property>
     <property name="HeightRequest">200</property>
-    <property name="Title" translatable="yes">MainWindow</property>
+    <property name="Title" translatable="yes">LoginWindow</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="DefaultWidth">150</property>
     <property name="DefaultHeight">200</property>
@@ -22,13 +22,13 @@
         <property name="WidthRequest">150</property>
         <property name="HeightRequest">200</property>
         <property name="Homogeneous">True</property>
-        <property name="Spacing">6</property>
+        <property name="Spacing">1</property>
         <property name="BorderWidth">3</property>
         <child>
           <widget class="Gtk.Label" id="LoginLabel">
             <property name="MemberName" />
             <property name="Yalign">0</property>
-            <property name="LabelProp" translatable="yes">Login</property>
+            <property name="LabelProp" translatable="yes">Enter Username</property>
           </widget>
           <packing>
             <property name="Position">0</property>
@@ -39,12 +39,23 @@
           </packing>
         </child>
         <child>
+          <widget class="Gtk.Label" id="display">
+            <property name="MemberName" />
+          </widget>
+          <packing>
+            <property name="Position">1</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
           <widget class="Gtk.Alignment" id="alignment3">
             <property name="MemberName" />
             <property name="LeftPadding">50</property>
             <property name="RightPadding">50</property>
             <child>
-              <widget class="Gtk.Entry" id="loginInput">
+              <widget class="Gtk.Entry" id="loginIn">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="IsEditable">True</property>
@@ -54,7 +65,7 @@
             </child>
           </widget>
           <packing>
-            <property name="Position">1</property>
+            <property name="Position">2</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
@@ -62,19 +73,19 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.Button" id="button1">
+          <widget class="Gtk.Button" id="login">
             <property name="MemberName" />
             <property name="WidthRequest">30</property>
             <property name="HeightRequest">0</property>
             <property name="CanFocus">True</property>
             <property name="Type">TextOnly</property>
-            <property name="Label" translatable="yes">GtkButton</property>
+            <property name="Label" translatable="yes">Login</property>
             <property name="UseUnderline">True</property>
             <property name="BorderWidth">50</property>
             <signal name="Clicked" handler="Login" />
           </widget>
           <packing>
-            <property name="Position">2</property>
+            <property name="Position">3</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>

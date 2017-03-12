@@ -4,6 +4,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Text;
 using System.Collections.Generic;
+using Google.Protobuf;
 
 namespace ChatServer
 {
@@ -16,13 +17,13 @@ namespace ChatServer
 			this.client = client;
 		}
 
-		public void authenticated()
+		public void authenticated(bool success)
 		{
-
-
-
-			Send(Resources.s_authenicated + "");
-			Console.WriteLine("authenicated user");
+			SCMessageWrapper wrapper = new SCMessageWrapper();
+			Authenticated auth = new Authenticated();
+			auth.Success = success;
+			wrapper.Authenticated = auth;
+			Send(wrapper);
 		}
 
 		public void updateLobby(string update)
@@ -35,14 +36,19 @@ namespace ChatServer
 			throw new NotImplementedException();
 		}
 
-		private void Send(String data)
-		{
-			// Convert the string data to byte data using ASCII encoding.  
-			byte[] byteData = Encoding.ASCII.GetBytes(data + Reader.EOM);
+		private void Send(SCMessageWrapper wrapper)
+		{ 
+			byte[] data = wrapper.ToByteArray();
+			byte[] length;
+			length = BitConverter.GetBytes(data.Length);
+			Console.WriteLine(data.Length);
 
-			// Begin sending the data to the remote device.  
-			client.BeginSend(byteData, 0, byteData.Length, 0,
+			// Begin sending the data to the remote device. 
+			client.BeginSend(length, 0, 4, 0,
 				new AsyncCallback(SendCallback), client);
+			client.BeginSend(data, 0, data.Length, 0,
+				new AsyncCallback(SendCallback), client);
+			
 		}
 
 		private void SendCallback(IAsyncResult ar)
