@@ -26,6 +26,15 @@ namespace ChatServer
 			Send(wrapper);
 		}
 
+		public void registerResponse(bool success)
+		{
+			SCMessageWrapper wrapper = new SCMessageWrapper();
+			RegisterResponse reg = new RegisterResponse();
+			reg.Success = success;
+			wrapper.RegisterResponse = reg;
+			Send(wrapper);
+		}
+
 		public void updateLobby(string update)
 		{
 			throw new NotImplementedException();

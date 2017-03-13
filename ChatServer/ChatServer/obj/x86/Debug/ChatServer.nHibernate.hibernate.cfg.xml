@@ -12,7 +12,7 @@
   <property name="connection.connection_string">
     <!-- Found from http://www.connectionstrings.com/mysql; note that the 'dev' and 'test_password' 
     match the user we created, and 'products' matches the Database -->
-Server=localhost;Database=products;Uid=test_user;Pwd=password;
+Server=localhost;Database=Chat;Uid=test_user;Pwd=password;
   </property>
 
   <!-- Will automatically create a fresh table each time we create an ISessionFactory object -->

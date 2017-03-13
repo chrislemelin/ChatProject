@@ -21,19 +21,21 @@ public static partial class ServerToClientMessagesReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Ch9zZXJ2ZXJfdG9fY2xpZW50X21lc3NhZ2VzLnByb3RvIiAKDUF1dGhlbnRp",
-          "Y2F0ZWQSDwoHc3VjY2VzcxgBIAEoCCIcCgtVcGRhdGVMb2JieRINCgVuYW1l",
-          "cxgBIAMoCSIbCgpVcGRhdGVSb29tEg0KBW5hbWVzGAEgAygJIooBChBTQ01l",
-          "c3NhZ2VXcmFwcGVyEicKDWF1dGhlbnRpY2F0ZWQYASABKAsyDi5BdXRoZW50",
-          "aWNhdGVkSAASIwoLdXBkYXRlTG9iYnkYAiABKAsyDC5VcGRhdGVMb2JieUgA",
-          "EiEKCnVwZGF0ZVJvb20YAyABKAsyCy5VcGRhdGVSb29tSABCBQoDbXNnYgZw",
-          "cm90bzM="));
+          "Y2F0ZWQSDwoHc3VjY2VzcxgBIAEoCCIjChBSZWdpc3RlclJlc3BvbnNlEg8K",
+          "B3N1Y2Nlc3MYASABKAgiHAoLVXBkYXRlTG9iYnkSDQoFbmFtZXMYASADKAki",
+          "GwoKVXBkYXRlUm9vbRINCgVuYW1lcxgBIAMoCSK5AQoQU0NNZXNzYWdlV3Jh",
+          "cHBlchInCg1hdXRoZW50aWNhdGVkGAEgASgLMg4uQXV0aGVudGljYXRlZEgA",
+          "EiMKC3VwZGF0ZUxvYmJ5GAIgASgLMgwuVXBkYXRlTG9iYnlIABIhCgp1cGRh",
+          "dGVSb29tGAMgASgLMgsuVXBkYXRlUm9vbUgAEi0KEHJlZ2lzdGVyUmVzcG9u",
+          "c2UYBCABKAsyES5SZWdpc3RlclJlc3BvbnNlSABCBQoDbXNnYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::Authenticated), global::Authenticated.Parser, new[]{ "Success" }, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::RegisterResponse), global::RegisterResponse.Parser, new[]{ "Success" }, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::UpdateLobby), global::UpdateLobby.Parser, new[]{ "Names" }, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::UpdateRoom), global::UpdateRoom.Parser, new[]{ "Names" }, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::SCMessageWrapper), global::SCMessageWrapper.Parser, new[]{ "Authenticated", "UpdateLobby", "UpdateRoom" }, new[]{ "Msg" }, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::SCMessageWrapper), global::SCMessageWrapper.Parser, new[]{ "Authenticated", "UpdateLobby", "UpdateRoom", "RegisterResponse" }, new[]{ "Msg" }, null, null)
         }));
   }
   #endregion
@@ -157,6 +159,123 @@ public sealed partial class Authenticated : pb::IMessage<Authenticated> {
 
 }
 
+public sealed partial class RegisterResponse : pb::IMessage<RegisterResponse> {
+  private static readonly pb::MessageParser<RegisterResponse> _parser = new pb::MessageParser<RegisterResponse>(() => new RegisterResponse());
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<RegisterResponse> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ServerToClientMessagesReflection.Descriptor.MessageTypes[1]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RegisterResponse() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RegisterResponse(RegisterResponse other) : this() {
+    success_ = other.success_;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public RegisterResponse Clone() {
+    return new RegisterResponse(this);
+  }
+
+  /// <summary>Field number for the "success" field.</summary>
+  public const int SuccessFieldNumber = 1;
+  private bool success_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Success {
+    get { return success_; }
+    set {
+      success_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as RegisterResponse);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(RegisterResponse other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Success != other.Success) return false;
+    return true;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Success != false) hash ^= Success.GetHashCode();
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (Success != false) {
+      output.WriteRawTag(8);
+      output.WriteBool(Success);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (Success != false) {
+      size += 1 + 1;
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(RegisterResponse other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Success != false) {
+      Success = other.Success;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          input.SkipLastField();
+          break;
+        case 8: {
+          Success = input.ReadBool();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
 public sealed partial class UpdateLobby : pb::IMessage<UpdateLobby> {
   private static readonly pb::MessageParser<UpdateLobby> _parser = new pb::MessageParser<UpdateLobby>(() => new UpdateLobby());
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -164,7 +283,7 @@ public sealed partial class UpdateLobby : pb::IMessage<UpdateLobby> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ServerToClientMessagesReflection.Descriptor.MessageTypes[1]; }
+    get { return global::ServerToClientMessagesReflection.Descriptor.MessageTypes[2]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -273,7 +392,7 @@ public sealed partial class UpdateRoom : pb::IMessage<UpdateRoom> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ServerToClientMessagesReflection.Descriptor.MessageTypes[2]; }
+    get { return global::ServerToClientMessagesReflection.Descriptor.MessageTypes[3]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -382,7 +501,7 @@ public sealed partial class SCMessageWrapper : pb::IMessage<SCMessageWrapper> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ServerToClientMessagesReflection.Descriptor.MessageTypes[3]; }
+    get { return global::ServerToClientMessagesReflection.Descriptor.MessageTypes[4]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -408,6 +527,9 @@ public sealed partial class SCMessageWrapper : pb::IMessage<SCMessageWrapper> {
         break;
       case MsgOneofCase.UpdateRoom:
         UpdateRoom = other.UpdateRoom.Clone();
+        break;
+      case MsgOneofCase.RegisterResponse:
+        RegisterResponse = other.RegisterResponse.Clone();
         break;
     }
 
@@ -451,6 +573,17 @@ public sealed partial class SCMessageWrapper : pb::IMessage<SCMessageWrapper> {
     }
   }
 
+  /// <summary>Field number for the "registerResponse" field.</summary>
+  public const int RegisterResponseFieldNumber = 4;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::RegisterResponse RegisterResponse {
+    get { return msgCase_ == MsgOneofCase.RegisterResponse ? (global::RegisterResponse) msg_ : null; }
+    set {
+      msg_ = value;
+      msgCase_ = value == null ? MsgOneofCase.None : MsgOneofCase.RegisterResponse;
+    }
+  }
+
   private object msg_;
   /// <summary>Enum of possible cases for the "msg" oneof.</summary>
   public enum MsgOneofCase {
@@ -458,6 +591,7 @@ public sealed partial class SCMessageWrapper : pb::IMessage<SCMessageWrapper> {
     Authenticated = 1,
     UpdateLobby = 2,
     UpdateRoom = 3,
+    RegisterResponse = 4,
   }
   private MsgOneofCase msgCase_ = MsgOneofCase.None;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -487,6 +621,7 @@ public sealed partial class SCMessageWrapper : pb::IMessage<SCMessageWrapper> {
     if (!object.Equals(Authenticated, other.Authenticated)) return false;
     if (!object.Equals(UpdateLobby, other.UpdateLobby)) return false;
     if (!object.Equals(UpdateRoom, other.UpdateRoom)) return false;
+    if (!object.Equals(RegisterResponse, other.RegisterResponse)) return false;
     if (MsgCase != other.MsgCase) return false;
     return true;
   }
@@ -497,6 +632,7 @@ public sealed partial class SCMessageWrapper : pb::IMessage<SCMessageWrapper> {
     if (msgCase_ == MsgOneofCase.Authenticated) hash ^= Authenticated.GetHashCode();
     if (msgCase_ == MsgOneofCase.UpdateLobby) hash ^= UpdateLobby.GetHashCode();
     if (msgCase_ == MsgOneofCase.UpdateRoom) hash ^= UpdateRoom.GetHashCode();
+    if (msgCase_ == MsgOneofCase.RegisterResponse) hash ^= RegisterResponse.GetHashCode();
     hash ^= (int) msgCase_;
     return hash;
   }
@@ -520,6 +656,10 @@ public sealed partial class SCMessageWrapper : pb::IMessage<SCMessageWrapper> {
       output.WriteRawTag(26);
       output.WriteMessage(UpdateRoom);
     }
+    if (msgCase_ == MsgOneofCase.RegisterResponse) {
+      output.WriteRawTag(34);
+      output.WriteMessage(RegisterResponse);
+    }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -533,6 +673,9 @@ public sealed partial class SCMessageWrapper : pb::IMessage<SCMessageWrapper> {
     }
     if (msgCase_ == MsgOneofCase.UpdateRoom) {
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(UpdateRoom);
+    }
+    if (msgCase_ == MsgOneofCase.RegisterResponse) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(RegisterResponse);
     }
     return size;
   }
@@ -551,6 +694,9 @@ public sealed partial class SCMessageWrapper : pb::IMessage<SCMessageWrapper> {
         break;
       case MsgOneofCase.UpdateRoom:
         UpdateRoom = other.UpdateRoom;
+        break;
+      case MsgOneofCase.RegisterResponse:
+        RegisterResponse = other.RegisterResponse;
         break;
     }
 
@@ -589,6 +735,15 @@ public sealed partial class SCMessageWrapper : pb::IMessage<SCMessageWrapper> {
           }
           input.ReadMessage(subBuilder);
           UpdateRoom = subBuilder;
+          break;
+        }
+        case 34: {
+          global::RegisterResponse subBuilder = new global::RegisterResponse();
+          if (msgCase_ == MsgOneofCase.RegisterResponse) {
+            subBuilder.MergeFrom(RegisterResponse);
+          }
+          input.ReadMessage(subBuilder);
+          RegisterResponse = subBuilder;
           break;
         }
       }

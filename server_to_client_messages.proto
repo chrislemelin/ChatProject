@@ -2,7 +2,10 @@ syntax = "proto3";
 
 message Authenticated{
   bool success = 1;
+}
 
+message RegisterResponse{
+  bool success = 1;
 }
 
 message UpdateLobby{
@@ -19,6 +22,7 @@ message SCMessageWrapper{
       Authenticated authenticated = 1;
       UpdateLobby updateLobby = 2;
       UpdateRoom updateRoom = 3;
+      RegisterResponse registerResponse = 4;
   }
 
 }

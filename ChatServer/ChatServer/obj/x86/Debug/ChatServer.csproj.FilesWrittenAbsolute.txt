@@ -23,3 +23,6 @@
 /Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/bin/Debug/mysql.web.dll
 /Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/obj/x86/Debug/ChatServer.hibernate.cfg.xml
 /Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/obj/x86/Debug/ChatServer.Product.hbm.xml
+/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/obj/x86/Debug/ChatServer.nHibernate.hibernate.cfg.xml
+/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/obj/x86/Debug/ChatServer.nHibernate.Product.hbm.xml
+/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/obj/x86/Debug/ChatServer.nHibernate.User.hbm.xml
