@@ -15,10 +15,9 @@ namespace ChatServer
 		public ClientProxy client;
 		public Model model;
 		public ClientModel clientModel = null;
+		public User user = null;
 
 		private StringBuilder sb = new StringBuilder();
-		private String response = String.Empty;
-		private int id;
 
 		public void Start()
 		{
@@ -51,7 +50,7 @@ namespace ChatServer
 				client.Receive(data);
 
 				CSMessageWrapper message = CSMessageWrapper.Parser.ParseFrom(data);
-				processMessage(message);
+				ProccessMessage(message);
 
 	
 			}
@@ -71,12 +70,26 @@ namespace ChatServer
 				return true;
 		}
 
-		private void processMessage(CSMessageWrapper wrapper)
+		private void ProccessMessage(CSMessageWrapper wrapper)
 		{
-			if (wrapper.Login != null && clientModel == null)
+			if (wrapper.Register != null)
 			{
-				clientModel = model.addUser(wrapper.Login.Name, client);
-				if (clientModel != null)
+				User newUser = model.AddUser(wrapper.Register.Username, wrapper.Register.Password1,client);
+				if (newUser != null)
+				{
+					client.registerResponse(true);
+				}
+				else
+				{
+					client.registerResponse(false);
+				}
+
+			}
+
+			if (wrapper.Login != null && user == null)
+			{
+				user = model.Login(wrapper.Login.Name, wrapper.Login.Password, client);
+				if (user != null)
 				{
 					client.authenticated(true);
 				}

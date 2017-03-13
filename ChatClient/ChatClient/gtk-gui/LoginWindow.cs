@@ -7,13 +7,19 @@ public partial class LoginWindow
 
 	private global::Gtk.Label LoginLabel;
 
-	private global::Gtk.Label display;
-
-	private global::Gtk.Alignment alignment3;
-
 	private global::Gtk.Entry loginIn;
 
+	private global::Gtk.Label PasswordLabel;
+
+	private global::Gtk.Entry passwordIn;
+
+	private global::Gtk.Label display;
+
+	private global::Gtk.HBox hbox1;
+
 	private global::Gtk.Button login;
+
+	private global::Gtk.Button RegisterButton;
 
 	protected virtual void Build()
 	{
@@ -46,45 +52,75 @@ public partial class LoginWindow
 		w1.Fill = false;
 		w1.Padding = ((uint)(50));
 		// Container child vbox3.Gtk.Box+BoxChild
-		this.display = new global::Gtk.Label();
-		this.display.Name = "display";
-		this.vbox3.Add(this.display);
-		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.display]));
-		w2.Position = 1;
-		w2.Expand = false;
-		w2.Fill = false;
-		// Container child vbox3.Gtk.Box+BoxChild
-		this.alignment3 = new global::Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
-		this.alignment3.Name = "alignment3";
-		this.alignment3.LeftPadding = ((uint)(50));
-		this.alignment3.RightPadding = ((uint)(50));
-		// Container child alignment3.Gtk.Container+ContainerChild
 		this.loginIn = new global::Gtk.Entry();
 		this.loginIn.CanFocus = true;
 		this.loginIn.Name = "loginIn";
 		this.loginIn.IsEditable = true;
 		this.loginIn.InvisibleChar = '•';
-		this.alignment3.Add(this.loginIn);
-		this.vbox3.Add(this.alignment3);
-		global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.alignment3]));
-		w4.Position = 2;
+		this.vbox3.Add(this.loginIn);
+		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.loginIn]));
+		w2.Position = 1;
+		w2.Expand = false;
+		w2.Fill = false;
+		// Container child vbox3.Gtk.Box+BoxChild
+		this.PasswordLabel = new global::Gtk.Label();
+		this.PasswordLabel.Name = "PasswordLabel";
+		this.PasswordLabel.LabelProp = global::Mono.Unix.Catalog.GetString("Enter Password");
+		this.vbox3.Add(this.PasswordLabel);
+		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.PasswordLabel]));
+		w3.Position = 2;
+		w3.Expand = false;
+		w3.Fill = false;
+		// Container child vbox3.Gtk.Box+BoxChild
+		this.passwordIn = new global::Gtk.Entry();
+		this.passwordIn.CanFocus = true;
+		this.passwordIn.Name = "passwordIn";
+		this.passwordIn.IsEditable = true;
+		this.passwordIn.Visibility = false;
+		this.passwordIn.InvisibleChar = '•';
+		this.vbox3.Add(this.passwordIn);
+		global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.passwordIn]));
+		w4.Position = 3;
 		w4.Expand = false;
 		w4.Fill = false;
-		w4.Padding = ((uint)(40));
 		// Container child vbox3.Gtk.Box+BoxChild
+		this.display = new global::Gtk.Label();
+		this.display.Name = "display";
+		this.vbox3.Add(this.display);
+		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.display]));
+		w5.Position = 4;
+		w5.Expand = false;
+		w5.Fill = false;
+		// Container child vbox3.Gtk.Box+BoxChild
+		this.hbox1 = new global::Gtk.HBox();
+		this.hbox1.Name = "hbox1";
+		this.hbox1.Homogeneous = true;
+		this.hbox1.Spacing = 6;
+		// Container child hbox1.Gtk.Box+BoxChild
 		this.login = new global::Gtk.Button();
-		this.login.WidthRequest = 30;
 		this.login.HeightRequest = 0;
 		this.login.CanFocus = true;
 		this.login.Name = "login";
-		this.login.UseUnderline = true;
-		this.login.BorderWidth = ((uint)(50));
 		this.login.Label = global::Mono.Unix.Catalog.GetString("Login");
-		this.vbox3.Add(this.login);
-		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.login]));
-		w5.Position = 3;
-		w5.Expand = false;
-		w5.Fill = false;
+		this.hbox1.Add(this.login);
+		global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.login]));
+		w6.Position = 0;
+		w6.Padding = ((uint)(10));
+		// Container child hbox1.Gtk.Box+BoxChild
+		this.RegisterButton = new global::Gtk.Button();
+		this.RegisterButton.CanFocus = true;
+		this.RegisterButton.Name = "RegisterButton";
+		this.RegisterButton.UseUnderline = true;
+		this.RegisterButton.Label = global::Mono.Unix.Catalog.GetString("Register");
+		this.hbox1.Add(this.RegisterButton);
+		global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.RegisterButton]));
+		w7.Position = 1;
+		w7.Padding = ((uint)(10));
+		this.vbox3.Add(this.hbox1);
+		global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hbox1]));
+		w8.Position = 6;
+		w8.Expand = false;
+		w8.Fill = false;
 		this.Add(this.vbox3);
 		if ((this.Child != null))
 		{
@@ -94,5 +130,6 @@ public partial class LoginWindow
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
 		this.loginIn.KeyPressEvent += new global::Gtk.KeyPressEventHandler(this.KeyPress);
 		this.login.Clicked += new global::System.EventHandler(this.Login);
+		this.RegisterButton.Clicked += new global::System.EventHandler(this.OnRegisterButtonClicked);
 	}
 }

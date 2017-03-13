@@ -1,7 +1,14 @@
 syntax = "proto3";
 
+message Register{
+  string Username = 1;
+  int32 Password1 = 2;
+  //int32 Password2 = 3;
+}
+
 message Login {
   string name = 1;
+  int32 Password = 2;
 }
 
 message JoinLobby{
@@ -24,6 +31,7 @@ message CSMessageWrapper{
       JoinLobby joinLobby = 2;
       SendMessage sendMessage = 3;
       MakeRoom makeRoom = 4;
+      Register Register = 5;
   }
 
 }

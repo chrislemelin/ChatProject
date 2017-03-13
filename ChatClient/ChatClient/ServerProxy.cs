@@ -47,11 +47,10 @@ namespace ChatClient
 
 				// Send test data to the remote device. 
 
-
-
 				Reader rd = new Reader();
 				rd.loginWindow = loginWindow;
 				rd.client = client;
+				loginWindow.rd = rd;
 				Thread oThread = new Thread(new ThreadStart(rd.Start));
 				oThread.Start();
 				 
@@ -123,15 +122,34 @@ namespace ChatClient
 			}
 		}
 
-		public void assignUsername(string username)
+		public void login(string username,int password)
 		{
 			CSMessageWrapper wrapper = new CSMessageWrapper();
 			Login login = new Login();
 			login.Name = username;
+			login.Password = password;
 			wrapper.Login = login;
 
 			Send(wrapper);
+		}
 
+		public bool register(string username, string password1, string password2)
+		{
+			if (password1.Equals(password2))
+			{
+				CSMessageWrapper wrapper = new CSMessageWrapper();
+				Register registerObj = new Register();
+				registerObj.Username = username;
+				registerObj.Password1 = password1.GetHashCode();
+
+				wrapper.Register = registerObj;
+				Send(wrapper);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 
 		public void joinLobby(string title)

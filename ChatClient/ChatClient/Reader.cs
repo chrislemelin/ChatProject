@@ -11,10 +11,7 @@ namespace ChatClient
 	{
 		public Socket client;
 		public LoginWindow loginWindow;
-		private StringBuilder sb = new StringBuilder();
-		private String response = String.Empty;
-		public MessageInterperter interpreter = new MessageInterperter();
-
+		public RegisterWindow registerWindow;
 
 		public void Start()
 		{
@@ -29,7 +26,6 @@ namespace ChatClient
 		{
 			try
 			{
-				sb.Clear();
 				byte[] length = new byte[4];
 				client.Receive(length);
 				int len = BitConverter.ToInt32(length, 0);
@@ -49,6 +45,17 @@ namespace ChatClient
 
 		private void processMessage(SCMessageWrapper wrapper)
 		{
+			if (wrapper.RegisterResponse != null && loginWindow != null)
+			{
+				if (wrapper.RegisterResponse.Success)
+				{
+					registerWindow.DisplayMessage("registration successful");
+				}
+				else
+				{
+					registerWindow.DisplayMessage("username already taken");
+				}
+			}
 			if (wrapper.Authenticated != null)
 			{
 				if(wrapper.Authenticated.Success)

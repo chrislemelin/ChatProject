@@ -100,17 +100,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtk-gui\generated.cs" />
-    <Compile Include="LoginWindow.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerProxy.cs" />
-    <Compile Include="MessageInterperter.cs" />
     <Compile Include="ClientListener.cs" />
     <Compile Include="Reader.cs" />
     <Compile Include="Resources.cs" />
     <Compile Include="ProtoBuf\ClientToServerMessages.cs" />
     <Compile Include="ProtoBuf\ServerToClientMessages.cs" />
     <Compile Include="gtk-gui\LoginWindow.cs" />
+    <Compile Include="gtk-gui\ChatClient.RegisterWindow.cs" />
+    <Compile Include="Windows\RegisterWindow.cs" />
+    <Compile Include="Windows\LoginWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -118,6 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ProtoBuf\" />
+    <Folder Include="Windows\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
