@@ -55,6 +55,18 @@
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.4.1.1.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="mysql.data">
+      <HintPath>..\..\..\..\Downloads\mysql-connector-net-6.3.6-noinstall\v4\mysql.data.dll</HintPath>
+    </Reference>
+    <Reference Include="mysql.data.entity">
+      <HintPath>..\..\..\..\Downloads\mysql-connector-net-6.3.6-noinstall\v4\mysql.data.entity.dll</HintPath>
+    </Reference>
+    <Reference Include="mysql.visualstudio">
+      <HintPath>..\..\..\..\Downloads\mysql-connector-net-6.3.6-noinstall\v4\mysql.visualstudio.dll</HintPath>
+    </Reference>
+    <Reference Include="mysql.web">
+      <HintPath>..\..\..\..\Downloads\mysql-connector-net-6.3.6-noinstall\v4\mysql.web.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -71,6 +83,7 @@
     <Compile Include="ProtoBuf\ServerToClientMessages.cs" />
     <Compile Include="Models\ClientModel.cs" />
     <Compile Include="Models\RoomModel.cs" />
+    <Compile Include="Product.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -78,6 +91,10 @@
   <ItemGroup>
     <Folder Include="ProtoBuf\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="hibernate.cfg.xml" />
+    <EmbeddedResource Include="Product.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
