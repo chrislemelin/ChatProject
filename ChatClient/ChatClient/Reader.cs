@@ -51,11 +51,22 @@ namespace ChatClient
 		{
 			if (wrapper.Authenticated != null)
 			{
-				if (wrapper.Authenticated.Success)
+				if(wrapper.Authenticated.Success)
 					loginWindow.DisplayMessage("login was a success");
 				else
 					loginWindow.DisplayMessage("username already taken");
 			}
+			if (wrapper.UpdateLobby != null)
+			{
+				// updateLoby
+			}
+			if (wrapper.UpdateRoom != null)
+			{
+				//update room
+			}
+
+
+
 		}
 
 		private bool SocketConnected(Socket s)

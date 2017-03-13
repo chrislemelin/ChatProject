@@ -15,8 +15,10 @@ namespace ChatServer
 		public ClientProxy client;
 		public Model model;
 		public ClientModel clientModel = null;
+
 		private StringBuilder sb = new StringBuilder();
 		private String response = String.Empty;
+		private int id;
 
 		public void Start()
 		{
@@ -27,6 +29,14 @@ namespace ChatServer
 			{
 				Receive(socket);
 			}
+
+			//disconected
+			if (clientModel != null)
+			{
+				model.removeUser(clientModel.id);
+
+			}
+
 		}
 
 		private void Receive(Socket client)
@@ -63,7 +73,7 @@ namespace ChatServer
 
 		private void processMessage(CSMessageWrapper wrapper)
 		{
-			if (wrapper.Login != null)
+			if (wrapper.Login != null && clientModel == null)
 			{
 				clientModel = model.addUser(wrapper.Login.Name, client);
 				if (clientModel != null)

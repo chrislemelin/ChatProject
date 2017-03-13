@@ -3,16 +3,21 @@
     <Files>
       <File FileName="ChatServer/ServerListener.cs" Line="10" Column="34" />
       <File FileName="ChatServer/Resources.cs" Line="2" Column="21" />
-      <File FileName="ChatServer/Model.cs" Line="22" Column="67" />
-      <File FileName="ChatServer/ConnectionListener.cs" Line="85" Column="21" />
+      <File FileName="ChatServer/Model.cs" Line="10" Column="15" />
+      <File FileName="ChatServer/ConnectionListener.cs" Line="74" Column="24" />
       <File FileName="ChatServer/ClientProxy.cs" Line="11" Column="43" />
-      <File FileName="ChatServer/Reader.cs" Line="39" Column="11" />
+      <File FileName="ChatServer/Reader.cs" Line="65" Column="4" />
       <File FileName="ChatServer/State.cs" Line="1" Column="1" />
+      <File FileName="ChatServer/Models/RoomModel.cs" Line="9" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/Model.cs" relfile="ChatServer/Model.cs" line="42" column="1" />
+      <Breakpoint file="/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/Model.cs" relfile="ChatServer/Model.cs" line="49" column="1" />
+      <Breakpoint file="/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/Model.cs" relfile="ChatServer/Model.cs" line="53" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.ChatServer PreferredExecutionTarget="MonoDevelop.Default" />

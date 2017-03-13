@@ -23,6 +23,7 @@ namespace ChatClient
 
 		private Socket client;
 		public LoginWindow loginWindow;
+		public Reader reader;
   
 
 		public void StartClient()

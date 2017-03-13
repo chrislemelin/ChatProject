@@ -49,6 +49,12 @@
     <Reference Include="Google.Protobuf">
       <HintPath>..\packages\Google.Protobuf.3.2.0\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.4.1.1.4000\lib\net40\NHibernate.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -64,6 +70,7 @@
     <Compile Include="ProtoBuf\ClientToServerMessages.cs" />
     <Compile Include="ProtoBuf\ServerToClientMessages.cs" />
     <Compile Include="Models\ClientModel.cs" />
+    <Compile Include="Models\RoomModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
