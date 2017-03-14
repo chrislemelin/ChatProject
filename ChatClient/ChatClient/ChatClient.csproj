@@ -112,10 +112,9 @@
 
     <Compile Include="Windows\RegisterWindow.cs" />
     <Compile Include="Windows\LoginWindow.cs" />
-    <Compile Include="RegistrationHelper.cs" />
-    <Compile Include="LoginHelper.cs" />
-
     <Compile Include="gtk-gui\ChatClient.RegisterWindow.cs" />
+    <Compile Include="Windows\RegistrationHelper.cs" />
+    <Compile Include="Windows\LoginHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,12 +1,14 @@
 ﻿using System;
 using Gtk;
 using ChatClient;
+using System.Threading.Tasks;
 
 public partial class LoginWindow : Gtk.Window
 {
 	public ServerProxy proxy = new ServerProxy();
 	public Reader rd = new Reader();
 	private RegisterWindow registerWindow;
+	private LoginHelper loginHelper = new LoginHelper();
 	public LoginWindow() : base(Gtk.WindowType.Toplevel)
 	{
 		Build();
@@ -25,21 +27,15 @@ public partial class LoginWindow : Gtk.Window
 
 	public void DisplayMessage(String message)
 	{
-		//display.Text = message;
+		display.Text = message;
 	}
 
 	protected void KeyPress(object o, KeyPressEventArgs args)
 	{
 	}
 
-	protected void OnRegisterButtonClicked(object sender, EventArgs e)
+	protected async void OnRegisterButtonClicked(object sender, EventArgs e)
 	{
-		if (registerWindow == null)
-		{
-			registerWindow = new RegisterWindow();
-			rd.registerWindow = registerWindow;
-			//registerWindow.proxy = proxy;
-			registerWindow.Show();
-		}
+		registerWindow = await Task.Run(() => loginHelper.OpenRegisterWindow(registerWindow, rd, proxy));
 	}
 }

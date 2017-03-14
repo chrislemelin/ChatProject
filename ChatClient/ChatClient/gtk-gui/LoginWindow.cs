@@ -118,7 +118,7 @@ public partial class LoginWindow
 		w7.Padding = ((uint)(10));
 		this.vbox3.Add(this.hbox1);
 		global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.hbox1]));
-		w8.Position = 6;
+		w8.Position = 5;
 		w8.Expand = false;
 		w8.Fill = false;
 		this.Add(this.vbox3);

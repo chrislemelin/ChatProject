@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace ChatClient
 {
@@ -8,19 +10,31 @@ namespace ChatClient
 		{
 		}
 
-		public RegisterWindow OpenRegisterWindow(RegisterWindow registerWindow, Reader rd, ServerProxy proxy)
+		public RegisterWindow OpenRegisterWindow(RegisterWindow registerWindow, Reader rd, ServerProxy proxy) 
 		{
 			if (registerWindow == null)
 			{
+				ManualResetEvent wait = new ManualResetEvent(false);
 				Gtk.Application.Invoke(delegate
 				{
 					registerWindow = new RegisterWindow();
+
 					registerWindow.Show();
 					rd.registerWindow = registerWindow;
 					registerWindow.proxy = proxy;
+					wait.Set();
 				});
+				wait.WaitOne();
 
 			}
+
+			Gtk.Application.Invoke(delegate
+			{
+				if (!registerWindow.Visible)
+				{
+					registerWindow.Show();
+				}
+			});
 			return registerWindow;
 		}
 

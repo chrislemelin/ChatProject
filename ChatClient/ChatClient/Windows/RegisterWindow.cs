@@ -9,9 +9,7 @@ namespace ChatClient
 	{
 
 		public ServerProxy proxy = new ServerProxy();
-
-		private RegistrationHelper registrationHelper;
-
+		private RegistrationHelper registrationHelper = new RegistrationHelper();
 
 		public RegisterWindow() :
 				base(Gtk.WindowType.Toplevel)
@@ -20,20 +18,17 @@ namespace ChatClient
 
 		}
 
-
-
 		protected async void  OnRegisterButtonClicked(object sender, EventArgs e)
 		{
-			bool success = await Task.Run(() => registrationHelper.passwordsStrongEnough(PasswordIn1.Text));
-			if (success)
+			string result = await Task.Run(() => registrationHelper.passwordCheck(PasswordIn1.Text,PasswordIn2.Text));
+			if (result == null)
 			{
-				proxy.register(UsernameIn.Text, PasswordIn1.Text, PasswordIn2.Text);
+				await Task.Run(() => proxy.register(UsernameIn.Text, PasswordIn1.Text, PasswordIn2.Text));
 			}
 			else
 			{
-				DisplayMessage("password not strong enough");
+				DisplayMessage(result);
 			}
-
 		}
 
 		public void DisplayMessage(String s)
@@ -42,5 +37,12 @@ namespace ChatClient
 
 		}
 
+		protected void OnDeleteEvent(object o, DeleteEventArgs args)
+		{
+			//hides the register window instead of deleteing it
+			//can only make one register window
+			args.RetVal = true;
+			Hide();
+		}
 	}
 }

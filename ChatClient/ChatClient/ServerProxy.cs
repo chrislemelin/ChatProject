@@ -59,6 +59,7 @@ namespace ChatClient
 			catch (Exception e)
 			{
 				Console.WriteLine(e.ToString());
+				Environment.Exit(0);
 			}
 		}
 
@@ -81,7 +82,9 @@ namespace ChatClient
 			}
 			catch (Exception e)
 			{
+				//cant connect
 				Console.WriteLine(e.ToString());
+				Environment.Exit(0);
 			}
 		}
 

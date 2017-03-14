@@ -32,6 +32,7 @@ namespace ChatClient
 			// Container child ChatClient.RegisterWindow.Gtk.Container+ContainerChild
 			this.VerticalBox = new global::Gtk.VBox();
 			this.VerticalBox.Name = "VerticalBox";
+			this.VerticalBox.Homogeneous = true;
 			this.VerticalBox.Spacing = 6;
 			// Container child VerticalBox.Gtk.Box+BoxChild
 			this.UsernameLabel = new global::Gtk.Label();
@@ -120,6 +121,7 @@ namespace ChatClient
 			this.DefaultWidth = 400;
 			this.DefaultHeight = 300;
 			this.Show();
+			this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
 			this.RegisterButton.Clicked += new global::System.EventHandler(this.OnRegisterButtonClicked);
 		}
 	}

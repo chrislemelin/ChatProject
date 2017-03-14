@@ -6,7 +6,6 @@ namespace ChatClient
 
 		void login(String Username,int password);
 
-
 		void joinLobby(String title);
 
 		void sendMessage(String message);

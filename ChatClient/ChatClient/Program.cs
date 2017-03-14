@@ -13,8 +13,15 @@ namespace ChatClient
 			LoginWindow win = new LoginWindow();
 			win.proxy = proxy;
 			proxy.loginWindow = win;
-
-			proxy.StartClient();
+			try
+			{
+				proxy.StartClient();
+			}
+			catch (Exception e)
+			{
+				win.Destroy();
+				Application.Quit();
+			}
 			win.Show();
 			Application.Run();
 		}

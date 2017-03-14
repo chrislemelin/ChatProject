@@ -92,9 +92,6 @@
           </packing>
         </child>
         <child>
-          <placeholder />
-        </child>
-        <child>
           <widget class="Gtk.HBox" id="hbox1">
             <property name="MemberName" />
             <property name="Homogeneous">True</property>
@@ -131,7 +128,7 @@
             </child>
           </widget>
           <packing>
-            <property name="Position">6</property>
+            <property name="Position">5</property>
             <property name="AutoSize">False</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>
@@ -144,9 +141,11 @@
     <property name="MemberName" />
     <property name="Title" translatable="yes">RegisterWindow</property>
     <property name="WindowPosition">CenterOnParent</property>
+    <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
       <widget class="Gtk.VBox" id="VerticalBox">
         <property name="MemberName" />
+        <property name="Homogeneous">True</property>
         <property name="Spacing">6</property>
         <child>
           <widget class="Gtk.Label" id="UsernameLabel">

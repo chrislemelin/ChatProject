@@ -21,8 +21,6 @@ namespace ChatServer
 
 		public void Start()
 		{
-
-
 			Thread.CurrentThread.IsBackground = true;
 			while (SocketConnected(socket))
 			{
@@ -32,7 +30,7 @@ namespace ChatServer
 			//disconected
 			if (clientModel != null)
 			{
-				model.removeUser(clientModel.id);
+				//model.removeUser(clientModel.id);
 
 			}
 
@@ -98,6 +96,7 @@ namespace ChatServer
 					client.authenticated(false);
 				}
 			}
+
 			if (wrapper.MakeRoom != null)
 			{
 				// add make room logic
