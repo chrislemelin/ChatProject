@@ -109,9 +109,13 @@
     <Compile Include="ProtoBuf\ClientToServerMessages.cs" />
     <Compile Include="ProtoBuf\ServerToClientMessages.cs" />
     <Compile Include="gtk-gui\LoginWindow.cs" />
-    <Compile Include="gtk-gui\ChatClient.RegisterWindow.cs" />
+
     <Compile Include="Windows\RegisterWindow.cs" />
     <Compile Include="Windows\LoginWindow.cs" />
+    <Compile Include="RegistrationHelper.cs" />
+    <Compile Include="LoginHelper.cs" />
+
+    <Compile Include="gtk-gui\ChatClient.RegisterWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

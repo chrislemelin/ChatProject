@@ -3,7 +3,9 @@ namespace ChatClient
 {
 	public interface ClientListener
 	{
+
 		void login(String Username,int password);
+
 
 		void joinLobby(String title);
 

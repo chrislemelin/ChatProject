@@ -25,7 +25,7 @@ public partial class LoginWindow : Gtk.Window
 
 	public void DisplayMessage(String message)
 	{
-		display.Text = message;
+		//display.Text = message;
 	}
 
 	protected void KeyPress(object o, KeyPressEventArgs args)
@@ -38,7 +38,7 @@ public partial class LoginWindow : Gtk.Window
 		{
 			registerWindow = new RegisterWindow();
 			rd.registerWindow = registerWindow;
-			registerWindow.proxy = proxy;
+			//registerWindow.proxy = proxy;
 			registerWindow.Show();
 		}
 	}

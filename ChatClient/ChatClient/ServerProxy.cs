@@ -121,7 +121,6 @@ namespace ChatClient
 				Console.WriteLine(e.ToString());
 			}
 		}
-
 		public void login(string username,int password)
 		{
 			CSMessageWrapper wrapper = new CSMessageWrapper();
