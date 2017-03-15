@@ -115,6 +115,8 @@
     <Compile Include="gtk-gui\ChatClient.RegisterWindow.cs" />
     <Compile Include="Windows\RegistrationHelper.cs" />
     <Compile Include="Windows\LoginHelper.cs" />
+    <Compile Include="Windows\LobbyWindow.cs" />
+    <Compile Include="gtk-gui\ChatClient.LobbyWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

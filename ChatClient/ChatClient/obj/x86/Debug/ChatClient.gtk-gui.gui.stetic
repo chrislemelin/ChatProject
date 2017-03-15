@@ -255,4 +255,38 @@
       </widget>
     </child>
   </widget>
+  <widget class="Gtk.Window" id="ChatClient.LobbyWindow" design-size="550 550">
+    <property name="MemberName" />
+    <property name="Title" translatable="yes">LobbyWindow</property>
+    <property name="WindowPosition">CenterOnParent</property>
+    <child>
+      <widget class="Gtk.Alignment" id="alignment1">
+        <property name="MemberName" />
+        <property name="LeftPadding">25</property>
+        <property name="TopPadding">25</property>
+        <property name="RightPadding">25</property>
+        <property name="BottomPadding">25</property>
+        <child>
+          <widget class="Gtk.EventBox" id="eventbox2">
+            <property name="MemberName" />
+            <child>
+              <widget class="Gtk.VBox" id="vbox3">
+                <property name="MemberName" />
+                <property name="Spacing">6</property>
+                <child>
+                  <placeholder />
+                </child>
+                <child>
+                  <placeholder />
+                </child>
+                <child>
+                  <placeholder />
+                </child>
+              </widget>
+            </child>
+          </widget>
+        </child>
+      </widget>
+    </child>
+  </widget>
 </stetic-interface>

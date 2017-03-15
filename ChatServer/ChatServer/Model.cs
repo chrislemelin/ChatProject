@@ -5,6 +5,8 @@ namespace ChatServer
 {
 	public class Model
 	{
+		//List<RoomModel>
+
 		public Model()
 		{
 		}
@@ -19,7 +21,7 @@ namespace ChatServer
 					User user = nHibernateResources.Get<User, String>("Username", username, session);
 					if (user != null)
 					{
-						if (user.Password == password)
+						if (user.Password.Equals(password))
 						{
 							return user;
 						}

@@ -7,8 +7,16 @@ namespace ChatClient
 	{
 		public static void Main(string[] args)
 		{
-			ServerProxy proxy = new ServerProxy();
+			Application.Init();
 
+			LobbyWindow win = new LobbyWindow();
+			win.Start();
+			win.addLabel("test1");
+			win.addLabel("test2");
+			Application.Run();
+
+			/*
+			ServerProxy proxy = new ServerProxy();
 			Application.Init();
 			LoginWindow win = new LoginWindow();
 			win.proxy = proxy;
@@ -24,6 +32,7 @@ namespace ChatClient
 			}
 			win.Show();
 			Application.Run();
+			*/
 		}
 	}
 }

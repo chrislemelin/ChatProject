@@ -96,6 +96,10 @@ namespace ChatServer
 					client.authenticated(false);
 				}
 			}
+			else
+			{
+				// user is already logged in
+			}
 
 			if (wrapper.MakeRoom != null)
 			{
