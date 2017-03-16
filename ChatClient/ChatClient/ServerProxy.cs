@@ -20,11 +20,17 @@ namespace ChatClient
 
 		private ManualResetEvent sendDone =
 			new ManualResetEvent(false);
-
 		private Socket client;
+		private ModelClone modelClone;
+
 		public LoginWindow loginWindow;
 		public Reader reader;
-  
+
+
+		public ServerProxy(ModelClone modelClone)
+		{
+			this.modelClone = modelClone;
+		}
 
 		public void StartClient()
 		{
@@ -47,7 +53,7 @@ namespace ChatClient
 
 				// Send test data to the remote device. 
 
-				Reader rd = new Reader();
+				Reader rd = new Reader(modelClone);
 				rd.loginWindow = loginWindow;
 				rd.client = client;
 				loginWindow.rd = rd;

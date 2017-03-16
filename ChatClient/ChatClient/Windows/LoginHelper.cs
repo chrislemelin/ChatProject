@@ -38,13 +38,13 @@ namespace ChatClient
 			return registerWindow;
 		}
 
-		public LobbyWindow StartLobbyWindow()
+		public LobbyWindow StartLobbyWindow(ModelClone modelClone)
 		{
 			ManualResetEvent wait = new ManualResetEvent(false);
 			LobbyWindow win= null;
 			Gtk.Application.Invoke(delegate
 			{
-				win = new LobbyWindow();
+				win = new LobbyWindow(modelClone);
 				win.Start();
 				wait.Set();
 			});

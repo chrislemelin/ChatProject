@@ -38,7 +38,19 @@ namespace ChatClient
 			_reverse.Add(t2, t1);
 		}
 
+		public Dictionary<T1, T2>.KeyCollection GetKeys()
+		{
+			return _forward.Keys;
+		}
+
+		public Dictionary<T1, T2>.ValueCollection GetValues()
+		{
+			return _forward.Values;
+		}
+
 		public Indexer<T1, T2> Forward { get; private set; }
 		public Indexer<T2, T1> Reverse { get; private set; }
+
+
 	}
 }

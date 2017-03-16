@@ -5,10 +5,46 @@ namespace ChatServer
 {
 	public class Model
 	{
-		//List<RoomModel>
+		public List<RoomModel> lobby = new List<RoomModel>();
+		List<ClientProxy> proxies = new List<ClientProxy>();
 
 		public Model()
 		{
+			RoomModel room = new RoomModel();
+			room.title = "first";
+			room.id = 1;
+			lobby.Add(room);
+
+			RoomModel room2 = new RoomModel();
+			room2.title = "second";
+			room2.id = 2;
+			lobby.Add(room2);
+
+		}
+
+		public void addProxy(ClientProxy p)
+		{
+			proxies.Add(p);
+		}
+
+		public bool removeProxy(ClientProxy p)
+		{
+			return proxies.Remove(p);
+		}
+
+		public void initLobby(ClientProxy proxy)
+		{
+			List<UpdateLobbyPiece> pieces = new List<UpdateLobbyPiece>();
+			foreach (RoomModel room in lobby)
+			{
+				UpdateLobbyPiece piece = new UpdateLobbyPiece();
+				piece.Title = room.title;
+				piece.Id = room.id;
+				pieces.Add(piece);
+			}
+			
+			proxy.updateLobby(pieces);
+
 		}
 
 		public User Login(String username, int password, ClientProxy proxy)
@@ -26,7 +62,6 @@ namespace ChatServer
 							return user;
 						}
 						return null;
-
 					}
 					else
 					{
@@ -35,7 +70,6 @@ namespace ChatServer
 				}
 			}
 		}
-
 
 		public User AddUser(String username,int password, ClientProxy proxy)
 		{

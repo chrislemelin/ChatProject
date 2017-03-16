@@ -1,17 +1,20 @@
 ﻿<Properties StartupConfiguration="{5F087D2E-B531-4C4A-AEE8-6C97C8476D10}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="ChatClient/Models/ModelClone.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ChatClient/Reader.cs">
     <Files>
-      <File FileName="ChatClient/Windows/LoginWindow.cs" Line="11" Column="22" />
-      <File FileName="ChatClient/Program.cs" Line="13" Column="4" />
-      <File FileName="ChatClient/Models/ModelClone.cs" Line="32" Column="4" />
-      <File FileName="ChatClient/Reader.cs" Line="66" Column="31" />
-      <File FileName="ChatClient/Windows/LoginHelper.cs" Line="43" Column="4" />
+      <File FileName="ChatClient/Windows/LoginWindow.cs" Line="1" Column="1" />
+      <File FileName="ChatClient/Program.cs" Line="28" Column="54" />
+      <File FileName="ChatClient/Models/ModelClone.cs" Line="13" Column="9" />
+      <File FileName="ChatClient/Windows/LobbyWindow.cs" Line="53" Column="4" />
+      <File FileName="ChatClient/Resources/Map.cs" Line="46" Column="44" />
+      <File FileName="ChatClient/Windows/LoginHelper.cs" Line="51" Column="15" />
+      <File FileName="ChatClient/Reader.cs" Line="67" Column="38" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/chrislemelin/Projects/ChatProject/ChatClient/ChatClient/RegistrationHelper.cs" relfile="ChatClient/RegistrationHelper.cs" line="20" column="1" />
+      <Breakpoint file="/Users/chrislemelin/Projects/ChatProject/ChatClient/ChatClient/Windows/LobbyWindow.cs" relfile="ChatClient/Windows/LobbyWindow.cs" line="51" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

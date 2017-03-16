@@ -5,15 +5,17 @@ using System.Threading.Tasks;
 
 public partial class LoginWindow : Gtk.Window
 {
-	public ServerProxy proxy = new ServerProxy();
-	public Reader rd = new Reader();
-	public ModelClone modelClone = new ModelClone();
+	public ServerProxy proxy;
+	public Reader rd;
+	public ModelClone modelClone;
 
 	private RegisterWindow registerWindow;
 	private LoginHelper loginHelper = new LoginHelper();
-	public LoginWindow() : base(Gtk.WindowType.Toplevel)
+	public LoginWindow(ModelClone modelClone, ServerProxy proxy) : base(Gtk.WindowType.Toplevel)
 	{
 		Build();
+		this.modelClone = modelClone;
+		this.proxy = proxy;
 	}
 
 	public void DisplayMessage(String message)
@@ -23,9 +25,15 @@ public partial class LoginWindow : Gtk.Window
 
 	public async void StartLobbyWindow()
 	{
-		await Task.Run(() => loginHelper.StartLobbyWindow());
+		await Task.Run(() => loginHelper.StartLobbyWindow(modelClone));
+		if (registerWindow != null)
+		{
+			registerWindow.Destroy();
+		}
 		this.Destroy();
 	}
+
+
 
 	protected void OnDeleteEvent(object sender, DeleteEventArgs a)
 	{

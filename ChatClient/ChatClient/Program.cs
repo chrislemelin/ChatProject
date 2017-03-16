@@ -22,10 +22,11 @@ namespace ChatClient
 			Application.Run();
 			*/
 
-			ServerProxy proxy = new ServerProxy();
+			ModelClone modelClone = new ModelClone();
+			ServerProxy proxy = new ServerProxy(modelClone);
 			Application.Init();
-			LoginWindow win = new LoginWindow();
-			win.proxy = proxy;
+			LoginWindow win = new LoginWindow(modelClone,proxy);
+		
 			proxy.loginWindow = win;
 			try
 			{

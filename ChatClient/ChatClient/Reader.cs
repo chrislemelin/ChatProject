@@ -12,7 +12,13 @@ namespace ChatClient
 		public Socket client;
 		public LoginWindow loginWindow;
 		public RegisterWindow registerWindow;
-		public ModelClone modelClone;
+
+		private ModelClone modelClone;
+
+		public Reader(ModelClone modelClone)
+		{
+			this.modelClone = modelClone;
+		}
 
 		public void Start()
 		{
@@ -68,11 +74,11 @@ namespace ChatClient
 				}
 				else
 				{
-					loginWindow.DisplayMessage("username already taken");
+					loginWindow.DisplayMessage("login failed");
 				}
 			}
 
-			if (wrapper.UpdateLobby != null && modelClone != null)
+			if (wrapper.UpdateLobby != null)
 			{
 				UpdateLobby updateLobby = wrapper.UpdateLobby;
 				foreach (UpdateLobbyPiece piece in updateLobby.UpdateLobbyPieces)
@@ -80,12 +86,15 @@ namespace ChatClient
 					if (piece.Type == UpdateLobbyPiece.Types.Type.Add)
 					{
 						modelClone.addRoom(piece.Id, piece.Title);
+
 					}
 					if (piece.Type == UpdateLobbyPiece.Types.Type.Delete)
 					{
+						//remove room
 					}
 					if (piece.Type == UpdateLobbyPiece.Types.Type.Modify)
 					{
+						//update room
 					}
 				}
 			}

@@ -35,9 +35,17 @@ namespace ChatServer
 			Send(wrapper);
 		}
 
-		public void updateLobby(string update)
+		public void updateLobby(List<UpdateLobbyPiece> pieces)
 		{
-			throw new NotImplementedException();
+			UpdateLobby update = new UpdateLobby();
+			foreach (UpdateLobbyPiece piece in pieces)
+			{
+				update.UpdateLobbyPieces.Add(piece);
+			}
+			SCMessageWrapper wrapper = new SCMessageWrapper();
+			wrapper.UpdateLobby = update;
+			Send(wrapper);
+
 		}
 
 		public void updateRoom(string update)

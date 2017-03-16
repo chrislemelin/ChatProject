@@ -8,7 +8,8 @@ namespace ChatClient
 	public partial class RegisterWindow : Gtk.Window
 	{
 
-		public ServerProxy proxy = new ServerProxy();
+		public ServerProxy proxy;
+
 		private RegistrationHelper registrationHelper = new RegistrationHelper();
 
 		public RegisterWindow() :

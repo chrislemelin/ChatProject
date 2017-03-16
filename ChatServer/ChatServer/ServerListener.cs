@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 namespace ChatServer
 {
 	public interface ServerListener
 	{
-		void updateLobby(String update);
+		void updateLobby(List<UpdateLobbyPiece> pieces);
 
 		void updateRoom(String update);
 

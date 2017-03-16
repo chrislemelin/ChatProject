@@ -58,7 +58,6 @@ namespace ChatServer
 			{
 				Console.WriteLine(e.ToString());
 			}
-
 			Console.WriteLine("\nPress ENTER to continue...");
 			Console.Read();
 
@@ -78,17 +77,17 @@ namespace ChatServer
 			state.workSocket = handler;
 
 			Console.WriteLine("making thread");
-
 			ClientProxy proxy = new ClientProxy(state.workSocket);
+			model.addProxy(proxy);
 			Reader rd = new Reader();
 			rd.model = model;
-			rd.client = proxy;
+			rd.proxy = proxy;
 			rd.socket = state.workSocket;
 			Thread oThread = new Thread(new ThreadStart(rd.Start));
 			oThread.Start();
 
 		}
-
+		/*
 		public void ReadCallback(IAsyncResult ar)
 		{
 			String content = String.Empty;
@@ -126,7 +125,7 @@ namespace ChatServer
 				}
 			}
 		}
-
+		*/
 		private static void Send(Socket handler, String data)
 		{
 			// Convert the string data to byte data using ASCII encoding.  
@@ -139,7 +138,6 @@ namespace ChatServer
 			new AsyncCallback(SendCallback), handler);
 				handler.BeginSend(byteData, 0, byteData.Length, 0,
 			new AsyncCallback(SendCallback), handler);
-		
 		}
 
 		private static void SendCallback(IAsyncResult ar)
@@ -155,7 +153,6 @@ namespace ChatServer
 
 				//handler.Shutdown(SocketShutdown.Both);
 				//handler.Close();
-
 			}
 			catch (Exception e)
 			{

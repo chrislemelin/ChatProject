@@ -9,15 +9,11 @@ namespace ChatServer
 {
 	public class Reader
 	{
-		public static readonly char EOM = (char)10;
-		public static readonly char EOD = (char)11;
 		public Socket socket;
-		public ClientProxy client;
+		public ClientProxy proxy;
 		public Model model;
 		public ClientModel clientModel = null;
 		public User user = null;
-
-		private StringBuilder sb = new StringBuilder();
 
 		public void Start()
 		{
@@ -30,8 +26,7 @@ namespace ChatServer
 			//disconected
 			if (clientModel != null)
 			{
-				//model.removeUser(clientModel.id);
-
+				model.removeProxy(proxy);
 			}
 
 		}
@@ -40,7 +35,6 @@ namespace ChatServer
 		{
 			try
 			{
-				sb.Clear();
 				byte[] length = new byte[4];
 				client.Receive(length);
 				int len = BitConverter.ToInt32(length, 0);
@@ -49,8 +43,6 @@ namespace ChatServer
 
 				CSMessageWrapper message = CSMessageWrapper.Parser.ParseFrom(data);
 				ProccessMessage(message);
-
-	
 			}
 			catch (Exception e)
 			{
@@ -72,34 +64,35 @@ namespace ChatServer
 		{
 			if (wrapper.Register != null)
 			{
-				User newUser = model.AddUser(wrapper.Register.Username, wrapper.Register.Password1,client);
+				User newUser = model.AddUser(wrapper.Register.Username, wrapper.Register.Password1,proxy);
 				if (newUser != null)
 				{
-					client.registerResponse(true);
+					proxy.registerResponse(true);
 				}
 				else
 				{
-					client.registerResponse(false);
+					proxy.registerResponse(false);
 				}
-
 			}
 
 			if (wrapper.Login != null && user == null)
 			{
-				user = model.Login(wrapper.Login.Name, wrapper.Login.Password, client);
+				user = model.Login(wrapper.Login.Name, wrapper.Login.Password, proxy);
 				if (user != null)
 				{
-					client.authenticated(true);
+					proxy.authenticated(true);
+					model.initLobby(proxy);
 				}
 				else
 				{
-					client.authenticated(false);
+					proxy.authenticated(false);
 				}
 			}
 			else
 			{
 				// user is already logged in
 			}
+
 
 			if (wrapper.MakeRoom != null)
 			{
