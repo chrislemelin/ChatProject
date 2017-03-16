@@ -12,6 +12,7 @@ namespace ChatClient
 		public Socket client;
 		public LoginWindow loginWindow;
 		public RegisterWindow registerWindow;
+		public ModelClone modelClone;
 
 		public void Start()
 		{
@@ -56,13 +57,39 @@ namespace ChatClient
 					registerWindow.DisplayMessage("username already taken");
 				}
 			}
+
 			if (wrapper.Authenticated != null)
 			{
-				if(wrapper.Authenticated.Success)
+				if (wrapper.Authenticated.Success)
+				{
 					loginWindow.DisplayMessage("login was a success");
+					loginWindow.StartLobbyWindow();
+
+				}
 				else
+				{
 					loginWindow.DisplayMessage("username already taken");
+				}
 			}
+
+			if (wrapper.UpdateLobby != null && modelClone != null)
+			{
+				UpdateLobby updateLobby = wrapper.UpdateLobby;
+				foreach (UpdateLobbyPiece piece in updateLobby.UpdateLobbyPieces)
+				{
+					if (piece.Type == UpdateLobbyPiece.Types.Type.Add)
+					{
+						modelClone.addRoom(piece.Id, piece.Title);
+					}
+					if (piece.Type == UpdateLobbyPiece.Types.Type.Delete)
+					{
+					}
+					if (piece.Type == UpdateLobbyPiece.Types.Type.Modify)
+					{
+					}
+				}
+			}
+
 			if (wrapper.UpdateLobby != null)
 			{
 				// updateLoby

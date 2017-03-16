@@ -22,18 +22,23 @@ public static partial class ServerToClientMessagesReflection {
         string.Concat(
           "Ch9zZXJ2ZXJfdG9fY2xpZW50X21lc3NhZ2VzLnByb3RvIiAKDUF1dGhlbnRp",
           "Y2F0ZWQSDwoHc3VjY2VzcxgBIAEoCCIjChBSZWdpc3RlclJlc3BvbnNlEg8K",
-          "B3N1Y2Nlc3MYASABKAgiHAoLVXBkYXRlTG9iYnkSDQoFbmFtZXMYASADKAki",
-          "GwoKVXBkYXRlUm9vbRINCgVuYW1lcxgBIAMoCSK5AQoQU0NNZXNzYWdlV3Jh",
-          "cHBlchInCg1hdXRoZW50aWNhdGVkGAEgASgLMg4uQXV0aGVudGljYXRlZEgA",
-          "EiMKC3VwZGF0ZUxvYmJ5GAIgASgLMgwuVXBkYXRlTG9iYnlIABIhCgp1cGRh",
-          "dGVSb29tGAMgASgLMgsuVXBkYXRlUm9vbUgAEi0KEHJlZ2lzdGVyUmVzcG9u",
-          "c2UYBCABKAsyES5SZWdpc3RlclJlc3BvbnNlSABCBQoDbXNnYgZwcm90bzM="));
+          "B3N1Y2Nlc3MYASABKAgiOwoLVXBkYXRlTG9iYnkSLAoRdXBkYXRlTG9iYnlQ",
+          "aWVjZXMYASADKAsyES5VcGRhdGVMb2JieVBpZWNlInwKEFVwZGF0ZUxvYmJ5",
+          "UGllY2USJAoEdHlwZRgBIAEoDjIWLlVwZGF0ZUxvYmJ5UGllY2UuVHlwZRIN",
+          "CgV0aXRsZRgCIAEoCRIKCgJpZBgDIAEoBSInCgRUeXBlEgcKA0FERBAAEgoK",
+          "BkRFTEVURRABEgoKBk1PRElGWRACIhsKClVwZGF0ZVJvb20SDQoFbmFtZXMY",
+          "ASADKAkiuQEKEFNDTWVzc2FnZVdyYXBwZXISJwoNYXV0aGVudGljYXRlZBgB",
+          "IAEoCzIOLkF1dGhlbnRpY2F0ZWRIABIjCgt1cGRhdGVMb2JieRgCIAEoCzIM",
+          "LlVwZGF0ZUxvYmJ5SAASIQoKdXBkYXRlUm9vbRgDIAEoCzILLlVwZGF0ZVJv",
+          "b21IABItChByZWdpc3RlclJlc3BvbnNlGAQgASgLMhEuUmVnaXN0ZXJSZXNw",
+          "b25zZUgAQgUKA21zZ2IGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::Authenticated), global::Authenticated.Parser, new[]{ "Success" }, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RegisterResponse), global::RegisterResponse.Parser, new[]{ "Success" }, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::UpdateLobby), global::UpdateLobby.Parser, new[]{ "Names" }, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::UpdateLobby), global::UpdateLobby.Parser, new[]{ "UpdateLobbyPieces" }, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::UpdateLobbyPiece), global::UpdateLobbyPiece.Parser, new[]{ "Type", "Title", "Id" }, null, new[]{ typeof(global::UpdateLobbyPiece.Types.Type) }, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::UpdateRoom), global::UpdateRoom.Parser, new[]{ "Names" }, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SCMessageWrapper), global::SCMessageWrapper.Parser, new[]{ "Authenticated", "UpdateLobby", "UpdateRoom", "RegisterResponse" }, new[]{ "Msg" }, null, null)
         }));
@@ -300,7 +305,7 @@ public sealed partial class UpdateLobby : pb::IMessage<UpdateLobby> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public UpdateLobby(UpdateLobby other) : this() {
-    names_ = other.names_.Clone();
+    updateLobbyPieces_ = other.updateLobbyPieces_.Clone();
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -308,14 +313,14 @@ public sealed partial class UpdateLobby : pb::IMessage<UpdateLobby> {
     return new UpdateLobby(this);
   }
 
-  /// <summary>Field number for the "names" field.</summary>
-  public const int NamesFieldNumber = 1;
-  private static readonly pb::FieldCodec<string> _repeated_names_codec
-      = pb::FieldCodec.ForString(10);
-  private readonly pbc::RepeatedField<string> names_ = new pbc::RepeatedField<string>();
+  /// <summary>Field number for the "updateLobbyPieces" field.</summary>
+  public const int UpdateLobbyPiecesFieldNumber = 1;
+  private static readonly pb::FieldCodec<global::UpdateLobbyPiece> _repeated_updateLobbyPieces_codec
+      = pb::FieldCodec.ForMessage(10, global::UpdateLobbyPiece.Parser);
+  private readonly pbc::RepeatedField<global::UpdateLobbyPiece> updateLobbyPieces_ = new pbc::RepeatedField<global::UpdateLobbyPiece>();
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public pbc::RepeatedField<string> Names {
-    get { return names_; }
+  public pbc::RepeatedField<global::UpdateLobbyPiece> UpdateLobbyPieces {
+    get { return updateLobbyPieces_; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -331,14 +336,14 @@ public sealed partial class UpdateLobby : pb::IMessage<UpdateLobby> {
     if (ReferenceEquals(other, this)) {
       return true;
     }
-    if(!names_.Equals(other.names_)) return false;
+    if(!updateLobbyPieces_.Equals(other.updateLobbyPieces_)) return false;
     return true;
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override int GetHashCode() {
     int hash = 1;
-    hash ^= names_.GetHashCode();
+    hash ^= updateLobbyPieces_.GetHashCode();
     return hash;
   }
 
@@ -349,13 +354,13 @@ public sealed partial class UpdateLobby : pb::IMessage<UpdateLobby> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void WriteTo(pb::CodedOutputStream output) {
-    names_.WriteTo(output, _repeated_names_codec);
+    updateLobbyPieces_.WriteTo(output, _repeated_updateLobbyPieces_codec);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public int CalculateSize() {
     int size = 0;
-    size += names_.CalculateSize(_repeated_names_codec);
+    size += updateLobbyPieces_.CalculateSize(_repeated_updateLobbyPieces_codec);
     return size;
   }
 
@@ -364,7 +369,7 @@ public sealed partial class UpdateLobby : pb::IMessage<UpdateLobby> {
     if (other == null) {
       return;
     }
-    names_.Add(other.names_);
+    updateLobbyPieces_.Add(other.updateLobbyPieces_);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -376,12 +381,198 @@ public sealed partial class UpdateLobby : pb::IMessage<UpdateLobby> {
           input.SkipLastField();
           break;
         case 10: {
-          names_.AddEntriesFrom(input, _repeated_names_codec);
+          updateLobbyPieces_.AddEntriesFrom(input, _repeated_updateLobbyPieces_codec);
           break;
         }
       }
     }
   }
+
+}
+
+public sealed partial class UpdateLobbyPiece : pb::IMessage<UpdateLobbyPiece> {
+  private static readonly pb::MessageParser<UpdateLobbyPiece> _parser = new pb::MessageParser<UpdateLobbyPiece>(() => new UpdateLobbyPiece());
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<UpdateLobbyPiece> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ServerToClientMessagesReflection.Descriptor.MessageTypes[3]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public UpdateLobbyPiece() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public UpdateLobbyPiece(UpdateLobbyPiece other) : this() {
+    type_ = other.type_;
+    title_ = other.title_;
+    id_ = other.id_;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public UpdateLobbyPiece Clone() {
+    return new UpdateLobbyPiece(this);
+  }
+
+  /// <summary>Field number for the "type" field.</summary>
+  public const int TypeFieldNumber = 1;
+  private global::UpdateLobbyPiece.Types.Type type_ = 0;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::UpdateLobbyPiece.Types.Type Type {
+    get { return type_; }
+    set {
+      type_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "title" field.</summary>
+  public const int TitleFieldNumber = 2;
+  private string title_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public string Title {
+    get { return title_; }
+    set {
+      title_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  /// <summary>Field number for the "id" field.</summary>
+  public const int IdFieldNumber = 3;
+  private int id_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int Id {
+    get { return id_; }
+    set {
+      id_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as UpdateLobbyPiece);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(UpdateLobbyPiece other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Type != other.Type) return false;
+    if (Title != other.Title) return false;
+    if (Id != other.Id) return false;
+    return true;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Type != 0) hash ^= Type.GetHashCode();
+    if (Title.Length != 0) hash ^= Title.GetHashCode();
+    if (Id != 0) hash ^= Id.GetHashCode();
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (Type != 0) {
+      output.WriteRawTag(8);
+      output.WriteEnum((int) Type);
+    }
+    if (Title.Length != 0) {
+      output.WriteRawTag(18);
+      output.WriteString(Title);
+    }
+    if (Id != 0) {
+      output.WriteRawTag(24);
+      output.WriteInt32(Id);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (Type != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Type);
+    }
+    if (Title.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Title);
+    }
+    if (Id != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Id);
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(UpdateLobbyPiece other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Type != 0) {
+      Type = other.Type;
+    }
+    if (other.Title.Length != 0) {
+      Title = other.Title;
+    }
+    if (other.Id != 0) {
+      Id = other.Id;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          input.SkipLastField();
+          break;
+        case 8: {
+          type_ = (global::UpdateLobbyPiece.Types.Type) input.ReadEnum();
+          break;
+        }
+        case 18: {
+          Title = input.ReadString();
+          break;
+        }
+        case 24: {
+          Id = input.ReadInt32();
+          break;
+        }
+      }
+    }
+  }
+
+  #region Nested types
+  /// <summary>Container for nested types declared in the UpdateLobbyPiece message type.</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static partial class Types {
+    public enum Type {
+      [pbr::OriginalName("ADD")] Add = 0,
+      [pbr::OriginalName("DELETE")] Delete = 1,
+      [pbr::OriginalName("MODIFY")] Modify = 2,
+    }
+
+  }
+  #endregion
 
 }
 
@@ -392,7 +583,7 @@ public sealed partial class UpdateRoom : pb::IMessage<UpdateRoom> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ServerToClientMessagesReflection.Descriptor.MessageTypes[3]; }
+    get { return global::ServerToClientMessagesReflection.Descriptor.MessageTypes[4]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -501,7 +692,7 @@ public sealed partial class SCMessageWrapper : pb::IMessage<SCMessageWrapper> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ServerToClientMessagesReflection.Descriptor.MessageTypes[4]; }
+    get { return global::ServerToClientMessagesReflection.Descriptor.MessageTypes[5]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

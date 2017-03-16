@@ -8,7 +8,9 @@ namespace ChatClient
 
 		private global::Gtk.EventBox eventbox2;
 
-		private global::Gtk.VBox vbox3;
+		private global::Gtk.ScrolledWindow GtkScrolledWindow;
+
+		private global::Gtk.VBox vbox4;
 
 		protected virtual void Build()
 		{
@@ -28,10 +30,18 @@ namespace ChatClient
 			this.eventbox2 = new global::Gtk.EventBox();
 			this.eventbox2.Name = "eventbox2";
 			// Container child eventbox2.Gtk.Container+ContainerChild
-			this.vbox3 = new global::Gtk.VBox();
-			this.vbox3.Name = "vbox3";
-			this.vbox3.Spacing = 6;
-			this.eventbox2.Add(this.vbox3);
+			this.GtkScrolledWindow = new global::Gtk.ScrolledWindow();
+			this.GtkScrolledWindow.Name = "GtkScrolledWindow";
+			this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
+			// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
+			global::Gtk.Viewport w1 = new global::Gtk.Viewport();
+			w1.ShadowType = ((global::Gtk.ShadowType)(0));
+			// Container child GtkViewport.Gtk.Container+ContainerChild
+			this.vbox4 = new global::Gtk.VBox();
+			this.vbox4.Name = "vbox4";
+			w1.Add(this.vbox4);
+			this.GtkScrolledWindow.Add(w1);
+			this.eventbox2.Add(this.GtkScrolledWindow);
 			this.alignment1.Add(this.eventbox2);
 			this.Add(this.alignment1);
 			if ((this.Child != null))
