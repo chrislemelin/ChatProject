@@ -35,6 +35,15 @@ namespace ChatServer
 			Send(wrapper);
 		}
 
+		public void makeRoomResponse(bool success)
+		{
+			SCMessageWrapper wrapper = new SCMessageWrapper();
+			MakeRoomResponse reg = new MakeRoomResponse ();
+			reg.Success = success;
+			wrapper.MakeRoomResponse = reg;
+			Send(wrapper);
+		}
+
 		public void updateLobby(List<UpdateLobbyPiece> pieces)
 		{
 			UpdateLobby update = new UpdateLobby();

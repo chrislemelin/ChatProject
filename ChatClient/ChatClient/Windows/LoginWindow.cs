@@ -28,7 +28,7 @@ public partial class LoginWindow : Gtk.Window
 		//await Task.Run(() => loginHelper.StartLobbyWindow(modelClone,proxy));
 		Gtk.Application.Invoke(delegate
 		{
-			LobbyWindow win = new LobbyWindow(modelClone, proxy);
+			LobbyWindow win = new LobbyWindow(modelClone, proxy,rd);
 			win.Start();
 		});
 		if (registerWindow != null)

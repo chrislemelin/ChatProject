@@ -6,16 +6,18 @@ namespace ChatClient
 	{
 		Gdk.Color backCol = new Gdk.Color();
 		Gdk.Color focusCol = new Gdk.Color();
+		public Reader rd;
 		private EventBox lastClicked = null;
 		private ModelClone modelClone;
 		private Map<EventBox, RoomClone> rooms = new Map<EventBox, RoomClone>();
 		private ServerProxy proxy;
 		private MakeRoomWindow makeRoomWindow = null;
 
-		public LobbyWindow(ModelClone modelClone, ServerProxy proxy) :
+		public LobbyWindow(ModelClone modelClone, ServerProxy proxy, Reader rd) :
 				base(Gtk.WindowType.Toplevel)
 		{
 			this.Build();
+			this.rd = rd;
 			this.modelClone = modelClone;
 			this.modelClone.lobbyWindow = this;
 			this.proxy = proxy;
@@ -77,7 +79,9 @@ namespace ChatClient
 		{
 			if (makeRoomWindow == null)
 			{
+				
 				makeRoomWindow = new MakeRoomWindow(proxy);
+				rd.makeRoomWindow = makeRoomWindow;
 			}
 
 		}

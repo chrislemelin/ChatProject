@@ -38,18 +38,7 @@ namespace ChatClient
 			return registerWindow;
 		}
 
-		public LobbyWindow StartLobbyWindow(ModelClone modelClone, ServerProxy proxy)
-		{
-			ManualResetEvent wait = new ManualResetEvent(false);
-			LobbyWindow win= null;
-			Gtk.Application.Invoke(delegate
-			{
-				win = new LobbyWindow(modelClone,proxy);
-				win.Start();
-				wait.Set();
-			});
-			return win;
-		}
+
 
 	}
 }

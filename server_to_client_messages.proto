@@ -8,6 +8,10 @@ message RegisterResponse{
   bool success = 1;
 }
 
+message MakeRoomResponse{
+  bool success = 1;
+}
+
 message UpdateLobby{
   repeated UpdateLobbyPiece updateLobbyPieces = 1;
 }
@@ -36,6 +40,7 @@ message SCMessageWrapper{
       UpdateLobby updateLobby = 2;
       UpdateRoom updateRoom = 3;
       RegisterResponse registerResponse = 4;
+      MakeRoomResponse MakeRoomResponse = 5;
   }
 
 }

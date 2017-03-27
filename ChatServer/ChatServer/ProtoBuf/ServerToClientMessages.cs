@@ -22,25 +22,28 @@ public static partial class ServerToClientMessagesReflection {
         string.Concat(
           "Ch9zZXJ2ZXJfdG9fY2xpZW50X21lc3NhZ2VzLnByb3RvIiAKDUF1dGhlbnRp",
           "Y2F0ZWQSDwoHc3VjY2VzcxgBIAEoCCIjChBSZWdpc3RlclJlc3BvbnNlEg8K",
-          "B3N1Y2Nlc3MYASABKAgiOwoLVXBkYXRlTG9iYnkSLAoRdXBkYXRlTG9iYnlQ",
-          "aWVjZXMYASADKAsyES5VcGRhdGVMb2JieVBpZWNlInwKEFVwZGF0ZUxvYmJ5",
-          "UGllY2USJAoEdHlwZRgBIAEoDjIWLlVwZGF0ZUxvYmJ5UGllY2UuVHlwZRIN",
-          "CgV0aXRsZRgCIAEoCRIKCgJpZBgDIAEoBSInCgRUeXBlEgcKA0FERBAAEgoK",
-          "BkRFTEVURRABEgoKBk1PRElGWRACIhsKClVwZGF0ZVJvb20SDQoFbmFtZXMY",
-          "ASADKAkiuQEKEFNDTWVzc2FnZVdyYXBwZXISJwoNYXV0aGVudGljYXRlZBgB",
-          "IAEoCzIOLkF1dGhlbnRpY2F0ZWRIABIjCgt1cGRhdGVMb2JieRgCIAEoCzIM",
-          "LlVwZGF0ZUxvYmJ5SAASIQoKdXBkYXRlUm9vbRgDIAEoCzILLlVwZGF0ZVJv",
-          "b21IABItChByZWdpc3RlclJlc3BvbnNlGAQgASgLMhEuUmVnaXN0ZXJSZXNw",
-          "b25zZUgAQgUKA21zZ2IGcHJvdG8z"));
+          "B3N1Y2Nlc3MYASABKAgiIwoQTWFrZVJvb21SZXNwb25zZRIPCgdzdWNjZXNz",
+          "GAEgASgIIjsKC1VwZGF0ZUxvYmJ5EiwKEXVwZGF0ZUxvYmJ5UGllY2VzGAEg",
+          "AygLMhEuVXBkYXRlTG9iYnlQaWVjZSJ8ChBVcGRhdGVMb2JieVBpZWNlEiQK",
+          "BHR5cGUYASABKA4yFi5VcGRhdGVMb2JieVBpZWNlLlR5cGUSDQoFdGl0bGUY",
+          "AiABKAkSCgoCaWQYAyABKAUiJwoEVHlwZRIHCgNBREQQABIKCgZERUxFVEUQ",
+          "ARIKCgZNT0RJRlkQAiIbCgpVcGRhdGVSb29tEg0KBW5hbWVzGAEgAygJIugB",
+          "ChBTQ01lc3NhZ2VXcmFwcGVyEicKDWF1dGhlbnRpY2F0ZWQYASABKAsyDi5B",
+          "dXRoZW50aWNhdGVkSAASIwoLdXBkYXRlTG9iYnkYAiABKAsyDC5VcGRhdGVM",
+          "b2JieUgAEiEKCnVwZGF0ZVJvb20YAyABKAsyCy5VcGRhdGVSb29tSAASLQoQ",
+          "cmVnaXN0ZXJSZXNwb25zZRgEIAEoCzIRLlJlZ2lzdGVyUmVzcG9uc2VIABIt",
+          "ChBNYWtlUm9vbVJlc3BvbnNlGAUgASgLMhEuTWFrZVJvb21SZXNwb25zZUgA",
+          "QgUKA21zZ2IGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
           new pbr::GeneratedClrTypeInfo(typeof(global::Authenticated), global::Authenticated.Parser, new[]{ "Success" }, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RegisterResponse), global::RegisterResponse.Parser, new[]{ "Success" }, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::MakeRoomResponse), global::MakeRoomResponse.Parser, new[]{ "Success" }, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::UpdateLobby), global::UpdateLobby.Parser, new[]{ "UpdateLobbyPieces" }, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::UpdateLobbyPiece), global::UpdateLobbyPiece.Parser, new[]{ "Type", "Title", "Id" }, null, new[]{ typeof(global::UpdateLobbyPiece.Types.Type) }, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::UpdateRoom), global::UpdateRoom.Parser, new[]{ "Names" }, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::SCMessageWrapper), global::SCMessageWrapper.Parser, new[]{ "Authenticated", "UpdateLobby", "UpdateRoom", "RegisterResponse" }, new[]{ "Msg" }, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::SCMessageWrapper), global::SCMessageWrapper.Parser, new[]{ "Authenticated", "UpdateLobby", "UpdateRoom", "RegisterResponse", "MakeRoomResponse" }, new[]{ "Msg" }, null, null)
         }));
   }
   #endregion
@@ -281,6 +284,123 @@ public sealed partial class RegisterResponse : pb::IMessage<RegisterResponse> {
 
 }
 
+public sealed partial class MakeRoomResponse : pb::IMessage<MakeRoomResponse> {
+  private static readonly pb::MessageParser<MakeRoomResponse> _parser = new pb::MessageParser<MakeRoomResponse>(() => new MakeRoomResponse());
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<MakeRoomResponse> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::ServerToClientMessagesReflection.Descriptor.MessageTypes[2]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public MakeRoomResponse() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public MakeRoomResponse(MakeRoomResponse other) : this() {
+    success_ = other.success_;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public MakeRoomResponse Clone() {
+    return new MakeRoomResponse(this);
+  }
+
+  /// <summary>Field number for the "success" field.</summary>
+  public const int SuccessFieldNumber = 1;
+  private bool success_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Success {
+    get { return success_; }
+    set {
+      success_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as MakeRoomResponse);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(MakeRoomResponse other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Success != other.Success) return false;
+    return true;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Success != false) hash ^= Success.GetHashCode();
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (Success != false) {
+      output.WriteRawTag(8);
+      output.WriteBool(Success);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (Success != false) {
+      size += 1 + 1;
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(MakeRoomResponse other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Success != false) {
+      Success = other.Success;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          input.SkipLastField();
+          break;
+        case 8: {
+          Success = input.ReadBool();
+          break;
+        }
+      }
+    }
+  }
+
+}
+
 public sealed partial class UpdateLobby : pb::IMessage<UpdateLobby> {
   private static readonly pb::MessageParser<UpdateLobby> _parser = new pb::MessageParser<UpdateLobby>(() => new UpdateLobby());
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -288,7 +408,7 @@ public sealed partial class UpdateLobby : pb::IMessage<UpdateLobby> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ServerToClientMessagesReflection.Descriptor.MessageTypes[2]; }
+    get { return global::ServerToClientMessagesReflection.Descriptor.MessageTypes[3]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -397,7 +517,7 @@ public sealed partial class UpdateLobbyPiece : pb::IMessage<UpdateLobbyPiece> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ServerToClientMessagesReflection.Descriptor.MessageTypes[3]; }
+    get { return global::ServerToClientMessagesReflection.Descriptor.MessageTypes[4]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -583,7 +703,7 @@ public sealed partial class UpdateRoom : pb::IMessage<UpdateRoom> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ServerToClientMessagesReflection.Descriptor.MessageTypes[4]; }
+    get { return global::ServerToClientMessagesReflection.Descriptor.MessageTypes[5]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -692,7 +812,7 @@ public sealed partial class SCMessageWrapper : pb::IMessage<SCMessageWrapper> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::ServerToClientMessagesReflection.Descriptor.MessageTypes[5]; }
+    get { return global::ServerToClientMessagesReflection.Descriptor.MessageTypes[6]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -721,6 +841,9 @@ public sealed partial class SCMessageWrapper : pb::IMessage<SCMessageWrapper> {
         break;
       case MsgOneofCase.RegisterResponse:
         RegisterResponse = other.RegisterResponse.Clone();
+        break;
+      case MsgOneofCase.MakeRoomResponse:
+        MakeRoomResponse = other.MakeRoomResponse.Clone();
         break;
     }
 
@@ -775,6 +898,17 @@ public sealed partial class SCMessageWrapper : pb::IMessage<SCMessageWrapper> {
     }
   }
 
+  /// <summary>Field number for the "MakeRoomResponse" field.</summary>
+  public const int MakeRoomResponseFieldNumber = 5;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public global::MakeRoomResponse MakeRoomResponse {
+    get { return msgCase_ == MsgOneofCase.MakeRoomResponse ? (global::MakeRoomResponse) msg_ : null; }
+    set {
+      msg_ = value;
+      msgCase_ = value == null ? MsgOneofCase.None : MsgOneofCase.MakeRoomResponse;
+    }
+  }
+
   private object msg_;
   /// <summary>Enum of possible cases for the "msg" oneof.</summary>
   public enum MsgOneofCase {
@@ -783,6 +917,7 @@ public sealed partial class SCMessageWrapper : pb::IMessage<SCMessageWrapper> {
     UpdateLobby = 2,
     UpdateRoom = 3,
     RegisterResponse = 4,
+    MakeRoomResponse = 5,
   }
   private MsgOneofCase msgCase_ = MsgOneofCase.None;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -813,6 +948,7 @@ public sealed partial class SCMessageWrapper : pb::IMessage<SCMessageWrapper> {
     if (!object.Equals(UpdateLobby, other.UpdateLobby)) return false;
     if (!object.Equals(UpdateRoom, other.UpdateRoom)) return false;
     if (!object.Equals(RegisterResponse, other.RegisterResponse)) return false;
+    if (!object.Equals(MakeRoomResponse, other.MakeRoomResponse)) return false;
     if (MsgCase != other.MsgCase) return false;
     return true;
   }
@@ -824,6 +960,7 @@ public sealed partial class SCMessageWrapper : pb::IMessage<SCMessageWrapper> {
     if (msgCase_ == MsgOneofCase.UpdateLobby) hash ^= UpdateLobby.GetHashCode();
     if (msgCase_ == MsgOneofCase.UpdateRoom) hash ^= UpdateRoom.GetHashCode();
     if (msgCase_ == MsgOneofCase.RegisterResponse) hash ^= RegisterResponse.GetHashCode();
+    if (msgCase_ == MsgOneofCase.MakeRoomResponse) hash ^= MakeRoomResponse.GetHashCode();
     hash ^= (int) msgCase_;
     return hash;
   }
@@ -851,6 +988,10 @@ public sealed partial class SCMessageWrapper : pb::IMessage<SCMessageWrapper> {
       output.WriteRawTag(34);
       output.WriteMessage(RegisterResponse);
     }
+    if (msgCase_ == MsgOneofCase.MakeRoomResponse) {
+      output.WriteRawTag(42);
+      output.WriteMessage(MakeRoomResponse);
+    }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -867,6 +1008,9 @@ public sealed partial class SCMessageWrapper : pb::IMessage<SCMessageWrapper> {
     }
     if (msgCase_ == MsgOneofCase.RegisterResponse) {
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(RegisterResponse);
+    }
+    if (msgCase_ == MsgOneofCase.MakeRoomResponse) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(MakeRoomResponse);
     }
     return size;
   }
@@ -888,6 +1032,9 @@ public sealed partial class SCMessageWrapper : pb::IMessage<SCMessageWrapper> {
         break;
       case MsgOneofCase.RegisterResponse:
         RegisterResponse = other.RegisterResponse;
+        break;
+      case MsgOneofCase.MakeRoomResponse:
+        MakeRoomResponse = other.MakeRoomResponse;
         break;
     }
 
@@ -935,6 +1082,15 @@ public sealed partial class SCMessageWrapper : pb::IMessage<SCMessageWrapper> {
           }
           input.ReadMessage(subBuilder);
           RegisterResponse = subBuilder;
+          break;
+        }
+        case 42: {
+          global::MakeRoomResponse subBuilder = new global::MakeRoomResponse();
+          if (msgCase_ == MsgOneofCase.MakeRoomResponse) {
+            subBuilder.MergeFrom(MakeRoomResponse);
+          }
+          input.ReadMessage(subBuilder);
+          MakeRoomResponse = subBuilder;
           break;
         }
       }

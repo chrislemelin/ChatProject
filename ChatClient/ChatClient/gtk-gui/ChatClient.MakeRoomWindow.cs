@@ -27,6 +27,9 @@ namespace ChatClient
 			this.Name = "ChatClient.MakeRoomWindow";
 			this.Title = global::Mono.Unix.Catalog.GetString("MakeRoomWindow");
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
+			this.Resizable = false;
+			this.AllowGrow = false;
+			this.DefaultWidth = 0;
 			this.DefaultHeight = 200;
 			// Container child ChatClient.MakeRoomWindow.Gtk.Container+ContainerChild
 			this.vbox5 = new global::Gtk.VBox();
@@ -102,7 +105,6 @@ namespace ChatClient
 			{
 				this.Child.ShowAll();
 			}
-			this.DefaultWidth = 400;
 			this.Show();
 		}
 	}

@@ -116,7 +116,7 @@ namespace ChatServer
 			}
 		}
 
-		public void AddRoom(string title)
+		public void AddRoom(string title, ClientProxy sender)
 		{
 			RoomModel newRoomModel = new RoomModel();
 			newRoomModel.title = title;
@@ -129,10 +129,14 @@ namespace ChatServer
 			piece.Id = newRoomModel.id;
 			piece.Title = newRoomModel.title;
 
+			sender.makeRoomResponse(true);
+
 			foreach (ClientProxy proxy in proxies)
 			{
 				proxy.updateLobby(pieces);
 			}
+
+
 		}
 	}
 }

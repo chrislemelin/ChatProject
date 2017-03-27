@@ -22,7 +22,11 @@ namespace ChatClient
 			{
 				DescriptionBox.Buffer.Text = "fill out room name";
 			}
+		}
 
+		public void DisplayMessage(String text)
+		{
+			DescriptionBox.Buffer.Text = text;
 		}
 
 	}

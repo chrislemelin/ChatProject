@@ -12,6 +12,7 @@ namespace ChatClient
 		public Socket client;
 		public LoginWindow loginWindow;
 		public RegisterWindow registerWindow;
+		public MakeRoomWindow makeRoomWindow;
 
 		private ModelClone modelClone;
 
@@ -96,6 +97,17 @@ namespace ChatClient
 					{
 						//update room
 					}
+				}
+			}
+
+			if (wrapper.MakeRoomResponse != null)
+			{
+				if (makeRoomWindow != null)
+				{
+					if (wrapper.MakeRoomResponse.Success)
+						makeRoomWindow.DisplayMessage("Success");
+					else
+						makeRoomWindow.DisplayMessage("Failure");
 				}
 			}
 

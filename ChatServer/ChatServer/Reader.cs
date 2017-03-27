@@ -97,7 +97,7 @@ namespace ChatServer
 			if (wrapper.MakeRoom != null)
 			{
 				MakeRoom message = wrapper.MakeRoom;
-				model.AddRoom(message.Title);
+				model.AddRoom(message.Title,proxy);
 				// add make room logic
 			}
 			if (wrapper.JoinLobby != null)
