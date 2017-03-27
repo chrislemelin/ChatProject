@@ -16,6 +16,7 @@ namespace ChatClient
 				base(Gtk.WindowType.Toplevel)
 		{
 			this.Build();
+			this.DeleteEvent += OnDeleteEvent;
 
 		}
 

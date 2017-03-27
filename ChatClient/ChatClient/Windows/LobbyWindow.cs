@@ -9,14 +9,16 @@ namespace ChatClient
 		private EventBox lastClicked = null;
 		private ModelClone modelClone;
 		private Map<EventBox, RoomClone> rooms = new Map<EventBox, RoomClone>();
+		private ServerProxy proxy;
+		private MakeRoomWindow makeRoomWindow = null;
 
-
-		public LobbyWindow(ModelClone modelClone) :
+		public LobbyWindow(ModelClone modelClone, ServerProxy proxy) :
 				base(Gtk.WindowType.Toplevel)
 		{
 			this.Build();
 			this.modelClone = modelClone;
 			this.modelClone.lobbyWindow = this;
+			this.proxy = proxy;
 
 		}
 
@@ -26,6 +28,8 @@ namespace ChatClient
 			Gdk.Color.Parse("light blue", ref focusCol);
 			eventbox2.ModifyBg(StateType.Normal, backCol);
 			populateWindow();
+			MakeRoomButton.Pressed += OpenMakeRoomWindow;
+
 			this.Show();
 		}
 
@@ -36,7 +40,7 @@ namespace ChatClient
 
 			labie.Text = s;
 			boxy.Add(labie);
-			labie.HeightRequest =30;
+			labie.HeightRequest = 30;
 
 			labie.Show();
 			boxy.Show();
@@ -67,6 +71,23 @@ namespace ChatClient
 			lastClicked = newEvent;
 			newEvent.ModifyBg(StateType.Normal, focusCol);
 			Console.WriteLine( ((Label)newEvent.Children[0]).Text);
+		}
+
+		protected void OpenMakeRoomWindow(object sender, EventArgs e)
+		{
+			if (makeRoomWindow == null)
+			{
+				makeRoomWindow = new MakeRoomWindow(proxy);
+			}
+
+		}
+
+		protected void OnDeleteEvent(object o, DeleteEventArgs args)
+		{
+			//hides the register window instead of deleteing it
+			//can only make one register window
+			args.RetVal = true;
+			Hide();
 		}
 
 	}

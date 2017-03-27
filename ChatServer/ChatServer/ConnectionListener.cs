@@ -82,6 +82,7 @@ namespace ChatServer
 			Reader rd = new Reader();
 			rd.model = model;
 			rd.proxy = proxy;
+			rd.proxy = proxy;
 			rd.socket = state.workSocket;
 			Thread oThread = new Thread(new ThreadStart(rd.Start));
 			oThread.Start();

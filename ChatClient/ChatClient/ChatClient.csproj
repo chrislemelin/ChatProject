@@ -120,6 +120,8 @@
     <Compile Include="Models\RoomClone.cs" />
     <Compile Include="Resources\Resources.cs" />
     <Compile Include="Resources\Map.cs" />
+    <Compile Include="Windows\MakeRoomWindow.cs" />
+    <Compile Include="gtk-gui\ChatClient.MakeRoomWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

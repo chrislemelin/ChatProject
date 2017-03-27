@@ -6,11 +6,21 @@ namespace ChatClient
 	{
 		private global::Gtk.Alignment alignment1;
 
+		private global::Gtk.VBox vbox8;
+
 		private global::Gtk.EventBox eventbox2;
 
 		private global::Gtk.ScrolledWindow GtkScrolledWindow;
 
 		private global::Gtk.VBox vbox4;
+
+		private global::Gtk.HBox hbox3;
+
+		private global::Gtk.Button MakeRoomButton;
+
+		private global::Gtk.Button button5;
+
+		private global::Gtk.Button button3;
 
 		protected virtual void Build()
 		{
@@ -27,6 +37,10 @@ namespace ChatClient
 			this.alignment1.RightPadding = ((uint)(25));
 			this.alignment1.BottomPadding = ((uint)(25));
 			// Container child alignment1.Gtk.Container+ContainerChild
+			this.vbox8 = new global::Gtk.VBox();
+			this.vbox8.Name = "vbox8";
+			this.vbox8.Spacing = 6;
+			// Container child vbox8.Gtk.Box+BoxChild
 			this.eventbox2 = new global::Gtk.EventBox();
 			this.eventbox2.Name = "eventbox2";
 			// Container child eventbox2.Gtk.Container+ContainerChild
@@ -42,7 +56,53 @@ namespace ChatClient
 			w1.Add(this.vbox4);
 			this.GtkScrolledWindow.Add(w1);
 			this.eventbox2.Add(this.GtkScrolledWindow);
-			this.alignment1.Add(this.eventbox2);
+			this.vbox8.Add(this.eventbox2);
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox8[this.eventbox2]));
+			w5.Position = 0;
+			// Container child vbox8.Gtk.Box+BoxChild
+			this.hbox3 = new global::Gtk.HBox();
+			this.hbox3.Name = "hbox3";
+			this.hbox3.Homogeneous = true;
+			this.hbox3.Spacing = 6;
+			// Container child hbox3.Gtk.Box+BoxChild
+			this.MakeRoomButton = new global::Gtk.Button();
+			this.MakeRoomButton.CanFocus = true;
+			this.MakeRoomButton.Name = "MakeRoomButton";
+			this.MakeRoomButton.UseUnderline = true;
+			this.MakeRoomButton.Label = global::Mono.Unix.Catalog.GetString("Room Creation");
+			this.hbox3.Add(this.MakeRoomButton);
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.MakeRoomButton]));
+			w6.Position = 0;
+			w6.Expand = false;
+			w6.Fill = false;
+			// Container child hbox3.Gtk.Box+BoxChild
+			this.button5 = new global::Gtk.Button();
+			this.button5.CanFocus = true;
+			this.button5.Name = "button5";
+			this.button5.UseUnderline = true;
+			this.button5.Label = global::Mono.Unix.Catalog.GetString("GtkButton");
+			this.hbox3.Add(this.button5);
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.button5]));
+			w7.Position = 1;
+			w7.Expand = false;
+			w7.Fill = false;
+			// Container child hbox3.Gtk.Box+BoxChild
+			this.button3 = new global::Gtk.Button();
+			this.button3.CanFocus = true;
+			this.button3.Name = "button3";
+			this.button3.UseUnderline = true;
+			this.button3.Label = global::Mono.Unix.Catalog.GetString("GtkButton");
+			this.hbox3.Add(this.button3);
+			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.button3]));
+			w8.Position = 2;
+			w8.Expand = false;
+			w8.Fill = false;
+			this.vbox8.Add(this.hbox3);
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox8[this.hbox3]));
+			w9.Position = 1;
+			w9.Expand = false;
+			w9.Fill = false;
+			this.alignment1.Add(this.vbox8);
 			this.Add(this.alignment1);
 			if ((this.Child != null))
 			{

@@ -1,20 +1,18 @@
 ﻿<Properties StartupConfiguration="{1D7170E6-4741-4B43-9B93-E1EDDB1E369D}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="ChatServer/Model.cs">
     <Files>
-      <File FileName="ChatServer/Program.cs" Line="14" Column="1" />
+      <File FileName="ChatServer/Program.cs" Line="13" Column="31" />
       <File FileName="ChatServer/Reader.cs" Line="39" Column="1" />
       <File FileName="ChatServer/ServerListener.cs" Line="7" Column="8" />
       <File FileName="ChatServer/State.cs" Line="1" Column="1" />
-      <File FileName="ChatServer/Model.cs" Line="37" Column="1" />
-      <File FileName="ChatServer/ClientProxy.cs" Line="40" Column="1" />
-      <File FileName="ChatServer/Models/RoomModel.cs" Line="8" Column="17" />
+      <File FileName="ChatServer/Model.cs" Line="132" Column="38" />
+      <File FileName="ChatServer/ClientProxy.cs" Line="45" Column="15" />
+      <File FileName="ChatServer/ConnectionListener.cs" Line="84" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/ClientProxy.cs" relfile="ChatServer/ClientProxy.cs" line="43" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.ChatServer PreferredExecutionTarget="MonoDevelop.Default" />

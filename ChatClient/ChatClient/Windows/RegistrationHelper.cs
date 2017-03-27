@@ -28,7 +28,6 @@ namespace ChatClient
 				}
 			}
 
-
 			return "passwords much match";
 
 		}

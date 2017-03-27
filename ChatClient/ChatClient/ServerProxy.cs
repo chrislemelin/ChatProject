@@ -172,7 +172,13 @@ namespace ChatClient
 
 		public void makeLobby(string title)
 		{
-			//Send(Resources.c_makeLobby + title);
+			CSMessageWrapper wrapper = new CSMessageWrapper();
+			MakeRoom message = new MakeRoom();
+			wrapper.MakeRoom = message;
+
+			message.Title = title;
+
+			Send(wrapper);
 		}
 	}
 }

@@ -25,7 +25,12 @@ public partial class LoginWindow : Gtk.Window
 
 	public async void StartLobbyWindow()
 	{
-		await Task.Run(() => loginHelper.StartLobbyWindow(modelClone));
+		//await Task.Run(() => loginHelper.StartLobbyWindow(modelClone,proxy));
+		Gtk.Application.Invoke(delegate
+		{
+			LobbyWindow win = new LobbyWindow(modelClone, proxy);
+			win.Start();
+		});
 		if (registerWindow != null)
 		{
 			registerWindow.Destroy();
@@ -51,8 +56,21 @@ public partial class LoginWindow : Gtk.Window
 	{
 	}
 
-	protected async void OnRegisterButtonClicked(object sender, EventArgs e)
+	protected void OnRegisterButtonClicked(object sender, EventArgs e)
 	{
-		registerWindow = await Task.Run(() => loginHelper.OpenRegisterWindow(registerWindow, rd, proxy));
+		if (registerWindow == null)
+		{
+			registerWindow = new RegisterWindow();
+
+			registerWindow.Show();
+			rd.registerWindow = registerWindow;
+			registerWindow.proxy = proxy;
+		}
+		if (!registerWindow.Visible)
+		{
+			registerWindow.Show();
+		}
+
+
 	}
 }

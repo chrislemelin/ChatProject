@@ -11,7 +11,6 @@ namespace ChatServer
 		public static void Main(string[] args)
 		{
 			nHibernateResources.init();
-
 			ConnectionListener listener = new ConnectionListener();
 			Model model = new Model();
 			listener.model = model;
