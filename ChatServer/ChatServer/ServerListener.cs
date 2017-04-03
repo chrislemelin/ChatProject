@@ -6,7 +6,7 @@ namespace ChatServer
 	{
 		void updateLobby(List<UpdateLobbyPiece> pieces);
 
-		void updateRoom(String update);
+		void updateRoom(List<UpdateRoomPiece> pieces);
 
 		void authenticated(bool success);
 

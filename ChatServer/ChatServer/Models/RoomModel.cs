@@ -6,8 +6,8 @@ namespace ChatServer
 	{
 		public string title;
 		public int id;
-		public List<ClientModel> inRoom;
-
+		public List<ClientProxy> subs = new List<ClientProxy>();
+		public List<MessageModel> messages = new List<MessageModel>();
 
 		public RoomModel()
 		{

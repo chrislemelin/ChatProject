@@ -11,7 +11,10 @@ namespace ChatClient
 		private ModelClone modelClone;
 		private Map<EventBox, RoomClone> rooms = new Map<EventBox, RoomClone>();
 		private ServerProxy proxy;
+
 		private MakeRoomWindow makeRoomWindow = null;
+		private RoomWindow roomWindow = null;
+
 
 		public LobbyWindow(ModelClone modelClone, ServerProxy proxy, Reader rd) :
 				base(Gtk.WindowType.Toplevel)
@@ -30,7 +33,9 @@ namespace ChatClient
 			Gdk.Color.Parse("light blue", ref focusCol);
 			eventbox2.ModifyBg(StateType.Normal, backCol);
 			populateWindow();
-			MakeRoomButton.Pressed += OpenMakeRoomWindow;
+			makeRoomButton.Pressed += OpenMakeRoomWindow;
+
+			joinRoomButton.Sensitive = false;
 
 			this.Show();
 		}
@@ -49,7 +54,6 @@ namespace ChatClient
 			boxy.ModifyBg(StateType.Normal, backCol);
 			boxy.ButtonPressEvent += ButtonPressHandler;
 
-
 			vbox4.PackStart(boxy, false, true, 0);
 			return boxy;
 
@@ -65,6 +69,7 @@ namespace ChatClient
 
 		private void ButtonPressHandler(object obj, ButtonPressEventArgs args)
 		{
+			joinRoomButton.Sensitive = true;
 			EventBox newEvent = (EventBox)obj;
 			if (lastClicked != null)
 			{
@@ -94,5 +99,12 @@ namespace ChatClient
 			Hide();
 		}
 
+		protected void OnJoinRoomButtonClicked(object sender, EventArgs e)
+		{
+			this.roomWindow = new RoomWindow(rooms.Forward[lastClicked],proxy);
+			proxy.subRoom(rooms.Forward[lastClicked].ID, true);
+			rd.roomWindow = roomWindow;
+
+		}
 	}
 }

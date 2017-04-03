@@ -10,7 +10,7 @@ public partial class LoginWindow : Gtk.Window
 	public ModelClone modelClone;
 
 	private RegisterWindow registerWindow;
-	private LoginHelper loginHelper = new LoginHelper();
+	//private LoginHelper loginHelper = new LoginHelper();
 	public LoginWindow(ModelClone modelClone, ServerProxy proxy) : base(Gtk.WindowType.Toplevel)
 	{
 		Build();
@@ -23,19 +23,20 @@ public partial class LoginWindow : Gtk.Window
 		display.Text = message;
 	}
 
-	public async void StartLobbyWindow()
+	public void StartLobbyWindow()
 	{
 		//await Task.Run(() => loginHelper.StartLobbyWindow(modelClone,proxy));
+
 		Gtk.Application.Invoke(delegate
 		{
-			LobbyWindow win = new LobbyWindow(modelClone, proxy,rd);
+			LobbyWindow win = new LobbyWindow(modelClone, proxy, rd);
 			win.Start();
+			if (registerWindow != null)
+			{
+				registerWindow.Destroy();
+			}
+			this.Destroy();
 		});
-		if (registerWindow != null)
-		{
-			registerWindow.Destroy();
-		}
-		this.Destroy();
 	}
 
 

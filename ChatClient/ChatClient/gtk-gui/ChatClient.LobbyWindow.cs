@@ -16,9 +16,9 @@ namespace ChatClient
 
 		private global::Gtk.HBox hbox3;
 
-		private global::Gtk.Button MakeRoomButton;
+		private global::Gtk.Button makeRoomButton;
 
-		private global::Gtk.Button button5;
+		private global::Gtk.Button joinRoomButton;
 
 		private global::Gtk.Button button3;
 
@@ -63,29 +63,26 @@ namespace ChatClient
 			this.hbox3 = new global::Gtk.HBox();
 			this.hbox3.Name = "hbox3";
 			this.hbox3.Homogeneous = true;
-			this.hbox3.Spacing = 6;
+			this.hbox3.Spacing = 45;
 			// Container child hbox3.Gtk.Box+BoxChild
-			this.MakeRoomButton = new global::Gtk.Button();
-			this.MakeRoomButton.CanFocus = true;
-			this.MakeRoomButton.Name = "MakeRoomButton";
-			this.MakeRoomButton.UseUnderline = true;
-			this.MakeRoomButton.Label = global::Mono.Unix.Catalog.GetString("Room Creation");
-			this.hbox3.Add(this.MakeRoomButton);
-			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.MakeRoomButton]));
+			this.makeRoomButton = new global::Gtk.Button();
+			this.makeRoomButton.CanFocus = true;
+			this.makeRoomButton.Name = "makeRoomButton";
+			this.makeRoomButton.UseUnderline = true;
+			this.makeRoomButton.Label = global::Mono.Unix.Catalog.GetString("Room Creation");
+			this.hbox3.Add(this.makeRoomButton);
+			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.makeRoomButton]));
 			w6.Position = 0;
-			w6.Expand = false;
-			w6.Fill = false;
 			// Container child hbox3.Gtk.Box+BoxChild
-			this.button5 = new global::Gtk.Button();
-			this.button5.CanFocus = true;
-			this.button5.Name = "button5";
-			this.button5.UseUnderline = true;
-			this.button5.Label = global::Mono.Unix.Catalog.GetString("GtkButton");
-			this.hbox3.Add(this.button5);
-			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.button5]));
+			this.joinRoomButton = new global::Gtk.Button();
+			this.joinRoomButton.WidthRequest = 0;
+			this.joinRoomButton.CanFocus = true;
+			this.joinRoomButton.Name = "joinRoomButton";
+			this.joinRoomButton.UseUnderline = true;
+			this.joinRoomButton.Label = global::Mono.Unix.Catalog.GetString("Join");
+			this.hbox3.Add(this.joinRoomButton);
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.joinRoomButton]));
 			w7.Position = 1;
-			w7.Expand = false;
-			w7.Fill = false;
 			// Container child hbox3.Gtk.Box+BoxChild
 			this.button3 = new global::Gtk.Button();
 			this.button3.CanFocus = true;
@@ -95,8 +92,6 @@ namespace ChatClient
 			this.hbox3.Add(this.button3);
 			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.button3]));
 			w8.Position = 2;
-			w8.Expand = false;
-			w8.Fill = false;
 			this.vbox8.Add(this.hbox3);
 			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox8[this.hbox3]));
 			w9.Position = 1;
@@ -111,6 +106,7 @@ namespace ChatClient
 			this.DefaultWidth = 550;
 			this.DefaultHeight = 550;
 			this.Show();
+			this.joinRoomButton.Clicked += new global::System.EventHandler(this.OnJoinRoomButtonClicked);
 		}
 	}
 }

@@ -113,15 +113,17 @@
     <Compile Include="Windows\LoginWindow.cs" />
     <Compile Include="gtk-gui\ChatClient.RegisterWindow.cs" />
     <Compile Include="Windows\RegistrationHelper.cs" />
-    <Compile Include="Windows\LoginHelper.cs" />
     <Compile Include="Windows\LobbyWindow.cs" />
     <Compile Include="gtk-gui\ChatClient.LobbyWindow.cs" />
     <Compile Include="Models\ModelClone.cs" />
     <Compile Include="Models\RoomClone.cs" />
     <Compile Include="Resources\Resources.cs" />
     <Compile Include="Resources\Map.cs" />
-    <Compile Include="Windows\MakeRoomWindow.cs" />
+    <Compile Include="Windows\RoomMakerWindow.cs" />
     <Compile Include="gtk-gui\ChatClient.MakeRoomWindow.cs" />
+    <Compile Include="gtk-gui\ChatClient.RoomWindow.cs" />
+    <Compile Include="Windows\RoomWindow.cs" />
+    <Compile Include="Models\MessageClone.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

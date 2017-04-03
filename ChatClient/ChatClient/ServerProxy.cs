@@ -165,9 +165,26 @@ namespace ChatClient
 			//Send(Resources.c_joinLobby + title);
 		}
 
-		public void sendMessage(string message)
+		public void subRoom(int id, bool sub)
 		{
-			//Send(Resources.c_sendMessage +message);
+			CSMessageWrapper wrapper = new CSMessageWrapper();
+			RoomSubscribe subbing = new RoomSubscribe();
+			subbing.Id = id;
+			subbing.Subbing = sub;
+			wrapper.RoomSubscribe = subbing;
+
+			Send(wrapper);
+		}
+
+		public void sendMessage(int id, string message)
+		{
+			CSMessageWrapper wrapper = new CSMessageWrapper();
+			SendMessage sendMessage = new SendMessage();
+			sendMessage.Id = id;
+			sendMessage.MessageBody = message;
+			wrapper.SendMessage = sendMessage;
+
+			Send(wrapper);
 		}
 
 		public void makeLobby(string title)

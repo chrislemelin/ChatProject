@@ -57,9 +57,16 @@ namespace ChatServer
 
 		}
 
-		public void updateRoom(string update)
+		public void updateRoom(List<UpdateRoomPiece> pieces)
 		{
-			throw new NotImplementedException();
+			UpdateRoom update = new UpdateRoom();
+			foreach (UpdateRoomPiece piece in pieces)
+			{
+				update.UpdageRoomPieces.Add(piece);
+			}
+			SCMessageWrapper wrapper = new SCMessageWrapper();
+			wrapper.UpdateRoom = update;
+			Send(wrapper);
 		}
 
 		private void Send(SCMessageWrapper wrapper)

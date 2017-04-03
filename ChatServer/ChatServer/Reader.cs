@@ -24,9 +24,10 @@ namespace ChatServer
 			}
 
 			//disconected
-			if (clientModel != null)
+			if (proxy != null)
 			{
 				model.removeProxy(proxy);
+
 			}
 
 		}
@@ -62,9 +63,10 @@ namespace ChatServer
 
 		private void ProccessMessage(CSMessageWrapper wrapper)
 		{
+			
 			if (wrapper.Register != null)
 			{
-				User newUser = model.AddUser(wrapper.Register.Username, wrapper.Register.Password1,proxy);
+				User newUser = model.addUser(wrapper.Register.Username, wrapper.Register.Password1,proxy);
 				if (newUser != null)
 				{
 					proxy.registerResponse(true);
@@ -77,7 +79,7 @@ namespace ChatServer
 
 			if (wrapper.Login != null && user == null)
 			{
-				user = model.Login(wrapper.Login.Name, wrapper.Login.Password, proxy);
+				user = model.login(wrapper.Login.Name, wrapper.Login.Password, proxy);
 				if (user != null)
 				{
 					proxy.authenticated(true);
@@ -97,16 +99,25 @@ namespace ChatServer
 			if (wrapper.MakeRoom != null)
 			{
 				MakeRoom message = wrapper.MakeRoom;
-				model.AddRoom(message.Title,proxy);
+				model.addRoom(message.Title,proxy);
 				// add make room logic
 			}
+
 			if (wrapper.JoinLobby != null)
 			{
 				// add joining room logic
 			}
+
 			if (wrapper.SendMessage != null)
 			{
-				// add posting message logic	
+				SendMessage sendMessage = wrapper.SendMessage;
+				model.addMessage(sendMessage.Id, proxy, user, sendMessage.MessageBody);
+			}
+
+			if (wrapper.RoomSubscribe != null)
+			{
+				RoomSubscribe roomSubscribe = wrapper.RoomSubscribe;
+				model.subscribe(roomSubscribe.Id, proxy);
 			}
 		}
 	}

@@ -13,6 +13,8 @@ namespace ChatClient
 		public LoginWindow loginWindow;
 		public RegisterWindow registerWindow;
 		public MakeRoomWindow makeRoomWindow;
+		public RoomWindow roomWindow;
+
 
 		private ModelClone modelClone;
 
@@ -42,12 +44,10 @@ namespace ChatClient
 
 				SCMessageWrapper message = SCMessageWrapper.Parser.ParseFrom(data);
 				processMessage(message);
-
-
 			}
 			catch (Exception e)
 			{
-				Console.WriteLine(e.Message);
+				Console.WriteLine(e.ToString());
 			}
 		}
 
@@ -115,13 +115,17 @@ namespace ChatClient
 			{
 				// updateLoby
 			}
-			if (wrapper.UpdateRoom != null)
+			if (wrapper.UpdateRoom != null && roomWindow != null)
 			{
-				//update room
+				foreach (UpdateRoomPiece p in wrapper.UpdateRoom.UpdageRoomPieces)
+				{
+					MessageClone ms = new MessageClone();
+					ms.author = p.Author;
+					ms.message = p.MessageText;
+					ms.timeStamp = p.Time.ToDateTime();
+					roomWindow.addMessage(ms);
+				}
 			}
-
-
-
 		}
 
 		private bool SocketConnected(Socket s)
