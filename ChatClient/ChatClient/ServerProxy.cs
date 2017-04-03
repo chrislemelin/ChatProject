@@ -3,74 +3,13 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Text;
+using System.IO;
+using Google.Protobuf;
 using System.Collections.Generic;
-
-
 
 namespace ChatClient
 {
-
-	public class Reader
-	{
-		public static readonly char EOM = (char)10;
-		public static readonly char EOD = (char)11;
-
-		public Socket client;
-		private StringBuilder sb = new StringBuilder();
-		private String response = String.Empty;
-		public MessageInterperter interpreter = new MessageInterperter();
-
-
-		public void Start()
-		{
-			Thread.CurrentThread.IsBackground = true;
-			while (SocketConnected(client))
-			{
-				Receive(client);
-			}
-		}
-
-		private void Receive(Socket client)
-		{
-			try
-			{
-				sb.Clear();
-				byte[] bytes = new byte[256];
-
-				int bytesRead = client.Receive(bytes);
-
-				sb.Append(Encoding.ASCII.GetString(bytes, 0, bytesRead));
-				response = sb.ToString();
-
-				while(bytes[bytesRead-1] != (byte)EOM)
-				{
-					// There might be more data, so store the data received so far.  
-					bytesRead = client.Receive(bytes);
-					sb.Append(Encoding.ASCII.GetString(bytes, 0, bytesRead));
-					response = sb.ToString();
-				}
-				response = sb.ToString();
-				Console.WriteLine("--"+response+ "--");
-				//interpreter.interpret(response);
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine(e.Message);
-			}
-		}
-
-		private bool SocketConnected(Socket s)
-		{
-			bool part1 = s.Poll(1000, SelectMode.SelectRead);
-			bool part2 = (s.Available == 0);
-			if (part1 && part2)
-				return false;
-			else
-				return true;
-		}
-	}
-
-	public class ServerProxy
+	public class ServerProxy : ClientListener
 	{
 		// The port number for the remote device.  
 		private const int port = 10000;
@@ -81,9 +20,17 @@ namespace ChatClient
 
 		private ManualResetEvent sendDone =
 			new ManualResetEvent(false);
-
 		private Socket client;
-  
+		private ModelClone modelClone;
+
+		public LoginWindow loginWindow;
+		public Reader reader;
+
+
+		public ServerProxy(ModelClone modelClone)
+		{
+			this.modelClone = modelClone;
+		}
 
 		public void StartClient()
 		{
@@ -104,43 +51,21 @@ namespace ChatClient
 					new AsyncCallback(ConnectCallback), client);
 				connectDone.WaitOne();
 
-
 				// Send test data to the remote device. 
 
-				Send(client, "This is a test<EOF>");
-				sendDone.WaitOne();
-				Send(client, "This is a test2");
-				sendDone.WaitOne();
-
-
-				Reader rd = new Reader();
+				Reader rd = new Reader(modelClone);
+				rd.loginWindow = loginWindow;
 				rd.client = client;
+				loginWindow.rd = rd;
 				Thread oThread = new Thread(new ThreadStart(rd.Start));
 				oThread.Start();
-
-				// Write the response to the console.  
-
-
-				// Release the socket.  
-				//client.Shutdown(SocketShutdown.Both);
-				//client.Close();
+				 
 
 			}
 			catch (Exception e)
 			{
 				Console.WriteLine(e.ToString());
-			}
-		}
-
-		public void tryLogin(string username)
-		{
-			try
-			{
-				Send(this.client, username);
-			}
-			catch (Exception e)
-			{
-				
+				Environment.Exit(0);
 			}
 		}
 
@@ -163,22 +88,25 @@ namespace ChatClient
 			}
 			catch (Exception e)
 			{
+				//cant connect
 				Console.WriteLine(e.ToString());
+				Environment.Exit(0);
 			}
 		}
 
 
 
-		private void Send(Socket client, String data)
+		private void Send(CSMessageWrapper wrapper)
 		{
-			// Convert the string data to byte data using ASCII encoding.  
-			byte[] byteData = Encoding.ASCII.GetBytes(data+ Reader.EOM);
-			//client.Send(byteData);
-			//sendDone.Set();
+			byte[] data = wrapper.ToByteArray();
+			byte[] length;
+			length = BitConverter.GetBytes(data.Length);
+			Console.WriteLine(data.Length);
 
-
-			// Begin sending the data to the remote device.  
-			client.BeginSend(byteData, 0, byteData.Length, 0,
+			// Begin sending the data to the remote device. 
+			client.BeginSend(length, 0, 4, 0,
+				new AsyncCallback(SendCallback), client);
+			client.BeginSend(data, 0, data.Length, 0,
 				new AsyncCallback(SendCallback), client);
 			
 		}
@@ -202,7 +130,72 @@ namespace ChatClient
 				Console.WriteLine(e.ToString());
 			}
 		}
+		public void login(string username,int password)
+		{
+			CSMessageWrapper wrapper = new CSMessageWrapper();
+			Login login = new Login();
+			login.Name = username;
+			login.Password = password;
+			wrapper.Login = login;
 
+			Send(wrapper);
+		}
 
+		public bool register(string username, string password1, string password2)
+		{
+			if (password1.Equals(password2))
+			{
+				CSMessageWrapper wrapper = new CSMessageWrapper();
+				Register registerObj = new Register();
+				registerObj.Username = username;
+				registerObj.Password1 = password1.GetHashCode();
+
+				wrapper.Register = registerObj;
+				Send(wrapper);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public void joinLobby(string title)
+		{
+			//Send(Resources.c_joinLobby + title);
+		}
+
+		public void subRoom(int id, bool sub)
+		{
+			CSMessageWrapper wrapper = new CSMessageWrapper();
+			RoomSubscribe subbing = new RoomSubscribe();
+			subbing.Id = id;
+			subbing.Subbing = sub;
+			wrapper.RoomSubscribe = subbing;
+
+			Send(wrapper);
+		}
+
+		public void sendMessage(int id, string message)
+		{
+			CSMessageWrapper wrapper = new CSMessageWrapper();
+			SendMessage sendMessage = new SendMessage();
+			sendMessage.Id = id;
+			sendMessage.MessageBody = message;
+			wrapper.SendMessage = sendMessage;
+
+			Send(wrapper);
+		}
+
+		public void makeLobby(string title)
+		{
+			CSMessageWrapper wrapper = new CSMessageWrapper();
+			MakeRoom message = new MakeRoom();
+			wrapper.MakeRoom = message;
+
+			message.Title = title;
+
+			Send(wrapper);
+		}
 	}
 }

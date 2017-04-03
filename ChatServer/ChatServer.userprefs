@@ -1,18 +1,25 @@
 ﻿<Properties StartupConfiguration="{1D7170E6-4741-4B43-9B93-E1EDDB1E369D}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="ChatServer/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ChatServer/Reader.cs">
     <Files>
-      <File FileName="ChatServer/Program.cs" Line="1" Column="1" />
-      <File FileName="ChatServer/Model.cs" Line="9" Column="23" />
-      <File FileName="ChatServer/ClientProxy.cs" Line="22" Column="3" />
-      <File FileName="ChatServer/IRoom.cs" Line="1" Column="1" />
-      <File FileName="ChatServer/ClientModel.cs" Line="7" Column="29" />
-      <File FileName="ChatServer/ConnectionListener.cs" Line="22" Column="1" />
+      <File FileName="ChatServer/Model.cs" Line="41" Column="25" />
+      <File FileName="ChatServer/Models/ClientModel.cs" Line="1" Column="1" />
+      <File FileName="ChatServer/ClientProxy.cs" Line="63" Column="1" />
+      <File FileName="ChatServer/ServerListener.cs" Line="9" Column="3" />
+      <File FileName="ChatServer/Reader.cs" Line="26" Column="17" />
+      <File FileName="ChatServer/ConnectionListener.cs" Line="84" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/Model.cs" relfile="ChatServer/Model.cs" line="208" column="1" />
+      <Breakpoint file="/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/Model.cs" relfile="ChatServer/Model.cs" line="196" column="1" />
+      <Breakpoint file="/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/ClientProxy.cs" relfile="ChatServer/ClientProxy.cs" line="63" column="1" />
+      <Breakpoint file="/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/Reader.cs" relfile="ChatServer/Reader.cs" line="29" column="1" />
+      <Breakpoint file="/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/Reader.cs" relfile="ChatServer/Reader.cs" line="27" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.ChatServer PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
 </Properties>

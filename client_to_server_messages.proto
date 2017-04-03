@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+message Register{
+  string Username = 1;
+  int32 Password1 = 2;
+  //int32 Password2 = 3;
+}
+
+message Login {
+  string name = 1;
+  int32 Password = 2;
+}
+
+message JoinLobby{
+  int32 id = 1;
+}
+
+message SendMessage{
+  int32 id = 1;
+  string messageBody = 2;
+}
+
+message MakeRoom
+{
+  string title = 1;
+}
+
+message RoomSubscribe
+{
+  int32 id = 1;
+  bool subbing = 2;
+}
+
+message CSMessageWrapper{
+  oneof msg
+  {
+      Login login = 1;
+      JoinLobby joinLobby = 2;
+      SendMessage sendMessage = 3;
+      MakeRoom makeRoom = 4;
+      Register Register = 5;
+      RoomSubscribe roomSubscribe = 6;
+  }
+
+}
