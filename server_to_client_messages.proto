@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "google/protobuf/timestamp.proto";
+
 message Authenticated{
   bool success = 1;
 }
@@ -8,12 +10,37 @@ message RegisterResponse{
   bool success = 1;
 }
 
-message UpdateLobby{
-  repeated string names = 1;
+message MakeRoomResponse{
+  bool success = 1;
 }
 
 message UpdateRoom{
-  repeated string names = 1;
+  int32 id = 1;
+  repeated UpdateRoomPiece updageRoomPieces= 2;
+}
+
+message UpdateRoomPiece
+{
+  string author = 1;
+  string messageText = 2;
+  google.protobuf.Timestamp time = 3;
+}
+
+message UpdateLobby{
+  repeated UpdateLobbyPiece updateLobbyPieces = 1;
+}
+
+message UpdateLobbyPiece{
+  Type type = 1;
+  string title = 2;
+  int32 id = 3;
+
+  enum Type
+  {
+    ADD = 0;
+    DELETE = 1;
+    MODIFY = 2;
+  }
 }
 
 message SCMessageWrapper{
@@ -23,6 +50,7 @@ message SCMessageWrapper{
       UpdateLobby updateLobby = 2;
       UpdateRoom updateRoom = 3;
       RegisterResponse registerResponse = 4;
+      MakeRoomResponse MakeRoomResponse = 5;
   }
 
 }

@@ -12,6 +12,16 @@ namespace ChatClient
 		public Socket client;
 		public LoginWindow loginWindow;
 		public RegisterWindow registerWindow;
+		public MakeRoomWindow makeRoomWindow;
+		public RoomWindow roomWindow;
+
+
+		private ModelClone modelClone;
+
+		public Reader(ModelClone modelClone)
+		{
+			this.modelClone = modelClone;
+		}
 
 		public void Start()
 		{
@@ -34,12 +44,10 @@ namespace ChatClient
 
 				SCMessageWrapper message = SCMessageWrapper.Parser.ParseFrom(data);
 				processMessage(message);
-
-
 			}
 			catch (Exception e)
 			{
-				Console.WriteLine(e.Message);
+				Console.WriteLine(e.ToString());
 			}
 		}
 
@@ -56,24 +64,68 @@ namespace ChatClient
 					registerWindow.DisplayMessage("username already taken");
 				}
 			}
+
 			if (wrapper.Authenticated != null)
 			{
-				if(wrapper.Authenticated.Success)
+				if (wrapper.Authenticated.Success)
+				{
 					loginWindow.DisplayMessage("login was a success");
+					loginWindow.StartLobbyWindow();
+
+				}
 				else
-					loginWindow.DisplayMessage("username already taken");
+				{
+					loginWindow.DisplayMessage("login failed");
+				}
 			}
+
+			if (wrapper.UpdateLobby != null)
+			{
+				UpdateLobby updateLobby = wrapper.UpdateLobby;
+				foreach (UpdateLobbyPiece piece in updateLobby.UpdateLobbyPieces)
+				{
+					if (piece.Type == UpdateLobbyPiece.Types.Type.Add)
+					{
+						modelClone.addRoom(piece.Id, piece.Title);
+
+					}
+					if (piece.Type == UpdateLobbyPiece.Types.Type.Delete)
+					{
+						//remove room
+					}
+					if (piece.Type == UpdateLobbyPiece.Types.Type.Modify)
+					{
+						//update room
+					}
+				}
+			}
+
+			if (wrapper.MakeRoomResponse != null)
+			{
+				if (makeRoomWindow != null)
+				{
+					if (wrapper.MakeRoomResponse.Success)
+						makeRoomWindow.DisplayMessage("Success");
+					else
+						makeRoomWindow.DisplayMessage("Failure");
+				}
+			}
+
 			if (wrapper.UpdateLobby != null)
 			{
 				// updateLoby
 			}
-			if (wrapper.UpdateRoom != null)
+			if (wrapper.UpdateRoom != null && roomWindow != null)
 			{
-				//update room
+				foreach (UpdateRoomPiece p in wrapper.UpdateRoom.UpdageRoomPieces)
+				{
+					MessageClone ms = new MessageClone();
+					ms.author = p.Author;
+					ms.message = p.MessageText;
+					ms.timeStamp = p.Time.ToDateTime();
+					roomWindow.addMessage(ms);
+				}
 			}
-
-
-
 		}
 
 		private bool SocketConnected(Socket s)

@@ -84,6 +84,7 @@
     <Compile Include="nHibernate\Product.cs" />
     <Compile Include="nHibernate\nHibernateResources.cs" />
     <Compile Include="nHibernate\User.cs" />
+    <Compile Include="Models\MessageModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
