@@ -38,7 +38,9 @@ namespace ChatClient
 			try
 			{
 				// Establish the remote endpoint for the socket.  
-				IPHostEntry ipHostInfo = Dns.GetHostEntry("localhost");
+				IPHostEntry ipHostInfo = Dns.GetHostEntry("ec2-34-210-16-154.us-west-2.compute.amazonaws.com");
+
+				//IPAddress ipAddress2 = IPAddress.Parse("172.17.0.0");
 				IPAddress ipAddress = ipHostInfo.AddressList[0];
 				IPEndPoint remoteEP = new IPEndPoint(ipAddress, port);
 

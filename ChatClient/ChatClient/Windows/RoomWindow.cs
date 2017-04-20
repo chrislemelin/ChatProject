@@ -1,5 +1,6 @@
 ﻿using System;
 using Gtk;
+using System.Threading;
 namespace ChatClient
 {
 	public partial class RoomWindow : Gtk.Window
@@ -44,16 +45,15 @@ namespace ChatClient
 			vboxMessages.PackStart(lab, true, true, 0);
 			Adjustment adj = new Adjustment(0, 0, 0, 0, 0, 0);
 			vboxMessages.SetScrollAdjustments(adj, adj);
-
-		
-
-
 		}
 
 		protected void OnSendMessageButtonClicked(object sender, EventArgs e)
 		{
 			String s = sendMessageText.Buffer.Text;
-			proxy.sendMessage(room.ID,s);
+
+			Thread myNewThread = new Thread(() => proxy.sendMessage(room.ID, s));
+			myNewThread.Start();	
+			//proxy.sendMessage(room.ID,s);
 		}
 	}
 }
