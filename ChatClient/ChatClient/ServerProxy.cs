@@ -199,5 +199,6 @@ namespace ChatClient
 
 			Send(wrapper);
 		}
+
 	}
 }

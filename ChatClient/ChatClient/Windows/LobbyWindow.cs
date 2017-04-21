@@ -101,10 +101,12 @@ namespace ChatClient
 
 		protected void OnJoinRoomButtonClicked(object sender, EventArgs e)
 		{
-			this.roomWindow = new RoomWindow(rooms.Forward[lastClicked],proxy);
+			this.roomWindow = new RoomWindow(rooms.Forward[lastClicked], proxy);
+
 			proxy.subRoom(rooms.Forward[lastClicked].ID, true);
 			rd.roomWindow = roomWindow;
-
 		}
+
+
 	}
 }
