@@ -1,11 +1,11 @@
 ﻿<Properties StartupConfiguration="{5F087D2E-B531-4C4A-AEE8-6C97C8476D10}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="MessageInterperter.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Windows/RoomWindow.cs">
     <Files>
-      <File FileName="LoginWindow.cs" Line="1" Column="1" />
       <File FileName="Program.cs" Line="10" Column="41" />
       <File FileName="ServerProxy.cs" Line="62" Column="33" />
-      <File FileName="MessageInterperter.cs" Line="2" Column="3" />
       <File FileName="Properties/AssemblyInfo.cs" Line="1" Column="1" />
+      <File FileName="Reader.cs" Line="1" Column="1" />
+      <File FileName="Windows/RoomWindow.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
@@ -14,4 +14,5 @@
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.ChatClient PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
 </Properties>
