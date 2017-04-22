@@ -85,6 +85,7 @@
     <Compile Include="nHibernate\nHibernateResources.cs" />
     <Compile Include="nHibernate\User.cs" />
     <Compile Include="Models\MessageModel.cs" />
+    <Compile Include="nHibernate\Room.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -98,6 +99,7 @@
   <ItemGroup>
     <EmbeddedResource Include="nHibernate\Product.hbm.xml" />
     <EmbeddedResource Include="nHibernate\User.hbm.xml" />
+    <EmbeddedResource Include="nHibernate\Room.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

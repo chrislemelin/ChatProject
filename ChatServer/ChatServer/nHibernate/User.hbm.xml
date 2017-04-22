@@ -3,7 +3,7 @@
   <class name="User" table="Users">
 
 	<id name="ID" column="ID">
-      <generator class="hilo"/>
+      <generator class="identity"/>
     </id>
 		
     <property name="Password" column="Password"  />

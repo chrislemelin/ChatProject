@@ -9,10 +9,11 @@ namespace ChatServer
 
 		public virtual string Title { get; set; }
 
-		public virtual User Owner { get; set; }
+		public virtual int? Owner { get; set; }
 
 		public Room()
 		{
+
 		}
 	}
 }

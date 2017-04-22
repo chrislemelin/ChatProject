@@ -15,6 +15,17 @@ namespace ChatServer
 
 		public Model()
 		{
+			using (ISession session = nHibernateResources.Factory.OpenSession())
+			{
+				using (ITransaction transaction = session.BeginTransaction())
+				{
+					Room room1 = new Room { Title = "testTitle"};
+					session.Save(room1);
+					transaction.Commit();
+
+				}
+			}
+
 			RoomModel room = new RoomModel();
 			room.title = "first";
 			room.id = roomIdCounter++;

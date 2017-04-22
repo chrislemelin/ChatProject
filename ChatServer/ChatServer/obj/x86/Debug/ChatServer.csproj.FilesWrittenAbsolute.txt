@@ -17,3 +17,4 @@
 /Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/bin/Debug/mysql.data.entity.dll
 /Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/bin/Debug/mysql.visualstudio.dll
 /Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/bin/Debug/mysql.web.dll
+/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/obj/x86/Debug/ChatServer.nHibernate.Room.hbm.xml
