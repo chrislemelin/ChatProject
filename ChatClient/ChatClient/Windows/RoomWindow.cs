@@ -7,6 +7,7 @@ namespace ChatClient
 	{
 		private RoomClone room;
 		private ServerProxy proxy;
+		private Thread tr;
 
 		public RoomWindow(RoomClone room, ServerProxy proxy) :
 				base(Gtk.WindowType.Toplevel)
@@ -17,7 +18,7 @@ namespace ChatClient
 
 			this.DestroyEvent += new DestroyEventHandler(OnDestroy);
 
-				init();
+			init();
 		}
 
 		private void init()
@@ -42,18 +43,39 @@ namespace ChatClient
 			lab.Text = ms.ToString();
 			lab.Show();
 
+
+
 			vboxMessages.PackStart(lab, true, true, 0);
-			Adjustment adj = new Adjustment(0, 0, 0, 0, 0, 0);
-			vboxMessages.SetScrollAdjustments(adj, adj);
+			vboxMessages.ShowNow();
+
+			Adjustment adj = scrolledMessageWindow.Vadjustment;
+			if (tr != null)
+				tr.Abort();
+
+			Gtk.Application.Invoke(delegate
+			{
+				scrollToBottom(adj.Upper - adj.PageSize);
+			});
+
 		}
 
 		protected void OnSendMessageButtonClicked(object sender, EventArgs e)
 		{
 			String s = sendMessageText.Buffer.Text;
 
-			Thread myNewThread = new Thread(() => proxy.sendMessage(room.ID, s));
-			myNewThread.Start();	
-			//proxy.sendMessage(room.ID,s);
+			Thread messageThread = new Thread(() => proxy.sendMessage(room.ID, s));
+			messageThread.Start();	
+		}
+
+		protected void OnVboxMessagesAdded(object o, AddedArgs args)
+		{
+		}
+
+		private void scrollToBottom(double current)
+		{
+			Adjustment adj = scrolledMessageWindow.Vadjustment;
+			adj.Value = current;
+
 		}
 	}
 }

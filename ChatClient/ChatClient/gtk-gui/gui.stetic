@@ -472,6 +472,7 @@
         <property name="TopPadding">10</property>
         <property name="RightPadding">10</property>
         <property name="BottomPadding">10</property>
+        <property name="BorderWidth">3</property>
         <child>
           <widget class="Gtk.VBox" id="vboxWindow">
             <property name="MemberName" />
@@ -501,6 +502,7 @@
                       <widget class="Gtk.VBox" id="vboxMessages">
                         <property name="MemberName" />
                         <property name="Spacing">6</property>
+                        <signal name="Added" handler="OnVboxMessagesAdded" />
                         <child>
                           <placeholder />
                         </child>

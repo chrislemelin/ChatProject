@@ -37,10 +37,16 @@ namespace ChatClient
 			try
 			{
 				byte[] length = new byte[4];
-				client.Receive(length);
+				client.Receive(length,4,SocketFlags.None);
 				int len = BitConverter.ToInt32(length, 0);
 				byte[] data = new byte[len];
-				client.Receive(data);
+
+				int bytesRead = 0;
+				while (bytesRead != len)
+				{
+					bytesRead += client.Receive(data, bytesRead, len-bytesRead, SocketFlags.None);
+				}
+
 
 				SCMessageWrapper message = SCMessageWrapper.Parser.ParseFrom(data);
 				processMessage(message);
