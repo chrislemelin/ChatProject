@@ -1,0 +1,17 @@
+/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/obj/x86/Release/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/obj/x86/Release/ChatServer.nHibernate.Product.hbm.xml
+/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/obj/x86/Release/ChatServer.nHibernate.User.hbm.xml
+/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/bin/Release/ChatServer.exe
+/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/obj/x86/Release/ChatServer.exe
+/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/bin/Release/Newtonsoft.Json.dll
+/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/bin/Release/Google.Apis.Core.dll
+/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/bin/Release/Zlib.Portable.dll
+/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/bin/Release/Google.Apis.dll
+/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/bin/Release/Google.Apis.PlatformServices.dll
+/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/bin/Release/Google.Protobuf.dll
+/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/bin/Release/Iesi.Collections.dll
+/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/bin/Release/NHibernate.dll
+/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/bin/Release/mysql.data.dll
+/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/bin/Release/mysql.data.entity.dll
+/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/bin/Release/mysql.visualstudio.dll
+/Users/chrislemelin/Projects/ChatProject/ChatServer/ChatServer/bin/Release/mysql.web.dll

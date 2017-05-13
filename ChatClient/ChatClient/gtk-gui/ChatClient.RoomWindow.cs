@@ -36,6 +36,7 @@ namespace ChatClient
 			this.alignment.TopPadding = ((uint)(10));
 			this.alignment.RightPadding = ((uint)(10));
 			this.alignment.BottomPadding = ((uint)(10));
+			this.alignment.BorderWidth = ((uint)(3));
 			// Container child alignment.Gtk.Container+ContainerChild
 			this.vboxWindow = new global::Gtk.VBox();
 			this.vboxWindow.Name = "vboxWindow";
@@ -109,6 +110,7 @@ namespace ChatClient
 			this.DefaultWidth = 400;
 			this.DefaultHeight = 300;
 			this.Show();
+			this.vboxMessages.Added += new global::Gtk.AddedHandler(this.OnVboxMessagesAdded);
 			this.sendMessageButton.Clicked += new global::System.EventHandler(this.OnSendMessageButtonClicked);
 		}
 	}
