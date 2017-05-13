@@ -14,8 +14,6 @@ namespace ChatServer
 
 		public virtual IList<Room> OwnedRooms { get; set;}
 
-		public User()
-		{
-		}
+
 	}
 }

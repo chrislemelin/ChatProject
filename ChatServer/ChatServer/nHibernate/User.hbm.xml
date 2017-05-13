@@ -15,5 +15,6 @@
     <key column="ID" />
     <one-to-many class="Room" />
    </bag>
+		
   </class>
 </hibernate-mapping>

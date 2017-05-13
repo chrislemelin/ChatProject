@@ -23,6 +23,12 @@ namespace ChatServer
 					session.Save(room1);
 					transaction.Commit();
 
+					User user1 = new User { Username = "test", Password = 100 };
+					room1.Owner = user1;
+					session.Save(room1);
+
+					transaction.Commit();
+
 				}
 			}
 

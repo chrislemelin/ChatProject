@@ -90,6 +90,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="bin\Debug\hibernate.cfg.xml" />
+    <None Include="nHibernate\Room.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ProtoBuf\" />
@@ -99,7 +100,6 @@
   <ItemGroup>
     <EmbeddedResource Include="nHibernate\Product.hbm.xml" />
     <EmbeddedResource Include="nHibernate\User.hbm.xml" />
-    <EmbeddedResource Include="nHibernate\Room.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,8 +1,10 @@
 ﻿using System;
 using NHibernate;
+using NHibernate.Mapping.ByCode.Conformist;
+using NHibernate.Mapping.ByCode;
 namespace ChatServer
 {
-	public class Room
+	public class Room 
 	{
 
 		public virtual int ID { get; set; }
@@ -14,6 +16,8 @@ namespace ChatServer
 		public Room()
 		{
 
+
 		}
+
 	}
 }
