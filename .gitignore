@@ -47,3 +47,6 @@
 ehthumbs.db
 Thumbs.db
 *.swp
+
+# C# stuff
+*.csproj

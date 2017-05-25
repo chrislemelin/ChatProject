@@ -22,24 +22,8 @@ namespace ChatServer
 
 		public static void init()
 		{
-			/*
-			var mapper = new ModelMapper();
-			mapper.Class<Room>(ca =>
-			{
-				ca.Id(x => x.ID, map =>
-				{
-					map.Column("ID");
-					map.Generator(Generators.HighLow, gmap => gmap.Params(new { max_low = 100 }));
-				});
-				ca.Property(x => x.Title, map => map.Length(150));
-				ca.Property(x => x.Owner);
-			});
-			*/
-
 
 			var cfg = new NHibernate.Cfg.Configuration();
-			var map = mapper.CompileMappingFor(Assembly.GetExecutingAssembly().GetExportedTypes());
-			cfg.AddMapping(map);
 
 			cfg.Configure();
 			// ensure that mapping hbm.xml file is loaded

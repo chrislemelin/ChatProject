@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using NHibernate.Linq;
 using NHibernate;
 using Google.Protobuf.WellKnownTypes;
 namespace ChatServer
@@ -7,43 +8,24 @@ namespace ChatServer
 	public class Model
 	{
 		public Dictionary<int,RoomModel> rooms= new Dictionary<int, RoomModel>();
-		//public List<RoomModel> rooms= new List<RoomModel>();
-
-		private int roomIdCounter = 1;
 		private List<ClientProxy> proxies = new List<ClientProxy>();
-
 
 		public Model()
 		{
+
 			using (ISession session = nHibernateResources.Factory.OpenSession())
 			{
 				using (ITransaction transaction = session.BeginTransaction())
 				{
-					Room room1 = new Room { Title = "testTitle"};
-					session.Save(room1);
-					transaction.Commit();
+					IEnumerable<Room> allRooms = session.Query<Room>().ToFuture();
 
-					User user1 = new User { Username = "test", Password = 100 };
-					room1.Owner = user1;
-					session.Save(room1);
-
-					transaction.Commit();
-
+					foreach (Room currentRoom in allRooms)
+					{
+						RoomModel currentRoomModel = new RoomModel(currentRoom);
+						rooms.Add(currentRoom.ID, currentRoomModel);
+					}
 				}
 			}
-
-			RoomModel room = new RoomModel();
-			room.title = "first";
-			room.id = roomIdCounter++;
-			rooms.Add(room.id,room);
-
-			MessageModel m = new MessageModel();
-
-			RoomModel room2 = new RoomModel();
-			room2.title = "second";
-			room2.id = roomIdCounter++;
-			rooms.Add(room2.id, room2);
-
 		}
 
 		public void addProxy(ClientProxy p)
@@ -66,8 +48,8 @@ namespace ChatServer
 			foreach (RoomModel room in rooms.Values)
 			{
 				UpdateLobbyPiece piece = new UpdateLobbyPiece();
-				piece.Title = room.title;
-				piece.Id = room.id;
+				piece.Title = room.room.Title;
+				piece.Id = room.room.ID;
 				pieces.Add(piece);
 			}			
 			proxy.updateLobby(pieces);
@@ -144,23 +126,29 @@ namespace ChatServer
 
 		public void addRoom(string title, ClientProxy client)
 		{
-			RoomModel newRoomModel = new RoomModel();
-			newRoomModel.title = title;
-			newRoomModel.id = roomIdCounter++;
-			rooms.Add(newRoomModel.id, newRoomModel);
+			Room newRoom;
+			using (ISession session = nHibernateResources.Factory.OpenSession())
+			{
+				using (ITransaction transaction = session.BeginTransaction())
+				{
+					newRoom = new Room();
+					newRoom.Owner = null;
+					newRoom.Title = title;
 
-			List<UpdateLobbyPiece> pieces = new List<UpdateLobbyPiece>();
-			UpdateLobbyPiece piece = new UpdateLobbyPiece();
-			pieces.Add(piece);
-			piece.Id = newRoomModel.id;
-			piece.Title = newRoomModel.title;
+					session.Save(newRoom);
+					transaction.Commit();
+				}
+			}
+		
+
+			RoomModel newRoomModel = new RoomModel(newRoom);
+			rooms.Add(newRoomModel.room.ID, newRoomModel);
 
 			client.makeRoomResponse(true);
+			updateLobby(newRoomModel);
 
-			foreach (ClientProxy proxy in proxies)
-			{
-				proxy.updateLobby(pieces);
-			}
+
+
 		}
 
 		public void subscribe(int id, ClientProxy client)
@@ -198,9 +186,7 @@ namespace ChatServer
 				UpdateRoomPiece p = new UpdateRoomPiece();
 				p.Author = author.Username;
 				p.MessageText = message;
-				//p.Time = new Timestamp();
 				p.Time = Timestamp.FromDateTime(now);
-
 
 				List<UpdateRoomPiece> pieces = new List<UpdateRoomPiece>();
 				pieces.Add(p);
@@ -209,6 +195,23 @@ namespace ChatServer
 
 		}
 
+
+		//updates all clients that a new room was created
+		private void updateLobby(RoomModel room)
+		{
+			List<UpdateLobbyPiece> pieces = new List<UpdateLobbyPiece>();
+			UpdateLobbyPiece piece = new UpdateLobbyPiece();
+			pieces.Add(piece);
+			piece.Id = room.room.ID;
+			piece.Title = room.room.Title;
+
+			foreach (ClientProxy proxy in proxies)
+			{
+				proxy.updateLobby(pieces);
+			}
+		}
+
+		//updates the subscribers of a room when a new message is sent
 		private void updateSubscriber(RoomModel room, MessageModel message)
 		{
 			List<UpdateRoomPiece> pieces = new List<UpdateRoomPiece>();
@@ -226,7 +229,8 @@ namespace ChatServer
 			}
 		}
 
-		public void initRoom(RoomModel room, ClientProxy client)
+		//inits room when the client opens a new room in a window
+		private void initRoom(RoomModel room, ClientProxy client)
 		{
 			List<UpdateRoomPiece> pieces = new List<UpdateRoomPiece>();
 

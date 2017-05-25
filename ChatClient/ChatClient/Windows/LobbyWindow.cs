@@ -40,12 +40,12 @@ namespace ChatClient
 			this.Show();
 		}
 
-		public EventBox addLabel(String s)
+		public EventBox addRoom(RoomClone s)
 		{
 			EventBox boxy = new EventBox();
 			Label labie = new Label();
 
-			labie.Text = s;
+			labie.Text = s.Title;
 			boxy.Add(labie);
 			labie.HeightRequest = 30;
 
@@ -55,15 +55,18 @@ namespace ChatClient
 			boxy.ButtonPressEvent += ButtonPressHandler;
 
 			vbox4.PackStart(boxy, false, true, 0);
+
+			rooms.Add(boxy, s);
 			return boxy;
 
 		}
+
 
 		private void populateWindow()
 		{
 			foreach (RoomClone room in modelClone.rooms)
 			{
-				rooms.Add(addLabel(room.Title),room);
+				addRoom(room);
 			}
 		}
 

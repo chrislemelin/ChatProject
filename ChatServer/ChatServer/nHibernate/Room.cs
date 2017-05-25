@@ -1,7 +1,5 @@
 ﻿using System;
 using NHibernate;
-using NHibernate.Mapping.ByCode.Conformist;
-using NHibernate.Mapping.ByCode;
 namespace ChatServer
 {
 	public class Room 
@@ -13,11 +11,6 @@ namespace ChatServer
 
 		public virtual User Owner { get; set; }
 
-		public Room()
-		{
-
-
-		}
 
 	}
 }

@@ -25,7 +25,7 @@ namespace ChatClient
 			rooms.Add(room);
 			if (lobbyWindow != null)
 			{
-				lobbyWindow.addLabel(room.Title);
+				lobbyWindow.addRoom(room);
 			}
 		}
 

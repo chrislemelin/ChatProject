@@ -12,7 +12,6 @@ namespace ChatServer
 		public Socket socket;
 		public ClientProxy proxy;
 		public Model model;
-		public ClientModel clientModel = null;
 		public User user = null;
 
 		public void Start()
