@@ -1,16 +1,45 @@
 ﻿using System;
 using Gtk;
 using ChatClient;
+using System.Threading.Tasks;
 
 public partial class LoginWindow : Gtk.Window
 {
-	public ServerProxy proxy = new ServerProxy();
-	public Reader rd = new Reader();
+	public ServerProxy proxy;
+	public Reader rd;
+	public ModelClone modelClone;
+
 	private RegisterWindow registerWindow;
-	public LoginWindow() : base(Gtk.WindowType.Toplevel)
+	//private LoginHelper loginHelper = new LoginHelper();
+	public LoginWindow(ModelClone modelClone, ServerProxy proxy) : base(Gtk.WindowType.Toplevel)
 	{
 		Build();
+		this.modelClone = modelClone;
+		this.proxy = proxy;
 	}
+
+	public void DisplayMessage(String message)
+	{
+		display.Text = message;
+	}
+
+	public void StartLobbyWindow()
+	{
+		//await Task.Run(() => loginHelper.StartLobbyWindow(modelClone,proxy));
+
+		Gtk.Application.Invoke(delegate
+		{
+			LobbyWindow win = new LobbyWindow(modelClone, proxy, rd);
+			win.Start();
+			if (registerWindow != null)
+			{
+				registerWindow.Destroy();
+			}
+			this.Destroy();
+		});
+	}
+
+
 
 	protected void OnDeleteEvent(object sender, DeleteEventArgs a)
 	{
@@ -23,10 +52,6 @@ public partial class LoginWindow : Gtk.Window
 		proxy.login(loginIn.Text,passwordIn.Text.GetHashCode());
 	}
 
-	public void DisplayMessage(String message)
-	{
-		display.Text = message;
-	}
 
 	protected void KeyPress(object o, KeyPressEventArgs args)
 	{
@@ -37,9 +62,16 @@ public partial class LoginWindow : Gtk.Window
 		if (registerWindow == null)
 		{
 			registerWindow = new RegisterWindow();
+
+			registerWindow.Show();
 			rd.registerWindow = registerWindow;
 			registerWindow.proxy = proxy;
+		}
+		if (!registerWindow.Visible)
+		{
 			registerWindow.Show();
 		}
+
+
 	}
 }

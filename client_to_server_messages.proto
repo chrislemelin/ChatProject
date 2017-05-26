@@ -16,12 +16,19 @@ message JoinLobby{
 }
 
 message SendMessage{
-  string messageBody = 1;
+  int32 id = 1;
+  string messageBody = 2;
 }
 
 message MakeRoom
 {
   string title = 1;
+}
+
+message RoomSubscribe
+{
+  int32 id = 1;
+  bool subbing = 2;
 }
 
 message CSMessageWrapper{
@@ -32,6 +39,7 @@ message CSMessageWrapper{
       SendMessage sendMessage = 3;
       MakeRoom makeRoom = 4;
       Register Register = 5;
+      RoomSubscribe roomSubscribe = 6;
   }
 
 }

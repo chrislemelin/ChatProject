@@ -20,11 +20,17 @@ namespace ChatClient
 
 		private ManualResetEvent sendDone =
 			new ManualResetEvent(false);
-
 		private Socket client;
+		private ModelClone modelClone;
+
 		public LoginWindow loginWindow;
 		public Reader reader;
-  
+
+
+		public ServerProxy(ModelClone modelClone)
+		{
+			this.modelClone = modelClone;
+		}
 
 		public void StartClient()
 		{
@@ -33,6 +39,8 @@ namespace ChatClient
 			{
 				// Establish the remote endpoint for the socket.  
 				IPHostEntry ipHostInfo = Dns.GetHostEntry("localhost");
+
+				//IPAddress ipAddress2 = IPAddress.Parse("172.17.0.0");
 				IPAddress ipAddress = ipHostInfo.AddressList[0];
 				IPEndPoint remoteEP = new IPEndPoint(ipAddress, port);
 
@@ -47,7 +55,7 @@ namespace ChatClient
 
 				// Send test data to the remote device. 
 
-				Reader rd = new Reader();
+				Reader rd = new Reader(modelClone);
 				rd.loginWindow = loginWindow;
 				rd.client = client;
 				loginWindow.rd = rd;
@@ -59,6 +67,7 @@ namespace ChatClient
 			catch (Exception e)
 			{
 				Console.WriteLine(e.ToString());
+				Environment.Exit(0);
 			}
 		}
 
@@ -81,7 +90,9 @@ namespace ChatClient
 			}
 			catch (Exception e)
 			{
+				//cant connect
 				Console.WriteLine(e.ToString());
+				Environment.Exit(0);
 			}
 		}
 
@@ -121,7 +132,6 @@ namespace ChatClient
 				Console.WriteLine(e.ToString());
 			}
 		}
-
 		public void login(string username,int password)
 		{
 			CSMessageWrapper wrapper = new CSMessageWrapper();
@@ -157,14 +167,38 @@ namespace ChatClient
 			//Send(Resources.c_joinLobby + title);
 		}
 
-		public void sendMessage(string message)
+		public void subRoom(int id, bool sub)
 		{
-			//Send(Resources.c_sendMessage +message);
+			CSMessageWrapper wrapper = new CSMessageWrapper();
+			RoomSubscribe subbing = new RoomSubscribe();
+			subbing.Id = id;
+			subbing.Subbing = sub;
+			wrapper.RoomSubscribe = subbing;
+
+			Send(wrapper);
+		}
+
+		public void sendMessage(int id, string message)
+		{
+			CSMessageWrapper wrapper = new CSMessageWrapper();
+			SendMessage sendMessage = new SendMessage();
+			sendMessage.Id = id;
+			sendMessage.MessageBody = message;
+			wrapper.SendMessage = sendMessage;
+
+			Send(wrapper);
 		}
 
 		public void makeLobby(string title)
 		{
-			//Send(Resources.c_makeLobby + title);
+			CSMessageWrapper wrapper = new CSMessageWrapper();
+			MakeRoom message = new MakeRoom();
+			wrapper.MakeRoom = message;
+
+			message.Title = title;
+
+			Send(wrapper);
 		}
+
 	}
 }

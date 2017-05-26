@@ -4,12 +4,13 @@ namespace ChatServer
 {
 	public class RoomModel
 	{
-		public string title;
-		public List<ClientModel> inRoom;
+		public List<ClientProxy> subs = new List<ClientProxy>();
+		public List<MessageModel> messages = new List<MessageModel>();
+		public RoomDB room;
 
-
-		public RoomModel()
+		public RoomModel(RoomDB room)
 		{
+			this.room = room;
 		}
 	}
 }

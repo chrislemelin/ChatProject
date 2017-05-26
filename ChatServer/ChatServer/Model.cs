@@ -1,40 +1,76 @@
 ﻿using System;
 using System.Collections.Generic;
+using NHibernate.Linq;
 using NHibernate;
+using Google.Protobuf.WellKnownTypes;
 namespace ChatServer
 {
 	public class Model
 	{
-		//private List<IRoom> rooms;
-		//private Dictionary<ClientProxy, ClientModel> clients_proxy;
-		private Dictionary<String, ClientModel> clients_name;
-		private Dictionary<int, ClientModel> clients_id;
-
-		//private IRoom lobby;
-
+		public Dictionary<int,RoomModel> rooms= new Dictionary<int, RoomModel>();
+		private List<ClientProxy> proxies = new List<ClientProxy>();
 
 		public Model()
 		{
-			clients_name = new Dictionary<string, ClientModel>();
-			clients_id = new Dictionary<int, ClientModel>();
+
+			using (ISession session = nHibernateResources.Factory.OpenSession())
+			{
+				using (ITransaction transaction = session.BeginTransaction())
+				{
+					IEnumerable<RoomDB> allRooms = session.Query<RoomDB>().ToFuture();
+					IEnumerable<MessageDB> allMessages = session.Query<MessageDB>().ToFuture();
+
+					foreach (RoomDB currentRoom in allRooms)
+					{
+						RoomModel currentRoomModel = new RoomModel(currentRoom);
+						rooms.Add(currentRoom.ID, currentRoomModel);
+					}
+				}
+			}
 		}
 
-		public User Login(String username, int password, ClientProxy proxy)
+		public void addProxy(ClientProxy p)
+		{
+			proxies.Add(p);
+		}
+
+		public bool removeProxy(ClientProxy p)
+		{
+			foreach(RoomModel room in rooms.Values)
+			{
+				room.subs.Remove(p);
+			}
+			return proxies.Remove(p);
+		}
+
+		public void initLobby(ClientProxy proxy)
+		{
+			List<UpdateLobbyPiece> pieces = new List<UpdateLobbyPiece>();
+			foreach (RoomModel room in rooms.Values)
+			{
+				UpdateLobbyPiece piece = new UpdateLobbyPiece();
+				piece.Title = room.room.Title;
+				piece.Id = room.room.ID;
+				pieces.Add(piece);
+			}			
+			proxy.updateLobby(pieces);
+		}
+
+		public UserDB login(String username, int password, ClientProxy proxy)
 		{
 			username = username.Trim();
 			using (ISession session = nHibernateResources.Factory.OpenSession())
 			{
 				using (ITransaction transaction = session.BeginTransaction())
 				{
-					User user = nHibernateResources.Get<User, String>("Username", username, session);
+					UserDB user = nHibernateResources.Get<UserDB, String>("Username", username, session);
 					if (user != null)
 					{
-						if (user.Password == password)
+						if (user.Password.Equals(password))
 						{
 							return user;
 						}
 						return null;
-
 					}
 					else
 					{
@@ -44,8 +80,7 @@ namespace ChatServer
 			}
 		}
 
-
-		public User AddUser(String username,int password, ClientProxy proxy)
+		public UserDB addUser(String username,int password, ClientProxy proxy)
 		{
 			username = username.Trim();
 
@@ -53,13 +88,12 @@ namespace ChatServer
 			{
 				using (ITransaction transaction = session.BeginTransaction())
 				{
-					if (nHibernateResources.Get<User, String>("Username", username, session) == null)
+					if (nHibernateResources.Get<UserDB, String>("Username", username, session) == null)
 					{
-						User user = new User { Username = username, Password = password };
+						UserDB user = new UserDB { Username = username, Password = password };
 						session.Save(user);
 						transaction.Commit();
 						return user;
-
 					}
 					else
 					{
@@ -68,41 +102,149 @@ namespace ChatServer
 				}
 			}
 
-
-
-
-			//makes sure there isn't already a user with the given username
-			/*
-			if (!clients_name.ContainsKey(username.Trim()))
-			{
-				ClientModel client = new ClientModel(username.Trim(),clientsIdCounter++,proxy);
-				clients_name.Add(client.username, client);
-				clients_id.Add(client.id, client);
-				return client;
-			}
-			else
-			{
-				return null;
-			}
-			*/
 		}
 
-		public ClientModel removeUser(int id)
+		public UserDB removeUser(string username)
+		{
+			using (ISession session = nHibernateResources.Factory.OpenSession())
+			{
+				using (ITransaction transaction = session.BeginTransaction())
+				{
+					UserDB user = nHibernateResources.Get<UserDB, String>("Username", username, session);
+					if (user != null)
+					{
+						session.Delete(user);
+						transaction.Commit();
+						return user;
+					}
+					else
+					{
+						return null;
+					}
+				}
+			}
+		}
+
+		public void addRoom(string title, ClientProxy client)
+		{
+			RoomDB newRoom;
+			using (ISession session = nHibernateResources.Factory.OpenSession())
+			{
+				using (ITransaction transaction = session.BeginTransaction())
+				{
+					newRoom = new RoomDB();
+					newRoom.Owner = null;
+					newRoom.Title = title;
+
+					session.Save(newRoom);
+					transaction.Commit();
+				}
+			}
+		
+
+			RoomModel newRoomModel = new RoomModel(newRoom);
+			rooms.Add(newRoomModel.room.ID, newRoomModel);
+
+			client.makeRoomResponse(true);
+			updateLobby(newRoomModel);
+
+
+
+		}
+
+		public void subscribe(int id, ClientProxy client)
 		{
 			
-			if (clients_id.ContainsKey(id))
+			RoomModel room;
+			if (rooms.TryGetValue(id, out room))
 			{
+				if (!room.subs.Contains(client))
+				{
+					room.subs.Add(client);
+					initRoom(rooms[id], client);
 
-				ClientModel client = null;
-				clients_id.TryGetValue(id,out client);
-				clients_name.Remove(client.username);
-				clients_id.Remove(client.id);
-				return client;
-			}
-			else
-			{
-				return null;
+				}
 			}
 		}
+
+		public void unsubscribe(int id, ClientProxy client)
+		{
+			rooms[id].subs.Remove(client);
+		}
+
+		public void addMessage(int id, ClientProxy client, UserDB author,String message)
+		{
+			DateTime now = DateTime.Now;
+			now = now.ToUniversalTime();
+			RoomModel room = rooms[id];
+			MessageModel newMessage = new MessageModel();
+			newMessage.author = author;
+			newMessage.messageText = message;
+			newMessage.timeStamp = now;
+			room.messages.Add(newMessage);
+			foreach (ClientProxy subscriber in rooms[id].subs)
+			{
+				UpdateRoomPiece p = new UpdateRoomPiece();
+				p.Author = author.Username;
+				p.MessageText = message;
+				p.Time = Timestamp.FromDateTime(now);
+
+				List<UpdateRoomPiece> pieces = new List<UpdateRoomPiece>();
+				pieces.Add(p);
+				subscriber.updateRoom(pieces);
+			}
+
+		}
+
+		//updates all clients that a new room was created
+		private void updateLobby(RoomModel room)
+		{
+			List<UpdateLobbyPiece> pieces = new List<UpdateLobbyPiece>();
+			UpdateLobbyPiece piece = new UpdateLobbyPiece();
+			pieces.Add(piece);
+			piece.Id = room.room.ID;
+			piece.Title = room.room.Title;
+
+			foreach (ClientProxy proxy in proxies)
+			{
+				proxy.updateLobby(pieces);
+			}
+		}
+
+		//updates the subscribers of a room when a new message is sent
+		private void updateSubscriber(RoomModel room, MessageModel message)
+		{
+			List<UpdateRoomPiece> pieces = new List<UpdateRoomPiece>();
+			UpdateRoomPiece p = new UpdateRoomPiece();
+			pieces.Add(p);
+			p.Author = message.author.Username;
+			p.MessageText = message.messageText;
+			Timestamp newTime = new Timestamp();
+			newTime.Seconds = message.timeStamp.ToFileTimeUtc();
+			p.Time = newTime;
+
+			foreach (ClientProxy client in room.subs)
+			{
+				client.updateRoom(pieces);
+			}
+		}
+
+		//inits room when the client opens a new room in a window
+		private void initRoom(RoomModel room, ClientProxy client)
+		{
+			List<UpdateRoomPiece> pieces = new List<UpdateRoomPiece>();
+
+			foreach(MessageModel m in room.messages)
+			{
+				UpdateRoomPiece p = new UpdateRoomPiece();
+				p.Author = m.author.Username;
+				p.MessageText = m.messageText;
+				p.Time = Timestamp.FromDateTime(m.timeStamp.ToUniversalTime());
+				pieces.Add(p);
+			}
+			client.updateRoom(pieces);
+		}
+
+
 	}
 }

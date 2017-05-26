@@ -11,6 +11,7 @@ namespace ChatServer
 	public class ClientProxy : ServerListener
 	{
 		private Socket client;
+		public ClientModel clientModel { get;}
 
 		public ClientProxy(Socket client)
 		{
@@ -35,14 +36,38 @@ namespace ChatServer
 			Send(wrapper);
 		}
 
-		public void updateLobby(string update)
+		public void makeRoomResponse(bool success)
 		{
-			throw new NotImplementedException();
+			SCMessageWrapper wrapper = new SCMessageWrapper();
+			MakeRoomResponse reg = new MakeRoomResponse ();
+			reg.Success = success;
+			wrapper.MakeRoomResponse = reg;
+			Send(wrapper);
 		}
 
-		public void updateRoom(string update)
+		public void updateLobby(List<UpdateLobbyPiece> pieces)
 		{
-			throw new NotImplementedException();
+			UpdateLobby update = new UpdateLobby();
+			foreach (UpdateLobbyPiece piece in pieces)
+			{
+				update.UpdateLobbyPieces.Add(piece);
+			}
+			SCMessageWrapper wrapper = new SCMessageWrapper();
+			wrapper.UpdateLobby = update;
+			Send(wrapper);
+
+		}
+
+		public void updateRoom(List<UpdateRoomPiece> pieces)
+		{
+			UpdateRoom update = new UpdateRoom();
+			foreach (UpdateRoomPiece piece in pieces)
+			{
+				update.UpdageRoomPieces.Add(piece);
+			}
+			SCMessageWrapper wrapper = new SCMessageWrapper();
+			wrapper.UpdateRoom = update;
+			Send(wrapper);
 		}
 
 		private void Send(SCMessageWrapper wrapper)
