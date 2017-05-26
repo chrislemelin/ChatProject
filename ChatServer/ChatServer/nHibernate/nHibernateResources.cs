@@ -22,7 +22,6 @@ namespace ChatServer
 
 		public static void init()
 		{
-
 			var cfg = new NHibernate.Cfg.Configuration();
 
 			cfg.Configure();

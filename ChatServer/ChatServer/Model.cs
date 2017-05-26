@@ -17,9 +17,10 @@ namespace ChatServer
 			{
 				using (ITransaction transaction = session.BeginTransaction())
 				{
-					IEnumerable<Room> allRooms = session.Query<Room>().ToFuture();
+					IEnumerable<RoomDB> allRooms = session.Query<RoomDB>().ToFuture();
+					IEnumerable<MessageDB> allMessages = session.Query<MessageDB>().ToFuture();
 
-					foreach (Room currentRoom in allRooms)
+					foreach (RoomDB currentRoom in allRooms)
 					{
 						RoomModel currentRoomModel = new RoomModel(currentRoom);
 						rooms.Add(currentRoom.ID, currentRoomModel);
@@ -55,14 +56,14 @@ namespace ChatServer
 			proxy.updateLobby(pieces);
 		}
 
-		public User login(String username, int password, ClientProxy proxy)
+		public UserDB login(String username, int password, ClientProxy proxy)
 		{
 			username = username.Trim();
 			using (ISession session = nHibernateResources.Factory.OpenSession())
 			{
 				using (ITransaction transaction = session.BeginTransaction())
 				{
-					User user = nHibernateResources.Get<User, String>("Username", username, session);
+					UserDB user = nHibernateResources.Get<UserDB, String>("Username", username, session);
 					if (user != null)
 					{
 						if (user.Password.Equals(password))
@@ -79,7 +80,7 @@ namespace ChatServer
 			}
 		}
 
-		public User addUser(String username,int password, ClientProxy proxy)
+		public UserDB addUser(String username,int password, ClientProxy proxy)
 		{
 			username = username.Trim();
 
@@ -87,9 +88,9 @@ namespace ChatServer
 			{
 				using (ITransaction transaction = session.BeginTransaction())
 				{
-					if (nHibernateResources.Get<User, String>("Username", username, session) == null)
+					if (nHibernateResources.Get<UserDB, String>("Username", username, session) == null)
 					{
-						User user = new User { Username = username, Password = password };
+						UserDB user = new UserDB { Username = username, Password = password };
 						session.Save(user);
 						transaction.Commit();
 						return user;
@@ -103,13 +104,13 @@ namespace ChatServer
 
 		}
 
-		public User removeUser(string username)
+		public UserDB removeUser(string username)
 		{
 			using (ISession session = nHibernateResources.Factory.OpenSession())
 			{
 				using (ITransaction transaction = session.BeginTransaction())
 				{
-					User user = nHibernateResources.Get<User, String>("Username", username, session);
+					UserDB user = nHibernateResources.Get<UserDB, String>("Username", username, session);
 					if (user != null)
 					{
 						session.Delete(user);
@@ -126,12 +127,12 @@ namespace ChatServer
 
 		public void addRoom(string title, ClientProxy client)
 		{
-			Room newRoom;
+			RoomDB newRoom;
 			using (ISession session = nHibernateResources.Factory.OpenSession())
 			{
 				using (ITransaction transaction = session.BeginTransaction())
 				{
-					newRoom = new Room();
+					newRoom = new RoomDB();
 					newRoom.Owner = null;
 					newRoom.Title = title;
 
@@ -171,7 +172,7 @@ namespace ChatServer
 			rooms[id].subs.Remove(client);
 		}
 
-		public void addMessage(int id, ClientProxy client, User author,String message)
+		public void addMessage(int id, ClientProxy client, UserDB author,String message)
 		{
 			DateTime now = DateTime.Now;
 			now = now.ToUniversalTime();
@@ -194,7 +195,6 @@ namespace ChatServer
 			}
 
 		}
-
 
 		//updates all clients that a new room was created
 		private void updateLobby(RoomModel room)

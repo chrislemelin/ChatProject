@@ -6,9 +6,9 @@ namespace ChatServer
 	{
 		public List<ClientProxy> subs = new List<ClientProxy>();
 		public List<MessageModel> messages = new List<MessageModel>();
-		public Room room;
+		public RoomDB room;
 
-		public RoomModel(Room room)
+		public RoomModel(RoomDB room)
 		{
 			this.room = room;
 		}

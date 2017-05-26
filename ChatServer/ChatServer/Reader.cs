@@ -12,7 +12,7 @@ namespace ChatServer
 		public Socket socket;
 		public ClientProxy proxy;
 		public Model model;
-		public User user = null;
+		public UserDB user = null;
 
 		public void Start()
 		{
@@ -65,7 +65,7 @@ namespace ChatServer
 			
 			if (wrapper.Register != null)
 			{
-				User newUser = model.addUser(wrapper.Register.Username, wrapper.Register.Password1,proxy);
+				UserDB newUser = model.addUser(wrapper.Register.Username, wrapper.Register.Password1,proxy);
 				if (newUser != null)
 				{
 					proxy.registerResponse(true);

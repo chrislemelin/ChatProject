@@ -1,6 +1,6 @@
 ﻿<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" 
 	namespace="ChatServer" assembly="ChatServer">
-  <class name="Room" table="Rooms" lazy = "true">
+  <class name="RoomDB" table="Rooms" lazy = "true">
 
 	<id name="ID" column="ID">
       <generator class="identity"/>
@@ -8,6 +8,6 @@
 		
     <property name="Title" column="Title"/>
 
-	<many-to-one name="Owner" class="User" column="Owner" />
+	<many-to-one name="Owner" class="UserDB" column="Owner" />
   </class>
 </hibernate-mapping>
