@@ -1,8 +1,9 @@
 ﻿using System;
 using NHibernate;
+using System.Collections.Generic;
 namespace ChatServer
 {
-	public class User
+	public class UserDB
 	{
 
 		public virtual int ID { get; set; }
@@ -11,8 +12,8 @@ namespace ChatServer
 
 		public virtual int Password { get; set; }
 
-		public User()
-		{
-		}
+		public virtual IList<RoomDB> OwnedRooms { get; set;}
+
+
 	}
 }

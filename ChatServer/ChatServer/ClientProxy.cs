@@ -11,6 +11,7 @@ namespace ChatServer
 	public class ClientProxy : ServerListener
 	{
 		private Socket client;
+		public ClientModel clientModel { get;}
 
 		public ClientProxy(Socket client)
 		{

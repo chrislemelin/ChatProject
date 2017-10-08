@@ -1,3 +1,5 @@
+*.userprefs
+
 #Compiled source #
 ###################
 *.com
@@ -8,6 +10,19 @@
 *.so
 *.mdb
 *.docker_temp*
+.swp
+
+# Build results
+*[Dd]ebug/
+*[Dd]ebugPublic/
+*[Rr]elease/
+*[Rr]eleases/
+*x64/
+*x86/
+*bld/
+*[Bb]in/*
+*obj/*
+*[Ll]og/*
 
 # Packages #
 ############
@@ -24,10 +39,14 @@
 
 # OS generated files #
 ######################
-.DS_Store
-.DS_Store?
+*.DS_Store
+*.DS_Store?
 ._*
 .Spotlight-V100
 .Trashes
 ehthumbs.db
 Thumbs.db
+*.swp
+
+# C# stuff
+*.csproj
