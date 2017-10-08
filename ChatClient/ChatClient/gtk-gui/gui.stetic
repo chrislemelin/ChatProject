@@ -480,7 +480,7 @@
             <child>
               <widget class="Gtk.Label" id="titleLabel">
                 <property name="MemberName" />
-                <property name="LabelProp" translatable="yes">asdf</property>
+                <property name="Visible">False</property>
               </widget>
               <packing>
                 <property name="Position">0</property>
@@ -501,7 +501,6 @@
                     <child>
                       <widget class="Gtk.VBox" id="vboxMessages">
                         <property name="MemberName" />
-                        <property name="Spacing">6</property>
                         <signal name="Added" handler="OnVboxMessagesAdded" />
                         <child>
                           <placeholder />

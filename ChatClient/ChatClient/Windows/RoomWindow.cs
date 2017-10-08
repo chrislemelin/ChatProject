@@ -23,7 +23,7 @@ namespace ChatClient
 
 		private void init()
 		{
-			//titleLabel.Text = room.Title;
+			titleLabel.Text = room.Title+" ok1";
 			Title = room.Title;
 		}
     
@@ -43,11 +43,10 @@ namespace ChatClient
 			lab.Text = ms.ToString();
 			lab.Show();
 
-
-
-			vboxMessages.PackStart(lab, true, true, 0);
+			vboxMessages.PackStart(lab, false, true, 0);
 			vboxMessages.ShowNow();
-
+			Console.WriteLine(vboxMessages.Children.Length);
+			/*
 			Adjustment adj = scrolledMessageWindow.Vadjustment;
 			if (tr != null)
 				tr.Abort();
@@ -56,6 +55,7 @@ namespace ChatClient
 			{
 				scrollToBottom(adj.Upper - adj.PageSize);
 			});
+			*/
 
 		}
 
@@ -69,6 +69,17 @@ namespace ChatClient
 
 		protected void OnVboxMessagesAdded(object o, AddedArgs args)
 		{
+			Adjustment adj = scrolledMessageWindow.Vadjustment;
+			if (tr != null)
+				tr.Abort();
+
+			// unfortunatly dont see another way to do this
+			// no call back when the 
+			Thread.Sleep(100);
+			Gtk.Application.Invoke(delegate
+			{
+				scrollToBottom(adj.Upper - adj.PageSize);
+			});
 		}
 
 		private void scrollToBottom(double current)
