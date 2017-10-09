@@ -80,7 +80,7 @@ namespace ChatClient
 			}
 			lastClicked = newEvent;
 			newEvent.ModifyBg(StateType.Normal, focusCol);
-			Console.WriteLine( ((Label)newEvent.Children[0]).Text);
+			//Console.WriteLine( ((Label)newEvent.Children[0]).Text);
 		}
 
 		protected void OpenMakeRoomWindow(object sender, EventArgs e)

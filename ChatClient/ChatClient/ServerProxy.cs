@@ -6,6 +6,7 @@ using System.Text;
 using System.IO;
 using Google.Protobuf;
 using System.Collections.Generic;
+using System.Configuration;
 
 namespace ChatClient
 {
@@ -32,20 +33,20 @@ namespace ChatClient
 			this.modelClone = modelClone;
 		}
 
-		public void StartClient()
+		public Socket StartClient()
 		{
 			// Connect to a remote device.  
 			try
 			{
 				// Establish the remote endpoint for the socket.  
-				IPHostEntry ipHostInfo = Dns.GetHostEntry("localhost");
+				//IPHostEntry ipHostInfo = Dns.GetHostEntry("localhost");
 
-				//IPAddress ipAddress2 = IPAddress.Parse("172.17.0.0");
-				IPAddress ipAddress = ipHostInfo.AddressList[0];
+				IPAddress ipAddress = IPAddress.Parse("35.188.166.129");
+				//IPAddress ipAddress = ipHostInfo.AddressList[0];
 				IPEndPoint remoteEP = new IPEndPoint(ipAddress, port);
 
 				// Create a TCP/IP socket.  
-				client = new Socket(AddressFamily.InterNetwork,
+				client = new Socket(ipAddress.AddressFamily,
 					SocketType.Stream, ProtocolType.Tcp);
 
 				// Connect to the remote endpoint.  
@@ -53,21 +54,14 @@ namespace ChatClient
 					new AsyncCallback(ConnectCallback), client);
 				connectDone.WaitOne();
 
-				// Send test data to the remote device. 
-
-				Reader rd = new Reader(modelClone);
-				rd.loginWindow = loginWindow;
-				rd.client = client;
-				loginWindow.rd = rd;
-				Thread oThread = new Thread(new ThreadStart(rd.Start));
-				oThread.Start();
-				 
+				return client;
 
 			}
 			catch (Exception e)
 			{
 				Console.WriteLine(e.ToString());
 				Environment.Exit(0);
+				return null;
 			}
 		}
 

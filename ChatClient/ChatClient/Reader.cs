@@ -15,7 +15,6 @@ namespace ChatClient
 		public MakeRoomWindow makeRoomWindow;
 		public RoomWindow roomWindow;
 
-
 		private ModelClone modelClone;
 
 		public Reader(ModelClone modelClone)

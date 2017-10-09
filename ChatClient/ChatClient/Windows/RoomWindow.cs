@@ -23,7 +23,7 @@ namespace ChatClient
 
 		private void init()
 		{
-			titleLabel.Text = room.Title+" ok1";
+			titleLabel.Text = room.Title;
 			Title = room.Title;
 		}
     
@@ -45,7 +45,6 @@ namespace ChatClient
 
 			vboxMessages.PackStart(lab, false, true, 0);
 			vboxMessages.ShowNow();
-			Console.WriteLine(vboxMessages.Children.Length);
 			/*
 			Adjustment adj = scrolledMessageWindow.Vadjustment;
 			if (tr != null)
@@ -63,7 +62,7 @@ namespace ChatClient
 		{
 			String s = sendMessageText.Buffer.Text;
 
-			Thread messageThread = new Thread(() => proxy.sendMessage(room.ID, s));
+			Thread messageThread = nechw Thread(() => proxy.sendMessage(room.ID, s));
 			messageThread.Start();	
 		}
 
@@ -75,11 +74,16 @@ namespace ChatClient
 
 			// unfortunatly dont see another way to do this
 			// no call back when the 
-			Thread.Sleep(100);
-			Gtk.Application.Invoke(delegate
+			//Thread.Sleep(100);
+			Thread messageThread = new Thread(() =>
 			{
-				scrollToBottom(adj.Upper - adj.PageSize);
+				//Thread.Sleep(100);
+				Gtk.Application.Invoke(delegate
+				{
+					scrollToBottom(adj.Upper - adj.PageSize);
+				});
 			});
+			messageThread.Start();
 		}
 
 		private void scrollToBottom(double current)
