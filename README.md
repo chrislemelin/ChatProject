@@ -1,6 +1,8 @@
 # ChatProject
 My client-server chat room application written in C#.
 
+Just Deployed Server on Google Cloud, will try to get a first release of the client in a few days - 10/9/17
+
 ## Stuff I am using
 
 ### Google Protocal Buffers
