@@ -124,6 +124,7 @@
     <Compile Include="gtk-gui\ChatClient.RoomWindow.cs" />
     <Compile Include="Windows\RoomWindow.cs" />
     <Compile Include="Models\MessageClone.cs" />
+    <Compile Include="Models\RoomCloneManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

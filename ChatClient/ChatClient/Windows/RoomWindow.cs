@@ -62,7 +62,7 @@ namespace ChatClient
 		{
 			String s = sendMessageText.Buffer.Text;
 
-			Thread messageThread = nechw Thread(() => proxy.sendMessage(room.ID, s));
+			Thread messageThread = new Thread(() => proxy.sendMessage(room.ID, s));
 			messageThread.Start();	
 		}
 
@@ -77,7 +77,7 @@ namespace ChatClient
 			//Thread.Sleep(100);
 			Thread messageThread = new Thread(() =>
 			{
-				//Thread.Sleep(100);
+				Thread.Sleep(100);
 				Gtk.Application.Invoke(delegate
 				{
 					scrollToBottom(adj.Upper - adj.PageSize);

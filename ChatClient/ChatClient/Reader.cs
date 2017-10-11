@@ -128,7 +128,7 @@ namespace ChatClient
 					ms.author = p.Author;
 					ms.message = p.MessageText;
 					ms.timeStamp = p.Time.ToDateTime();
-					roomWindow.addMessage(ms);
+					modelClone.rooms[p.RoomID].window.addMessage(ms);
 				}
 			}
 		}

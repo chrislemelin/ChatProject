@@ -64,7 +64,7 @@ namespace ChatClient
 
 		private void populateWindow()
 		{
-			foreach (RoomClone room in modelClone.rooms)
+			foreach (RoomClone room in modelClone.rooms.Values)
 			{
 				addRoom(room);
 			}
@@ -108,6 +108,7 @@ namespace ChatClient
 
 			proxy.subRoom(rooms.Forward[lastClicked].ID, true);
 			rd.roomWindow = roomWindow;
+			rooms.Forward[lastClicked].window = roomWindow;
 		}
 
 

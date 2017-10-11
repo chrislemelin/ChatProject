@@ -185,6 +185,7 @@ namespace ChatServer
 			foreach (ClientProxy subscriber in rooms[id].subs)
 			{
 				UpdateRoomPiece p = new UpdateRoomPiece();
+				p.RoomID = id;
 				p.Author = author.Username;
 				p.MessageText = message;
 				p.Time = Timestamp.FromDateTime(now);
@@ -217,6 +218,7 @@ namespace ChatServer
 			List<UpdateRoomPiece> pieces = new List<UpdateRoomPiece>();
 			UpdateRoomPiece p = new UpdateRoomPiece();
 			pieces.Add(p);
+			p.RoomID = room.room.ID;
 			p.Author = message.author.Username;
 			p.MessageText = message.messageText;
 			Timestamp newTime = new Timestamp();
@@ -237,6 +239,7 @@ namespace ChatServer
 			foreach(MessageModel m in room.messages)
 			{
 				UpdateRoomPiece p = new UpdateRoomPiece();
+				p.RoomID = room.room.ID;
 				p.Author = m.author.Username;
 				p.MessageText = m.messageText;
 				p.Time = Timestamp.FromDateTime(m.timeStamp.ToUniversalTime());
