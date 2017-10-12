@@ -16,7 +16,10 @@ public partial class LoginWindow : Gtk.Window
 		Build();
 		this.modelClone = modelClone;
 		this.proxy = proxy;
+		this.DeleteEvent += OnDeleteEvent;
+
 	}
+
 
 	public void DisplayMessage(String message)
 	{
@@ -38,7 +41,6 @@ public partial class LoginWindow : Gtk.Window
 			this.Destroy();
 		});
 	}
-
 
 
 	protected void OnDeleteEvent(object sender, DeleteEventArgs a)

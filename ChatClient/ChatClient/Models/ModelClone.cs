@@ -10,7 +10,6 @@ namespace ChatClient
 		public LobbyWindow lobbyWindow = null;
 		public LoginWindow loginWindow = null;
 
-		//private Map<EventBox, RoomClone> rooms = new Map<EventBox, RoomClone>();
 		public Dictionary<int, RoomClone> rooms = new Dictionary<int, RoomClone>();
 
 		public ModelClone()
@@ -26,6 +25,11 @@ namespace ChatClient
 			{
 				lobbyWindow.addRoom(room);
 			}
+		}
+
+		public void removeRoom(int id)
+		{
+			rooms.Remove(id);
 		}
 
 	}

@@ -152,17 +152,20 @@ namespace ChatServer
 
 		}
 
-		public void subscribe(int id, ClientProxy client)
+		public void subscribe(int id, bool subbing, ClientProxy client)
 		{
-			
 			RoomModel room;
 			if (rooms.TryGetValue(id, out room))
 			{
-				if (!room.subs.Contains(client))
+
+				if (subbing && !room.subs.Contains(client))
 				{
 					room.subs.Add(client);
 					initRoom(rooms[id], client);
-
+				}
+				else if (!subbing && room.subs.Contains(client))
+				{
+					room.subs.Remove(client);
 				}
 			}
 		}

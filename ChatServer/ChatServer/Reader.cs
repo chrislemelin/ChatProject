@@ -116,7 +116,7 @@ namespace ChatServer
 			if (wrapper.RoomSubscribe != null)
 			{
 				RoomSubscribe roomSubscribe = wrapper.RoomSubscribe;
-				model.subscribe(roomSubscribe.Id, proxy);
+				model.subscribe(roomSubscribe.Id, roomSubscribe.Subbing, proxy);
 			}
 		}
 	}
