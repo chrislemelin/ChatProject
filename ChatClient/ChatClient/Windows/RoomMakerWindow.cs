@@ -1,4 +1,6 @@
 ﻿using System;
+using Gtk;
+
 namespace ChatClient
 {
 	public partial class MakeRoomWindow : Gtk.Window
@@ -9,10 +11,12 @@ namespace ChatClient
 		{
 			this.Build();
 			MakeRoomButton.Pressed += MakeRoom;
+			this.DeleteEvent += OnDeleteEvent;
+
 			this.proxy = proxy;
 		}
 
-		public void MakeRoom(Object o, EventArgs args)
+		public void MakeRoom(object sender, EventArgs e)
 		{
 			if (!RoomNameIn.Text.Equals(""))
 			{
@@ -27,6 +31,14 @@ namespace ChatClient
 		public void DisplayMessage(String text)
 		{
 			DescriptionBox.Buffer.Text = text;
+		}
+
+		protected void OnDeleteEvent(object o, DeleteEventArgs args)
+		{
+			//hides the register window instead of deleteing it
+			//can only make one register window
+			args.RetVal = true;
+			Hide();
 		}
 
 	}

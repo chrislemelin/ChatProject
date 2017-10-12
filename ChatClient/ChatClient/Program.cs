@@ -1,5 +1,7 @@
-﻿using System;
+﻿using System.Net.Sockets;
+using System;
 using Gtk;
+using System.Threading;
 
 namespace ChatClient
 {
@@ -10,19 +12,25 @@ namespace ChatClient
 			ModelClone modelClone = new ModelClone();
 			ServerProxy proxy = new ServerProxy(modelClone);
 			Application.Init();
-			LoginWindow win = new LoginWindow(modelClone,proxy);
-		
-			proxy.loginWindow = win;
+			System.Net.Sockets.Socket client = null;
 			try
 			{
-				proxy.StartClient();
+				client = proxy.StartClient();
 			}
 			catch (Exception e)
 			{
-				win.Destroy();
 				Application.Quit();
 			}
-			win.Show();
+
+			LoginWindow loginWindow = new LoginWindow(modelClone, proxy);
+			Reader rd = new Reader(modelClone);
+			rd.loginWindow = loginWindow;
+			rd.client = client;
+			loginWindow.rd = rd;
+			Thread oThread = new Thread(new ThreadStart(rd.Start));
+			oThread.Start();
+
+			loginWindow.Show();
 			Application.Run();
 
 		}

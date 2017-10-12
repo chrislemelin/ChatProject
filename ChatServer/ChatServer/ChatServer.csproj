@@ -67,6 +67,12 @@
     <Reference Include="mysql.web">
       <HintPath>..\..\..\..\Downloads\mysql-connector-net-6.3.6-noinstall\v4\mysql.web.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.Settings.Abstractions">
+      <HintPath>..\packages\Xam.Plugins.Settings.3.0.1\lib\net45\Plugin.Settings.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Settings">
+      <HintPath>..\packages\Xam.Plugins.Settings.3.0.1\lib\net45\Plugin.Settings.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -81,11 +87,12 @@
     <Compile Include="ProtoBuf\ServerToClientMessages.cs" />
     <Compile Include="Models\ClientModel.cs" />
     <Compile Include="Models\RoomModel.cs" />
-    <Compile Include="nHibernate\Product.cs" />
     <Compile Include="nHibernate\nHibernateResources.cs" />
-    <Compile Include="nHibernate\User.cs" />
     <Compile Include="Models\MessageModel.cs" />
-    <Compile Include="nHibernate\Room.cs" />
+    <Compile Include="nHibernate\MessageDB.cs" />
+    <Compile Include="nHibernate\RoomDB.cs" />
+    <Compile Include="nHibernate\UserDB.cs" />
+    <Compile Include="Helpers\Settings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -95,11 +102,12 @@
     <Folder Include="ProtoBuf\" />
     <Folder Include="Models\" />
     <Folder Include="nHibernate\" />
+    <Folder Include="bin\Debug\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="nHibernate\Product.hbm.xml" />
-    <EmbeddedResource Include="nHibernate\User.hbm.xml" />
-    <EmbeddedResource Include="nHibernate\Room.hbm.xml" />
+    <EmbeddedResource Include="nHibernate\MessageDB.hbm.xml" />
+    <EmbeddedResource Include="nHibernate\UserDB.hbm.xml" />
+    <EmbeddedResource Include="nHibernate\RoomDB.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

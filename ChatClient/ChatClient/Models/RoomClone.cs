@@ -7,18 +7,18 @@ namespace ChatClient
 		public string Title { get; set; }
 		public List<MessageClone> messages = new List<MessageClone>();
 		public int ID
-		{
-			get
-			{
-				return id;
-			}
+		{ 
+			get{return id;}
 		}
+
+		public RoomWindow window;
 
 		private int id;
 		public RoomClone(int id)
 		{
 			this.id = id;
 		}
+
 
 
 

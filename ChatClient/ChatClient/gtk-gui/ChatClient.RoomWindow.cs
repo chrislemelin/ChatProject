@@ -44,7 +44,6 @@ namespace ChatClient
 			// Container child vboxWindow.Gtk.Box+BoxChild
 			this.titleLabel = new global::Gtk.Label();
 			this.titleLabel.Name = "titleLabel";
-			this.titleLabel.LabelProp = global::Mono.Unix.Catalog.GetString("asdf");
 			this.vboxWindow.Add(this.titleLabel);
 			global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.vboxWindow[this.titleLabel]));
 			w1.Position = 0;
@@ -61,7 +60,6 @@ namespace ChatClient
 			// Container child GtkViewport.Gtk.Container+ContainerChild
 			this.vboxMessages = new global::Gtk.VBox();
 			this.vboxMessages.Name = "vboxMessages";
-			this.vboxMessages.Spacing = 6;
 			w2.Add(this.vboxMessages);
 			this.scrolledMessageWindow.Add(w2);
 			this.vboxWindow.Add(this.scrolledMessageWindow);
@@ -109,6 +107,7 @@ namespace ChatClient
 			}
 			this.DefaultWidth = 400;
 			this.DefaultHeight = 300;
+			this.titleLabel.Hide();
 			this.Show();
 			this.vboxMessages.Added += new global::Gtk.AddedHandler(this.OnVboxMessagesAdded);
 			this.sendMessageButton.Clicked += new global::System.EventHandler(this.OnSendMessageButtonClicked);

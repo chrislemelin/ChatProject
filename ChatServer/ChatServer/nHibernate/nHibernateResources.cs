@@ -1,5 +1,11 @@
 ﻿using System;
 using NHibernate;
+using NHibernate.Mapping.ByCode.Conformist;
+using NHibernate.Mapping.ByCode;
+using System.Collections.Generic;
+using System.Reflection;
+using System.IO;
+
 namespace ChatServer
 {
 	public class nHibernateResources
@@ -18,7 +24,8 @@ namespace ChatServer
 		public static void init()
 		{
 			var cfg = new NHibernate.Cfg.Configuration();
-			cfg.Configure();
+			cfg.Configure(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "hibernate.cfg.xml"));
+
 			// ensure that mapping hbm.xml file is loaded
 			cfg.AddAssembly(typeof(MainClass).Assembly);
 			factory = cfg.BuildSessionFactory();

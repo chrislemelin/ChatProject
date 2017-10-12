@@ -13,13 +13,13 @@ namespace ChatClient
 		private ServerProxy proxy;
 
 		private MakeRoomWindow makeRoomWindow = null;
-		private RoomWindow roomWindow = null;
 
 
 		public LobbyWindow(ModelClone modelClone, ServerProxy proxy, Reader rd) :
 				base(Gtk.WindowType.Toplevel)
 		{
 			this.Build();
+			this.DeleteEvent += OnDeleteEvent;
 			this.rd = rd;
 			this.modelClone = modelClone;
 			this.modelClone.lobbyWindow = this;
@@ -40,12 +40,18 @@ namespace ChatClient
 			this.Show();
 		}
 
-		public EventBox addLabel(String s)
+		protected void OnDeleteEvent(object sender, DeleteEventArgs a)
+		{
+			Application.Quit();
+			a.RetVal = true;
+		}
+
+		public EventBox addRoom(RoomClone s)
 		{
 			EventBox boxy = new EventBox();
 			Label labie = new Label();
 
-			labie.Text = s;
+			labie.Text = s.Title;
 			boxy.Add(labie);
 			labie.HeightRequest = 30;
 
@@ -55,15 +61,18 @@ namespace ChatClient
 			boxy.ButtonPressEvent += ButtonPressHandler;
 
 			vbox4.PackStart(boxy, false, true, 0);
+
+			rooms.Add(boxy, s);
 			return boxy;
 
 		}
 
+
 		private void populateWindow()
 		{
-			foreach (RoomClone room in modelClone.rooms)
+			foreach (RoomClone room in modelClone.rooms.Values)
 			{
-				rooms.Add(addLabel(room.Title),room);
+				addRoom(room);
 			}
 		}
 
@@ -77,34 +86,35 @@ namespace ChatClient
 			}
 			lastClicked = newEvent;
 			newEvent.ModifyBg(StateType.Normal, focusCol);
-			Console.WriteLine( ((Label)newEvent.Children[0]).Text);
+			//Console.WriteLine( ((Label)newEvent.Children[0]).Text);
 		}
 
 		protected void OpenMakeRoomWindow(object sender, EventArgs e)
 		{
 			if (makeRoomWindow == null)
 			{
-				
 				makeRoomWindow = new MakeRoomWindow(proxy);
 				rd.makeRoomWindow = makeRoomWindow;
+				makeRoomWindow.Present();
+				makeRoomWindow.Show();
+			}
+			else
+			{
+				makeRoomWindow.Show();
+				makeRoomWindow.Present();
+
 			}
 
 		}
 
-		protected void OnDeleteEvent(object o, DeleteEventArgs args)
-		{
-			//hides the register window instead of deleteing it
-			//can only make one register window
-			args.RetVal = true;
-			Hide();
-		}
 
 		protected void OnJoinRoomButtonClicked(object sender, EventArgs e)
 		{
-			this.roomWindow = new RoomWindow(rooms.Forward[lastClicked], proxy);
-
+			RoomWindow roomWindow = new RoomWindow(rooms.Forward[lastClicked], modelClone , proxy);
 			proxy.subRoom(rooms.Forward[lastClicked].ID, true);
 			rd.roomWindow = roomWindow;
+			rooms.Forward[lastClicked].window = roomWindow;
+
 		}
 
 

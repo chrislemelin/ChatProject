@@ -29,7 +29,7 @@ namespace ChatServer
 			IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 10000);
 
 			// Create a TCP/IP socket.  
-			Socket listener = new Socket(AddressFamily.InterNetwork,
+			Socket listener = new Socket(ipAddress.AddressFamily,
 				SocketType.Stream, ProtocolType.Tcp);
 
 			// Bind the socket to the local endpoint and listen for incoming connections.  

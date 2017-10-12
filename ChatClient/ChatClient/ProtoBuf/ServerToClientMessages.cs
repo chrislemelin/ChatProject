@@ -25,19 +25,19 @@ public static partial class ServerToClientMessagesReflection {
           "Y2VzcxgBIAEoCCIjChBSZWdpc3RlclJlc3BvbnNlEg8KB3N1Y2Nlc3MYASAB",
           "KAgiIwoQTWFrZVJvb21SZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIIkQKClVw",
           "ZGF0ZVJvb20SCgoCaWQYASABKAUSKgoQdXBkYWdlUm9vbVBpZWNlcxgCIAMo",
-          "CzIQLlVwZGF0ZVJvb21QaWVjZSJgCg9VcGRhdGVSb29tUGllY2USDgoGYXV0",
-          "aG9yGAEgASgJEhMKC21lc3NhZ2VUZXh0GAIgASgJEigKBHRpbWUYAyABKAsy",
-          "Gi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIjsKC1VwZGF0ZUxvYmJ5EiwK",
-          "EXVwZGF0ZUxvYmJ5UGllY2VzGAEgAygLMhEuVXBkYXRlTG9iYnlQaWVjZSJ8",
-          "ChBVcGRhdGVMb2JieVBpZWNlEiQKBHR5cGUYASABKA4yFi5VcGRhdGVMb2Ji",
-          "eVBpZWNlLlR5cGUSDQoFdGl0bGUYAiABKAkSCgoCaWQYAyABKAUiJwoEVHlw",
-          "ZRIHCgNBREQQABIKCgZERUxFVEUQARIKCgZNT0RJRlkQAiLoAQoQU0NNZXNz",
-          "YWdlV3JhcHBlchInCg1hdXRoZW50aWNhdGVkGAEgASgLMg4uQXV0aGVudGlj",
-          "YXRlZEgAEiMKC3VwZGF0ZUxvYmJ5GAIgASgLMgwuVXBkYXRlTG9iYnlIABIh",
-          "Cgp1cGRhdGVSb29tGAMgASgLMgsuVXBkYXRlUm9vbUgAEi0KEHJlZ2lzdGVy",
-          "UmVzcG9uc2UYBCABKAsyES5SZWdpc3RlclJlc3BvbnNlSAASLQoQTWFrZVJv",
-          "b21SZXNwb25zZRgFIAEoCzIRLk1ha2VSb29tUmVzcG9uc2VIAEIFCgNtc2di",
-          "BnByb3RvMw=="));
+          "CzIQLlVwZGF0ZVJvb21QaWVjZSJwCg9VcGRhdGVSb29tUGllY2USDgoGYXV0",
+          "aG9yGAEgASgJEhMKC21lc3NhZ2VUZXh0GAIgASgJEg4KBnJvb21JRBgDIAEo",
+          "BRIoCgR0aW1lGAQgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCI7",
+          "CgtVcGRhdGVMb2JieRIsChF1cGRhdGVMb2JieVBpZWNlcxgBIAMoCzIRLlVw",
+          "ZGF0ZUxvYmJ5UGllY2UifAoQVXBkYXRlTG9iYnlQaWVjZRIkCgR0eXBlGAEg",
+          "ASgOMhYuVXBkYXRlTG9iYnlQaWVjZS5UeXBlEg0KBXRpdGxlGAIgASgJEgoK",
+          "AmlkGAMgASgFIicKBFR5cGUSBwoDQUREEAASCgoGREVMRVRFEAESCgoGTU9E",
+          "SUZZEAIi6AEKEFNDTWVzc2FnZVdyYXBwZXISJwoNYXV0aGVudGljYXRlZBgB",
+          "IAEoCzIOLkF1dGhlbnRpY2F0ZWRIABIjCgt1cGRhdGVMb2JieRgCIAEoCzIM",
+          "LlVwZGF0ZUxvYmJ5SAASIQoKdXBkYXRlUm9vbRgDIAEoCzILLlVwZGF0ZVJv",
+          "b21IABItChByZWdpc3RlclJlc3BvbnNlGAQgASgLMhEuUmVnaXN0ZXJSZXNw",
+          "b25zZUgAEi0KEE1ha2VSb29tUmVzcG9uc2UYBSABKAsyES5NYWtlUm9vbVJl",
+          "c3BvbnNlSABCBQoDbXNnYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -45,7 +45,7 @@ public static partial class ServerToClientMessagesReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::RegisterResponse), global::RegisterResponse.Parser, new[]{ "Success" }, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::MakeRoomResponse), global::MakeRoomResponse.Parser, new[]{ "Success" }, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::UpdateRoom), global::UpdateRoom.Parser, new[]{ "Id", "UpdageRoomPieces" }, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::UpdateRoomPiece), global::UpdateRoomPiece.Parser, new[]{ "Author", "MessageText", "Time" }, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::UpdateRoomPiece), global::UpdateRoomPiece.Parser, new[]{ "Author", "MessageText", "RoomID", "Time" }, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::UpdateLobby), global::UpdateLobby.Parser, new[]{ "UpdateLobbyPieces" }, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::UpdateLobbyPiece), global::UpdateLobbyPiece.Parser, new[]{ "Type", "Title", "Id" }, null, new[]{ typeof(global::UpdateLobbyPiece.Types.Type) }, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SCMessageWrapper), global::SCMessageWrapper.Parser, new[]{ "Authenticated", "UpdateLobby", "UpdateRoom", "RegisterResponse", "MakeRoomResponse" }, new[]{ "Msg" }, null, null)
@@ -569,6 +569,7 @@ public sealed partial class UpdateRoomPiece : pb::IMessage<UpdateRoomPiece> {
   public UpdateRoomPiece(UpdateRoomPiece other) : this() {
     author_ = other.author_;
     messageText_ = other.messageText_;
+    roomID_ = other.roomID_;
     Time = other.time_ != null ? other.Time.Clone() : null;
   }
 
@@ -599,8 +600,19 @@ public sealed partial class UpdateRoomPiece : pb::IMessage<UpdateRoomPiece> {
     }
   }
 
+  /// <summary>Field number for the "roomID" field.</summary>
+  public const int RoomIDFieldNumber = 3;
+  private int roomID_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int RoomID {
+    get { return roomID_; }
+    set {
+      roomID_ = value;
+    }
+  }
+
   /// <summary>Field number for the "time" field.</summary>
-  public const int TimeFieldNumber = 3;
+  public const int TimeFieldNumber = 4;
   private global::Google.Protobuf.WellKnownTypes.Timestamp time_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public global::Google.Protobuf.WellKnownTypes.Timestamp Time {
@@ -625,6 +637,7 @@ public sealed partial class UpdateRoomPiece : pb::IMessage<UpdateRoomPiece> {
     }
     if (Author != other.Author) return false;
     if (MessageText != other.MessageText) return false;
+    if (RoomID != other.RoomID) return false;
     if (!object.Equals(Time, other.Time)) return false;
     return true;
   }
@@ -634,6 +647,7 @@ public sealed partial class UpdateRoomPiece : pb::IMessage<UpdateRoomPiece> {
     int hash = 1;
     if (Author.Length != 0) hash ^= Author.GetHashCode();
     if (MessageText.Length != 0) hash ^= MessageText.GetHashCode();
+    if (RoomID != 0) hash ^= RoomID.GetHashCode();
     if (time_ != null) hash ^= Time.GetHashCode();
     return hash;
   }
@@ -653,8 +667,12 @@ public sealed partial class UpdateRoomPiece : pb::IMessage<UpdateRoomPiece> {
       output.WriteRawTag(18);
       output.WriteString(MessageText);
     }
+    if (RoomID != 0) {
+      output.WriteRawTag(24);
+      output.WriteInt32(RoomID);
+    }
     if (time_ != null) {
-      output.WriteRawTag(26);
+      output.WriteRawTag(34);
       output.WriteMessage(Time);
     }
   }
@@ -667,6 +685,9 @@ public sealed partial class UpdateRoomPiece : pb::IMessage<UpdateRoomPiece> {
     }
     if (MessageText.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(MessageText);
+    }
+    if (RoomID != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(RoomID);
     }
     if (time_ != null) {
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(Time);
@@ -684,6 +705,9 @@ public sealed partial class UpdateRoomPiece : pb::IMessage<UpdateRoomPiece> {
     }
     if (other.MessageText.Length != 0) {
       MessageText = other.MessageText;
+    }
+    if (other.RoomID != 0) {
+      RoomID = other.RoomID;
     }
     if (other.time_ != null) {
       if (time_ == null) {
@@ -709,7 +733,11 @@ public sealed partial class UpdateRoomPiece : pb::IMessage<UpdateRoomPiece> {
           MessageText = input.ReadString();
           break;
         }
-        case 26: {
+        case 24: {
+          RoomID = input.ReadInt32();
+          break;
+        }
+        case 34: {
           if (time_ == null) {
             time_ = new global::Google.Protobuf.WellKnownTypes.Timestamp();
           }

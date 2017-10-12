@@ -3,7 +3,7 @@ namespace ChatServer
 {
 	public class MessageModel
 	{
-		public User author;
+		public UserDB author;
 		public String messageText;
 		public DateTime timeStamp;
 
